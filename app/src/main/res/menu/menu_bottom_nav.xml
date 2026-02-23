@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/home_4_svgrepo_com"
+        android:title="Home"
+        android:id="@+id/menu_home">
+    </item>
+
+    <item
+        android:id="@+id/menu_library"
+        android:icon="@drawable/library"
+        android:title="Library">
+    </item>
+
+    <item
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/profile"
+        android:title="Profile">
+    </item>
+</menu>
