@@ -34,9 +34,6 @@ public class Library extends AppCompatActivity {
         });
 
         bottomNavigationView = findViewById(R.id.library_bottom_nav);
-
-        toolbar = findViewById(R.id.library_toolbar);
-
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -59,6 +56,31 @@ public class Library extends AppCompatActivity {
                     return true;
                 }
 
+                return false;
+            }
+        });
+
+
+        toolbar = findViewById(R.id.library_toolbar);
+        toolbar.setOnMenuItemClickListener(item ->{
+            if(item.getItemId() == R.id.search){
+                return true;
+            }
+            return false;
+        });
+
+        Menu menu = toolbar.getMenu();
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
                 return false;
             }
         });
