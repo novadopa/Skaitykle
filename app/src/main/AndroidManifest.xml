@@ -16,7 +16,7 @@
             android:exported="false" />
         <activity
             android:name=".Library"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Title"
             android:exported="true">
