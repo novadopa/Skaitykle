@@ -31,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,27 +91,28 @@ public class Library extends AppCompatActivity {
         List<String> genres1 = Arrays.asList("Horror");
         List<String> genres2 = Arrays.asList("Fantasy");
         books.add(new BookEntity("Book One", "Author A", R.drawable.profile,
-                200, genres1));
+                200, 100, genres1));
         books.add(new BookEntity("Book tuah", "Author b", R.drawable.profile,
-                400, genres2));
+                400, 50, genres2));
 
         bookAdapter = new BookAdapter(books);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(bookAdapter);
 
+
         authorChip = findViewById(R.id.authorFilterChip);
-        authorChip.setOnClickListener(v->{
+        authorChip.setOnClickListener(v-> {
             PopupMenu popup = new PopupMenu(this, v);
-            popup.getMenu().add("All");
-            popup.getMenu().add("Author A");
-            popup.getMenu().add("Author b");
+
+            List<String> authors = getAuthors(books);
+            for(String author : authors){
+                popup.getMenu().add(author);
+            }
 
             popup.setOnMenuItemClickListener(item->{
-                //bookAdapter.FilterAuthor(item.getTitle().toString());
                 String selected = item.getTitle().toString();
 
                 bookAdapter.FilterAuthor(selected);
-                //authorChip.setText(item.getTitle());
 
                 if(selected.equals("All"))
                 {
@@ -124,6 +127,7 @@ public class Library extends AppCompatActivity {
             popup.show();
         });
 
+
         genresChip = findViewById(R.id.genreFilterChip);
         genresChip.setOnClickListener(v->{
             PopupMenu popup = new PopupMenu(this, v);
@@ -132,57 +136,21 @@ public class Library extends AppCompatActivity {
             popup.getMenu().add("Fantasy");
 
             popup.setOnMenuItemClickListener(item->{
-                bookAdapter.FilterGenre(item.getTitle().toString());
-                genresChip.setText(item.getTitle());
+                String selected = item.getTitle().toString();
+
+                bookAdapter.FilterGenre(selected);
+
+                if(selected.equals("All"))
+                {
+                    genresChip.setText("Genres");
+                }else{
+                    genresChip.setText(selected);
+                }
+
                 return true;
             });
             popup.show();
         });
-
-
-        /*Spinner authorSpinner = findViewById(R.id.author_spinner);
-        List<String> authors = Arrays.asList("All", "Author A", "Author B");
-        //Set<String> auth = new HashSet<>();
-
-        ArrayAdapter<String> authorAdapter = new ArrayAdapter<>(this, android.R.layout.
-                simple_spinner_dropdown_item, authors);
-
-        authorSpinner.setAdapter(authorAdapter);
-
-        authorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedAuthor = parent.getItemAtPosition(position).toString();
-                adapter.FilterAuthor(selectedAuthor);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
-
-        /*Spinner genreSpinner = findViewById(R.id.genre_spinner);
-        List<String> genres = Arrays.asList("All", "Fantasy", "Science-fiction", "Horror");
-
-        ArrayAdapter<String> genreAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, genres);
-
-        genreSpinner.setAdapter(genreAdapter);
-
-        genreSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedGenre = parent.getItemAtPosition(position).toString();
-                adapter.FilterGenre(selectedGenre);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
     }
 
 
@@ -210,5 +178,20 @@ public class Library extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+
+    private List<String> getAuthors(List<BookEntity> books){
+        Set<String> authors = new HashSet<>();
+
+        for(BookEntity book : books){
+            authors.add(book.getBookAuthor());
+        }
+
+        List<String> authorList = new ArrayList<>(authors);
+        Collections.sort(authorList);
+
+        authorList.add(0, "All");
+        return authorList;
     }
 }
