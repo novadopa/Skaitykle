@@ -1,5 +1,6 @@
 package com.example.skaitykle;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,24 +33,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     }
 
 
-    static class BookViewHolder extends RecyclerView.ViewHolder {
-        ImageView cover;
-        TextView title;
-        TextView author;
-        TextView bookPages;
-        TextView bookPercentage;
-
-        public BookViewHolder(@NonNull View itemView) {
-            super(itemView);
-            cover = itemView.findViewById(R.id.book_cover);
-            title = itemView.findViewById(R.id.book_title);
-            author = itemView.findViewById(R.id.book_author);
-            bookPages = itemView.findViewById(R.id.book_pages);
-            bookPercentage = itemView.findViewById(R.id.book_percentage);
-        }
-    }
-
-
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,6 +48,39 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.author.setText(book.getBookAuthor());
         holder.cover.setImageResource(book.getBookCoverId());
         holder.bookPages.setText(book.getTotalBookPages() + " pages");
+        holder.bookPercentage.setText("Reading progress: " +
+                ((book.getPagesRead() * 100) / book.getTotalBookPages()) + "%");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bookReaderIntent = new Intent(v.getContext(), BookReader.class);
+                bookReaderIntent.putExtra("title", book.getBookTitle());
+                bookReaderIntent.putExtra("author", book.getBookAuthor());
+                bookReaderIntent.putExtra("totalPages", book.getTotalBookPages());
+                bookReaderIntent.putExtra("pagesRead", book.getPagesRead());
+
+                v.getContext().startActivity(bookReaderIntent);
+            }
+        });
+    }
+
+
+    static class BookViewHolder extends RecyclerView.ViewHolder {
+        ImageView cover;
+        TextView title;
+        TextView author;
+        TextView bookPages;
+        TextView bookPercentage;
+
+        public BookViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cover = itemView.findViewById(R.id.book_cover);
+            title = itemView.findViewById(R.id.book_title);
+            author = itemView.findViewById(R.id.book_author);
+            bookPages = itemView.findViewById(R.id.book_pages);
+            bookPercentage = itemView.findViewById(R.id.book_percentage);
+        }
     }
 
 
