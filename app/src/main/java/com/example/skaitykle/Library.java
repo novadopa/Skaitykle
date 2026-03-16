@@ -38,12 +38,12 @@ import java.util.List;
 import java.util.Set;
 
 public class Library extends AppCompatActivity {
-
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
     BookAdapter bookAdapter;
     Chip authorChip;
     Chip genresChip;
+    BookEntity bookInProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,61 +95,82 @@ public class Library extends AppCompatActivity {
         books.add(new BookEntity("Book tuah", "Author b", R.drawable.profile,
                 400, 50, genres2));
 
-        bookAdapter = new BookAdapter(books);
+        bookAdapter = new BookAdapter(books, new BookAdapter.OnBookClickListener(){
+            @Override
+            public void onBookClick(BookEntity book){
+                bookInProgress = book;
+
+                Intent bookReaderIntent = new Intent(Library.this, BookReader.class);
+                bookReaderIntent.putExtra("title", book.getBookTitle());
+                bookReaderIntent.putExtra("author", book.getBookAuthor());
+                bookReaderIntent.putExtra("totalPages", book.getTotalBookPages());
+                bookReaderIntent.putExtra("pagesRead", book.getPagesRead());
+
+                startActivityForResult(bookReaderIntent, 1);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(bookAdapter);
 
 
         authorChip = findViewById(R.id.authorFilterChip);
-        authorChip.setOnClickListener(v-> {
-            PopupMenu popup = new PopupMenu(this, v);
+        authorChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(Library.this, v);
 
-            List<String> authors = getAuthors(books);
-            for(String author : authors){
-                popup.getMenu().add(author);
-            }
-
-            popup.setOnMenuItemClickListener(item->{
-                String selected = item.getTitle().toString();
-
-                bookAdapter.FilterAuthor(selected);
-
-                if(selected.equals("All"))
-                {
-                    authorChip.setText("Authors");
-                }else{
-                    authorChip.setText(selected);
+                List<String> authors = getAuthors(books);
+                for(String author : authors){
+                    popup.getMenu().add(author);
                 }
 
-                return true;
-            });
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        String selected = item.getTitle().toString();
 
-            popup.show();
+                        bookAdapter.FilterAuthor(selected);
+
+                        if(selected.equals("All"))
+                        {
+                            authorChip.setText("Authors");
+                        }else{
+                            authorChip.setText(selected);
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
+            }
         });
 
-
         genresChip = findViewById(R.id.genreFilterChip);
-        genresChip.setOnClickListener(v->{
-            PopupMenu popup = new PopupMenu(this, v);
-            popup.getMenu().add("All");
-            popup.getMenu().add("Horror");
-            popup.getMenu().add("Fantasy");
+        genresChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(Library.this, v);
+                popup.getMenu().add("All");
+                popup.getMenu().add("Horror");
+                popup.getMenu().add("Fantasy");
 
-            popup.setOnMenuItemClickListener(item->{
-                String selected = item.getTitle().toString();
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        String selected = item.getTitle().toString();
 
-                bookAdapter.FilterGenre(selected);
+                        bookAdapter.FilterGenre(selected);
 
-                if(selected.equals("All"))
-                {
-                    genresChip.setText("Genres");
-                }else{
-                    genresChip.setText(selected);
-                }
+                        if (selected.equals("All")) {
+                            genresChip.setText("Genres");
+                        } else {
+                            genresChip.setText(selected);
+                        }
 
-                return true;
-            });
-            popup.show();
+                        return true;
+                    }
+                });
+                popup.show();
+            }
         });
     }
 
@@ -193,5 +214,20 @@ public class Library extends AppCompatActivity {
 
         authorList.add(0, "All");
         return authorList;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            int updatePagesRead = data.getIntExtra("updatePagesRead", 0);
+
+            if(bookAdapter != null){
+                bookInProgress.setPagesRead(updatePagesRead);
+            }
+            bookAdapter.notifyDataSetChanged();
+        }
     }
 }

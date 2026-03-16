@@ -15,16 +15,24 @@ import java.util.List;
 
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
+
     private List<BookEntity> bookList;
     private List<BookEntity> fullBookList;
     private String currentSearch="";
     private String currentAuthor = "All";
     private String currentGenre = "All";
 
+    public interface OnBookClickListener {
+        void onBookClick(BookEntity book);
+    }
 
-    public BookAdapter(List<BookEntity> bookList){
+    private OnBookClickListener bookClickListener;
+
+
+    public BookAdapter(List<BookEntity> bookList, OnBookClickListener bookClickListener){
         this.bookList = new ArrayList<>(bookList);
         this.fullBookList = new ArrayList<>(bookList);
+        this.bookClickListener = bookClickListener;
     }
 
 
@@ -54,13 +62,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent bookReaderIntent = new Intent(v.getContext(), BookReader.class);
+                bookClickListener.onBookClick(book);
+                /*Intent bookReaderIntent = new Intent(v.getContext(), BookReader.class);
                 bookReaderIntent.putExtra("title", book.getBookTitle());
                 bookReaderIntent.putExtra("author", book.getBookAuthor());
                 bookReaderIntent.putExtra("totalPages", book.getTotalBookPages());
                 bookReaderIntent.putExtra("pagesRead", book.getPagesRead());
 
-                v.getContext().startActivity(bookReaderIntent);
+                v.getContext().startActivity(bookReaderIntent);*/
             }
         });
     }
@@ -123,6 +132,5 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             }
         }
         notifyDataSetChanged();
-
     }
 }
