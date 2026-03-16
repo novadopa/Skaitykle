@@ -1,6 +1,5 @@
 package com.example.skaitykle;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,11 +83,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            cover = itemView.findViewById(R.id.book_cover);
-            title = itemView.findViewById(R.id.book_title);
-            author = itemView.findViewById(R.id.book_author);
-            bookPages = itemView.findViewById(R.id.book_pages);
-            bookPercentage = itemView.findViewById(R.id.book_percentage);
+            cover = itemView.findViewById(R.id.bookCoverImageView);
+            title = itemView.findViewById(R.id.bookTitleTextView);
+            author = itemView.findViewById(R.id.bookAuthorTextView);
+            bookPages = itemView.findViewById(R.id.bookPagesTextView);
+            bookPercentage = itemView.findViewById(R.id.bookPercentageTextView);
         }
     }
 

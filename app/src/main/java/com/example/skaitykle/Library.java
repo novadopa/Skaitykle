@@ -18,20 +18,14 @@ import com.google.android.material.navigation.NavigationBarView;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -56,7 +50,7 @@ public class Library extends AppCompatActivity {
             return insets;
         });
 
-        bottomNavigationView = findViewById(R.id.library_bottom_nav);
+        bottomNavigationView = findViewById(R.id.libraryBottomNav);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -83,10 +77,10 @@ public class Library extends AppCompatActivity {
             }
         });
 
-        toolbar = findViewById(R.id.library_toolbar);
+        toolbar = findViewById(R.id.libraryToolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.library_recycler);
+        RecyclerView recyclerView = findViewById(R.id.libraryRecyclerView);
         List<BookEntity> books = new ArrayList<>();
         List<String> genres1 = Arrays.asList("Horror");
         List<String> genres2 = Arrays.asList("Fantasy");
