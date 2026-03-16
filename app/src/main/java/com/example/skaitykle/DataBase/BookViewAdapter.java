@@ -21,7 +21,7 @@ public class BookViewAdapter extends RecyclerView.Adapter<BookViewAdapter.BookHo
     @Override
     public BookHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_item
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item
                 , parent, false);
 
 
@@ -54,8 +54,8 @@ public class BookViewAdapter extends RecyclerView.Adapter<BookViewAdapter.BookHo
         public BookHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewTitle = itemView.findViewById(R.id.textView_FirstName);
-            textViewAuthor = itemView.findViewById(R.id.textView_Email);
+            textViewTitle = itemView.findViewById(R.id.textViewTitle);
+            textViewAuthor = itemView.findViewById(R.id.textViewAuthor);
 
         }
     }

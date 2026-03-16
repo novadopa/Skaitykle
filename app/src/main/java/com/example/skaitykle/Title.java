@@ -15,9 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.skaitykle.DataBase.Book;
 import com.example.skaitykle.DataBase.User;
 import com.example.skaitykle.DataBase.UserViewAdapter;
 import com.example.skaitykle.DataBase.UserViewModel;
+import com.example.skaitykle.DataBase.BookViewAdapter;
+import com.example.skaitykle.DataBase.BooksViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -28,6 +31,7 @@ public class Title extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     private UserViewModel userViewModel;
+    private BooksViewModel booksViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +42,24 @@ public class Title extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.RecyclerViewTitle);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        UserViewAdapter adapter = new UserViewAdapter();
-        recyclerView.setAdapter(adapter);
-
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.getUsers().observe(this, new Observer<List<User>>() {
+        BookViewAdapter bAdapater = new BookViewAdapter();
+        //UserViewAdapter adapter = new UserViewAdapter();
+        recyclerView.setAdapter(bAdapater);
+        booksViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
+                .create(BooksViewModel.class);
+       // userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        /*userViewModel.getUsers().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
 
                 adapter.setUsers(users);
+            }
+        });*/
+        booksViewModel.getBooks().observe(this, new Observer<List<Book>>() {
+            @Override
+            public void onChanged(List<Book> books) {
+
+                bAdapater.setBooks(books);
             }
         });
 

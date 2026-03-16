@@ -12,7 +12,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class},version = 2)
+@Database(entities = {User.class, Book.class},version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase Adb;
@@ -38,9 +38,6 @@ public abstract class AppDatabase extends RoomDatabase {
             super.onCreate(db);
 
             //new PopulateDbAsyncTask(Adb).execute();
-
-
-            BookDao bookDao = Adb.bookDao();
 
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(new Runnable() {
