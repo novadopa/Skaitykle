@@ -5,23 +5,53 @@ int drawable ic_launcher_background 0x0
 int drawable ic_launcher_foreground 0x0
 int drawable library 0x0
 int drawable profile 0x0
+<<<<<<< HEAD
 int id RecyclerViewTitle 0x0
 int id bottom_nav 0x0
 int id bottom_nav_title 0x0
 int id library_main 0x0
+=======
+int drawable search 0x0
+int id authorFilterChip 0x0
+int id book_author 0x0
+int id book_cover 0x0
+int id book_pages 0x0
+int id book_percentage 0x0
+int id book_title 0x0
+int id genreFilterChip 0x0
+int id libraryChipGroup 0x0
+int id library_bottom_nav 0x0
+int id library_main 0x0
+int id library_recycler 0x0
+int id library_toolbar 0x0
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
 int id main 0x0
 int id menu_home 0x0
 int id menu_library 0x0
 int id menu_profile 0x0
+<<<<<<< HEAD
 int id textViewAuthor 0x0
 int id textViewTitle 0x0
 int id textView_Email 0x0
 int id textView_FirstName 0x0
+=======
+int id reader_page_count 0x0
+int id reader_placeholder_text 0x0
+int id reader_progress_bar 0x0
+int id reader_progress_label 0x0
+int id reader_toolbar 0x0
+int id search 0x0
+int layout activity_book_reader 0x0
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
 int layout activity_library 0x0
 int layout activity_profile 0x0
 int layout activity_title 0x0
 int layout book_item 0x0
+<<<<<<< HEAD
 int layout users_item 0x0
+=======
+int menu actionbar_menu 0x0
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
 int menu menu_bottom_nav 0x0
 int mipmap ic_launcher 0x0
 int mipmap ic_launcher_round 0x0

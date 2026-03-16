@@ -5,7 +5,21 @@
       <config />
     </shared>
     <layouts>
+<<<<<<< HEAD
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_title.xml">
+=======
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_book_reader.xml">
+        <config>
+          <theme>@style/Theme.Skaitykle</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_library.xml">
+        <config>
+          <theme>@style/Theme.Skaitykle</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
         <config>
           <theme>@style/Theme.Skaitykle</theme>
         </config>
@@ -21,6 +35,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="6399ce6e-8f19-42a8-ba40-96dd8356fe8b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -30,6 +45,15 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/Title.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/Title.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_title.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_title.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/book_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/book_item.xml" afterDir="false" />
+=======
+    <list default="true" id="0ed356ac-2ff8-46d2-b6ee-661fd7eddd7b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/BookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/BookAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/BookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/BookReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/BookReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/skaitykle/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_book_reader.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_book_reader.xml" afterDir="false" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +63,17 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\Gerda\.android\avd\Medium_Phone.avd]" />
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\minek\.android\avd\Medium_Phone.avd]" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
+<<<<<<< HEAD
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -56,18 +85,47 @@
         </projects_view>
       </state>
     </system>
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="3B1WSNDS7WaX7bRblQ4cOExhv91" />
+=======
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Highwayman2004&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/novadopa/Skaitykle.git&quot;,
+    &quot;accountId&quot;: &quot;4837c188-9d64-4fed-8cda-9124b4cf992d&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3AvMSRyqk2Xk74Yy3UolBwBISxJ" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Android App.app.executor": "Run",
@@ -83,6 +141,21 @@
     "last_opened_file_path": "C:/Users/Gerda/OneDrive/Documents/GitHub/Skaitykle"
   }
 }]]></component>
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="Skaitykle.app" />
@@ -98,7 +171,11 @@
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+<<<<<<< HEAD
       <option name="MODE" value="default_activity" />
+=======
+      <option name="MODE" value="specific_activity" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
       <option name="RESTORE_ENABLED" value="false" />
       <option name="RESTORE_FILE" value="" />
       <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
@@ -149,7 +226,11 @@
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY" value="" />
+<<<<<<< HEAD
       <option name="ACTIVITY_CLASS" value="" />
+=======
+      <option name="ACTIVITY_CLASS" value="com.example.skaitykle.Library" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
@@ -159,11 +240,19 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="6399ce6e-8f19-42a8-ba40-96dd8356fe8b" name="Changes" comment="" />
       <created>1773657056693</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773657056693</updated>
+=======
+      <changelist id="0ed356ac-2ff8-46d2-b6ee-661fd7eddd7b" name="Changes" comment="" />
+      <created>1773468591076</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773468591076</updated>
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
     </task>
     <servers />
   </component>
@@ -172,12 +261,20 @@
       <map>
         <entry key="com.example.skaitykle">
           <value>
+<<<<<<< HEAD
             <CheckInfo lastCheckTimestamp="1773660999959" />
+=======
+            <CheckInfo lastCheckTimestamp="1773468921395" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
           </value>
         </entry>
         <entry key="com.example.skaitykle.test">
           <value>
+<<<<<<< HEAD
             <CheckInfo lastCheckTimestamp="1773660999959" />
+=======
+            <CheckInfo lastCheckTimestamp="1773468921395" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
           </value>
         </entry>
       </map>

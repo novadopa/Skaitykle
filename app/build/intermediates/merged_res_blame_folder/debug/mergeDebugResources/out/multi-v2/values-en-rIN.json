@@ -4,7 +4,11 @@
             "outputFile": "com.example.skaitykle.app-mergeDebugResources-34:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\Gerda\\.gradle\\caches\\9.1.0\\transforms\\f7eb83cf8fe08b17f8fe8523f4d971d0\\workspace\\transformed\\core-1.16.0\\res\\values-en-rIN\\values-en-rIN.xml",
+=======
+                    "source": "C:\\Users\\minek\\.gradle\\caches\\9.1.0\\transforms\\df6f1fcbc740c9842a6660934aca989f\\workspace\\transformed\\core-1.16.0\\res\\values-en-rIN\\values-en-rIN.xml",
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +25,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\Gerda\\.gradle\\caches\\9.1.0\\transforms\\5aa4d17f6ca71728191cf03073a3ce37\\workspace\\transformed\\appcompat-1.7.1\\res\\values-en-rIN\\values-en-rIN.xml",
+=======
+                    "source": "C:\\Users\\minek\\.gradle\\caches\\9.1.0\\transforms\\5472eb49455e50413639d85741fef60e\\workspace\\transformed\\appcompat-1.7.1\\res\\values-en-rIN\\values-en-rIN.xml",
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

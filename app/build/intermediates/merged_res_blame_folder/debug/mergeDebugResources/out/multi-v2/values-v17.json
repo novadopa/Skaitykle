@@ -4,7 +4,11 @@
             "outputFile": "com.example.skaitykle.app-mergeDebugResources-34:/values-v17/values-v17.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\Gerda\\.gradle\\caches\\9.1.0\\transforms\\5aa4d17f6ca71728191cf03073a3ce37\\workspace\\transformed\\appcompat-1.7.1\\res\\values-v17\\values-v17.xml",
+=======
+                    "source": "C:\\Users\\minek\\.gradle\\caches\\9.1.0\\transforms\\5472eb49455e50413639d85741fef60e\\workspace\\transformed\\appcompat-1.7.1\\res\\values-v17\\values-v17.xml",
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,25,29,33,37,40,43,46,50,53,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

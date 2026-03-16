@@ -28,11 +28,21 @@
         android:testOnly="true"
         android:theme="@style/Theme.Skaitykle" >
         <activity
+<<<<<<< HEAD
+=======
+            android:name="com.example.skaitykle.BookReader"
+            android:exported="false" />
+        <activity
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
             android:name="com.example.skaitykle.Profile"
             android:exported="false" />
         <activity
             android:name="com.example.skaitykle.Library"
+<<<<<<< HEAD
             android:exported="false" />
+=======
+            android:exported="true" />
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
         <activity
             android:name="com.example.skaitykle.Title"
             android:exported="true" >
@@ -58,11 +68,14 @@
                 android:value="androidx.startup" />
         </provider>
 
+<<<<<<< HEAD
         <service
             android:name="androidx.room.MultiInstanceInvalidationService"
             android:directBootAware="true"
             android:exported="false" />
 
+=======
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
         <receiver
             android:name="androidx.profileinstaller.ProfileInstallReceiver"
             android:directBootAware="false"

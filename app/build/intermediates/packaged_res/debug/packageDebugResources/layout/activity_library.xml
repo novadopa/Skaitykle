@@ -8,15 +8,111 @@
     tools:context=".Library">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+<<<<<<< HEAD
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="651dp"
+=======
+        android:id="@+id/library_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_bottom_nav"/>
+=======
+        app:menu="@menu/menu_bottom_nav" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/library_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="1dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/library_recycler"
+        android:layout_width="410dp"
+        android:layout_height="524dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/library_bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/libraryChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/library_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/library_toolbar">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/authorFilterChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Authors"
+            tools:layout_editor_absoluteX="182dp"
+            tools:layout_editor_absoluteY="71dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/genreFilterChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genres"/>
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+
+
+    <!--app:layout_constraintTop_toBottomOf="@+id/author_spinner"-->
+
+
+    <!--<Spinner
+        android:id="@+id/genre_spinner"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/library_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/library_toolbar" />-->
+
+    <!--<Spinner
+        android:id="@+id/author_spinner"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/library_recycler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/library_toolbar" />-->
+
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
 </androidx.constraintlayout.widget.ConstraintLayout>

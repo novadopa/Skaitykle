@@ -4,6 +4,7 @@
             "outputFile": "com.example.skaitykle.app-mergeDebugResources-34:/values-v23/values-v23.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\Gerda\\.gradle\\caches\\9.1.0\\transforms\\5e4896fa4685c98a1f39a8d48b3f4445\\workspace\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
@@ -24,6 +25,9 @@
                 },
                 {
                     "source": "C:\\Users\\Gerda\\.gradle\\caches\\9.1.0\\transforms\\e9f811a0bcfea6557086d5e693f32db5\\workspace\\transformed\\material-1.13.0\\res\\values-v23\\values-v23.xml",
+=======
+                    "source": "C:\\Users\\minek\\.gradle\\caches\\9.1.0\\transforms\\b1a0343a9f45e064da6f8ceba261fbb7\\workspace\\transformed\\material-1.13.0\\res\\values-v23\\values-v23.xml",
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -42,7 +46,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\Gerda\\.gradle\\caches\\9.1.0\\transforms\\5aa4d17f6ca71728191cf03073a3ce37\\workspace\\transformed\\appcompat-1.7.1\\res\\values-v23\\values-v23.xml",
+=======
+                    "source": "C:\\Users\\minek\\.gradle\\caches\\9.1.0\\transforms\\5472eb49455e50413639d85741fef60e\\workspace\\transformed\\appcompat-1.7.1\\res\\values-v23\\values-v23.xml",
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -51,6 +59,28 @@
                         "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
                         "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
                     }
+<<<<<<< HEAD
+=======
+                },
+                {
+                    "source": "C:\\Users\\minek\\.gradle\\caches\\9.1.0\\transforms\\86d8a2e7c7fda933242dcbce8555eeeb\\workspace\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "50",
+                        "startColumns": "4",
+                        "startOffsets": "3232",
+                        "endLines": "52",
+                        "endColumns": "12",
+                        "endOffsets": "3377"
+                    }
+>>>>>>> 67da5ed2787e86f3810ade5e3c32b053b85299f3
                 }
             ]
         }
