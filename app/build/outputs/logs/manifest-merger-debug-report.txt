@@ -1,0 +1,334 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:2:1-32:12
+MERGED from [com.google.android.material:material:1.13.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e9f811a0bcfea6557086d5e693f32db5\workspace\transformed\material-1.13.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\69bef6ed8c922743e932caa8abc335b1\workspace\transformed\constraintlayout-2.2.1\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\7292d8499dc5f56eab191015e396c2e4\workspace\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\5aa4d17f6ca71728191cf03073a3ce37\workspace\transformed\appcompat-1.7.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.recyclerview:recyclerview:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\7fc21d19cc4071c03c67bf36874ecdfc\workspace\transformed\recyclerview-1.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\248726b03aadc8abcfadeb6ee3a8a4f2\workspace\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\45934fee893693248d95cd8135bc3d16\workspace\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.12.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\ea41c167b0d7a8975fa3a039df6a0739\workspace\transformed\activity-1.12.4\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2cd79344bace0e0d370b849ac75f27a1\workspace\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\05e50302576660c64bc6c0e4700625e6\workspace\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9b7869c69044c5e3d1c99f463f0f4035\workspace\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\330df19cda6f679b8294d94aae756851\workspace\transformed\transition-1.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2e8d8cd8716a36eb9bad3d6de208d3ce\workspace\transformed\dynamicanimation-1.1.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\82f807e543a64a0ee3ac3eff152d55e6\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2d1de8d71acd192fcf0209e0273caffe\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\12053a9f28124931e646fdbc7a4f956a\workspace\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.graphics:graphics-shapes-android:1.0.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9454ac1893ce152180b6695c2473e694\workspace\transformed\graphics-shapes-release\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9f15ec5ed64b1c01c472f48cbb3b420b\workspace\transformed\lifecycle-viewmodel-savedstate\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\0ba6fcf41bf28263f929bdeac8bcd1ac\workspace\transformed\savedstate\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\dc5a20dae1cc7f70a89840df281a50e6\workspace\transformed\core-ktx-1.16.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d323260e25da7f489dccc2d28ca97cf9\workspace\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\950b864db7e56b6550b14e3988b3dab1\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9a5796d41da1dfab96060ea91282bef2\workspace\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d7f5177dc3b3de12c06a4ac8f463b0d5\workspace\transformed\lifecycle-runtime\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\59b49594aa74857bc2305537e7cf8527\workspace\transformed\lifecycle-livedata-core-ktx-2.10.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\22dafe70d2f639014ac69daa7326b86b\workspace\transformed\lifecycle-livedata-core-2.10.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\010f7c630ca8354b68c835e1b8caa1a2\workspace\transformed\lifecycle-viewmodel-2.10.0\AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9adbd998fc534087e220b4304c703d94\workspace\transformed\lifecycle-viewmodel\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\be9cbfae73457020ad85e082a8392a9e\workspace\transformed\lifecycle-livedata-2.10.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\df753b909151934cd1ef10e280157364\workspace\transformed\navigationevent\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\b533a6858e7c192f5037472addd918e1\workspace\transformed\core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.annotation:annotation-experimental:1.5.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\293d98db5b348747d48d35ca5b8c8614\workspace\transformed\annotation-experimental-1.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\5e4896fa4685c98a1f39a8d48b3f4445\workspace\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6cfad5b6b4b0fb11d5b154a4c917a8af\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\140616e5a62ce182001725155acbd702\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d4c40285744ad32735e479d7efded365\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\954e60d14b9659b6b33ce28a138d560c\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e63acd714752b1528af3fbb8f5b9de07\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6ad3016e592f877ae84a568f5eb71bd5\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.sqlite:sqlite-framework-android:2.6.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d4ec5fa2caa2b1e2b0e4c778603cb40e\workspace\transformed\sqlite-framework\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite-android:2.6.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\cc8d5f01aa72e08622442bb137233c66\workspace\transformed\sqlite\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\b1746cc1a2f7a6fece4914265f2090f3\workspace\transformed\runtime-annotation\AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:5:5-30:19
+INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:5:5-30:19
+MERGED from [com.google.android.material:material:1.13.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e9f811a0bcfea6557086d5e693f32db5\workspace\transformed\material-1.13.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.13.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e9f811a0bcfea6557086d5e693f32db5\workspace\transformed\material-1.13.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\69bef6ed8c922743e932caa8abc335b1\workspace\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\69bef6ed8c922743e932caa8abc335b1\workspace\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\954e60d14b9659b6b33ce28a138d560c\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\954e60d14b9659b6b33ce28a138d560c\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6ad3016e592f877ae84a568f5eb71bd5\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6ad3016e592f877ae84a568f5eb71bd5\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:13:9-35
+	android:label
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:11:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:9:9-54
+	android:roundIcon
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:12:9-54
+	android:icon
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:7:9-35
+	android:theme
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:14:9-47
+	android:dataExtractionRules
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:8:9-65
+activity#com.example.skaitykle.Profile
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:15:9-17:40
+	android:exported
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:17:13-37
+	android:name
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:16:13-36
+activity#com.example.skaitykle.Library
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:18:9-20:40
+	android:exported
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:20:13-37
+	android:name
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:19:13-36
+activity#com.example.skaitykle.Title
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:21:9-29:20
+	android:exported
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:23:13-36
+	android:name
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:22:13-34
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:24:13-28:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:25:17-69
+	android:name
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:25:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:27:17-77
+	android:name
+		ADDED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml:27:27-74
+uses-sdk
+INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.13.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e9f811a0bcfea6557086d5e693f32db5\workspace\transformed\material-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.13.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e9f811a0bcfea6557086d5e693f32db5\workspace\transformed\material-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\69bef6ed8c922743e932caa8abc335b1\workspace\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\69bef6ed8c922743e932caa8abc335b1\workspace\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\7292d8499dc5f56eab191015e396c2e4\workspace\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\7292d8499dc5f56eab191015e396c2e4\workspace\transformed\appcompat-resources-1.7.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\5aa4d17f6ca71728191cf03073a3ce37\workspace\transformed\appcompat-1.7.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\5aa4d17f6ca71728191cf03073a3ce37\workspace\transformed\appcompat-1.7.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\7fc21d19cc4071c03c67bf36874ecdfc\workspace\transformed\recyclerview-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\7fc21d19cc4071c03c67bf36874ecdfc\workspace\transformed\recyclerview-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\248726b03aadc8abcfadeb6ee3a8a4f2\workspace\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\248726b03aadc8abcfadeb6ee3a8a4f2\workspace\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\45934fee893693248d95cd8135bc3d16\workspace\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\45934fee893693248d95cd8135bc3d16\workspace\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.12.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\ea41c167b0d7a8975fa3a039df6a0739\workspace\transformed\activity-1.12.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.12.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\ea41c167b0d7a8975fa3a039df6a0739\workspace\transformed\activity-1.12.4\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2cd79344bace0e0d370b849ac75f27a1\workspace\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2cd79344bace0e0d370b849ac75f27a1\workspace\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\05e50302576660c64bc6c0e4700625e6\workspace\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\05e50302576660c64bc6c0e4700625e6\workspace\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9b7869c69044c5e3d1c99f463f0f4035\workspace\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9b7869c69044c5e3d1c99f463f0f4035\workspace\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\330df19cda6f679b8294d94aae756851\workspace\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\330df19cda6f679b8294d94aae756851\workspace\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2e8d8cd8716a36eb9bad3d6de208d3ce\workspace\transformed\dynamicanimation-1.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2e8d8cd8716a36eb9bad3d6de208d3ce\workspace\transformed\dynamicanimation-1.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\82f807e543a64a0ee3ac3eff152d55e6\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\82f807e543a64a0ee3ac3eff152d55e6\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2d1de8d71acd192fcf0209e0273caffe\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\2d1de8d71acd192fcf0209e0273caffe\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\12053a9f28124931e646fdbc7a4f956a\workspace\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\12053a9f28124931e646fdbc7a4f956a\workspace\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.graphics:graphics-shapes-android:1.0.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9454ac1893ce152180b6695c2473e694\workspace\transformed\graphics-shapes-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-shapes-android:1.0.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9454ac1893ce152180b6695c2473e694\workspace\transformed\graphics-shapes-release\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9f15ec5ed64b1c01c472f48cbb3b420b\workspace\transformed\lifecycle-viewmodel-savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9f15ec5ed64b1c01c472f48cbb3b420b\workspace\transformed\lifecycle-viewmodel-savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\0ba6fcf41bf28263f929bdeac8bcd1ac\workspace\transformed\savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\0ba6fcf41bf28263f929bdeac8bcd1ac\workspace\transformed\savedstate\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\dc5a20dae1cc7f70a89840df281a50e6\workspace\transformed\core-ktx-1.16.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\dc5a20dae1cc7f70a89840df281a50e6\workspace\transformed\core-ktx-1.16.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d323260e25da7f489dccc2d28ca97cf9\workspace\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d323260e25da7f489dccc2d28ca97cf9\workspace\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\950b864db7e56b6550b14e3988b3dab1\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\950b864db7e56b6550b14e3988b3dab1\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9a5796d41da1dfab96060ea91282bef2\workspace\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9a5796d41da1dfab96060ea91282bef2\workspace\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d7f5177dc3b3de12c06a4ac8f463b0d5\workspace\transformed\lifecycle-runtime\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d7f5177dc3b3de12c06a4ac8f463b0d5\workspace\transformed\lifecycle-runtime\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\59b49594aa74857bc2305537e7cf8527\workspace\transformed\lifecycle-livedata-core-ktx-2.10.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\59b49594aa74857bc2305537e7cf8527\workspace\transformed\lifecycle-livedata-core-ktx-2.10.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\22dafe70d2f639014ac69daa7326b86b\workspace\transformed\lifecycle-livedata-core-2.10.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\22dafe70d2f639014ac69daa7326b86b\workspace\transformed\lifecycle-livedata-core-2.10.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\010f7c630ca8354b68c835e1b8caa1a2\workspace\transformed\lifecycle-viewmodel-2.10.0\AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\010f7c630ca8354b68c835e1b8caa1a2\workspace\transformed\lifecycle-viewmodel-2.10.0\AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9adbd998fc534087e220b4304c703d94\workspace\transformed\lifecycle-viewmodel\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\9adbd998fc534087e220b4304c703d94\workspace\transformed\lifecycle-viewmodel\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\be9cbfae73457020ad85e082a8392a9e\workspace\transformed\lifecycle-livedata-2.10.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\be9cbfae73457020ad85e082a8392a9e\workspace\transformed\lifecycle-livedata-2.10.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\df753b909151934cd1ef10e280157364\workspace\transformed\navigationevent\AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\df753b909151934cd1ef10e280157364\workspace\transformed\navigationevent\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\b533a6858e7c192f5037472addd918e1\workspace\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\b533a6858e7c192f5037472addd918e1\workspace\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:21:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.5.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\293d98db5b348747d48d35ca5b8c8614\workspace\transformed\annotation-experimental-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.5.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\293d98db5b348747d48d35ca5b8c8614\workspace\transformed\annotation-experimental-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\5e4896fa4685c98a1f39a8d48b3f4445\workspace\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\5e4896fa4685c98a1f39a8d48b3f4445\workspace\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6cfad5b6b4b0fb11d5b154a4c917a8af\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6cfad5b6b4b0fb11d5b154a4c917a8af\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\140616e5a62ce182001725155acbd702\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\140616e5a62ce182001725155acbd702\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d4c40285744ad32735e479d7efded365\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d4c40285744ad32735e479d7efded365\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\954e60d14b9659b6b33ce28a138d560c\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\954e60d14b9659b6b33ce28a138d560c\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e63acd714752b1528af3fbb8f5b9de07\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\e63acd714752b1528af3fbb8f5b9de07\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6ad3016e592f877ae84a568f5eb71bd5\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\6ad3016e592f877ae84a568f5eb71bd5\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework-android:2.6.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d4ec5fa2caa2b1e2b0e4c778603cb40e\workspace\transformed\sqlite-framework\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework-android:2.6.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\d4ec5fa2caa2b1e2b0e4c778603cb40e\workspace\transformed\sqlite-framework\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-android:2.6.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\cc8d5f01aa72e08622442bb137233c66\workspace\transformed\sqlite\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-android:2.6.2] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\cc8d5f01aa72e08622442bb137233c66\workspace\transformed\sqlite\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\b1746cc1a2f7a6fece4914265f2090f3\workspace\transformed\runtime-annotation\AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.9.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\b1746cc1a2f7a6fece4914265f2090f3\workspace\transformed\runtime-annotation\AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Gerda\OneDrive\Documents\GitHub\Skaitykle\app\src\main\AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\954e60d14b9659b6b33ce28a138d560c\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\954e60d14b9659b6b33ce28a138d560c\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\eb5d4c35c297e233cc6d0aedee1337a7\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:23:9-81
+permission#com.example.skaitykle.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:26:22-94
+uses-permission#com.example.skaitykle.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.16.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f7eb83cf8fe08b17f8fe8523f4d971d0\workspace\transformed\core-1.16.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\16a702ba909a46bcc23930cf645da0b8\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:30:17-78
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:28:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:26:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime-android:2.8.4] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\f8ac1c0f8ec60ea39234c13023f4eea1\workspace\transformed\room-runtime\AndroidManifest.xml:25:13-74
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Gerda\.gradle\caches\9.1.0\transforms\21a198f7d0766559881e632a9b74c3d6\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92

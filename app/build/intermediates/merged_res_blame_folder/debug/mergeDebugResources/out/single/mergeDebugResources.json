@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\layout_activity_profile.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\menu_menu_bottom_nav.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\menu\\menu_bottom_nav.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-anydpi\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\layout_activity_title.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\layout\\activity_title.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\layout_users_item.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\layout\\users_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.skaitykle.app-debug-36:/layout_book_item.xml.flat",
+        "source": "com.example.skaitykle.app-main-38:/layout/book_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\drawable_home_4_svgrepo_com.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\drawable\\home_4_svgrepo_com.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-anydpi\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\layout_book_item.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\layout\\book_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\layout_activity_library.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\layout\\activity_library.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\drawable_library.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\drawable\\library.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-debug-36:\\drawable_profile.xml.flat",
+        "source": "C:\\Users\\Gerda\\.gradle\\daemon\\9.1.0\\com.example.skaitykle.app-main-38:\\drawable\\profile.xml"
+    }
+]
