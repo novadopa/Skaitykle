@@ -26,4 +26,8 @@ public class BooksViewModel extends AndroidViewModel {
     public void delete(Book book) { bookRep.delete(book);}
 
     public LiveData<List<Book>> getBooks() { return books;}
+
+    public LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId) {
+        return bookRep.getBooksWithReadingProgress(userId);
+    }
 }

@@ -31,4 +31,8 @@ public interface BookDao {
     @Delete
     void delete(Book book);
 
+
+    @Query("SELECT b.*, ub.ubId, ub.user_id, ub.book_id, ub.read_pages, ub.last_read_page " +
+            "FROM Book b LEFT JOIN UserBook ub ON b.bid = ub.book_id AND ub.user_id = :userId")
+    LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId);
 }

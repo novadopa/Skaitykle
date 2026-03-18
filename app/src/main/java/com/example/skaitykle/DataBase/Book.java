@@ -4,6 +4,9 @@ import androidx.room.PrimaryKey;
 import androidx.room.ColumnInfo;
 
 import org.jspecify.annotations.NonNull;
+
+import java.util.List;
+
 @Entity(tableName = "Book")
 public class Book {
 
@@ -30,15 +33,30 @@ public class Book {
     public String coverUri;
 
 
+    @NonNull
+    @ColumnInfo(name = "total_pages")
+    public int totalPages;
+
+    @NonNull
+    @ColumnInfo(name = "genres")
+    public List<String> genres;
+
+
     public Book(@NonNull String title, @NonNull String description, @NonNull String author,
-                @NonNull String bookPath, @NonNull String coverUri) {
+                @NonNull String bookPath, @NonNull String coverUri, @NonNull int totalPages,
+                @NonNull List<String> genres) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.bookPath = bookPath;
         this.coverUri = coverUri;
+        this.totalPages = totalPages;
+        this.genres = genres;
     }
 
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
     public int getBid() {
         return bid;
     }
@@ -63,7 +81,6 @@ public class Book {
         return coverUri;
     }
 
-    public void setBid(int bid) {
-        this.bid = bid;
-    }
+    public  @NonNull int getTotalPages(){return totalPages;}
+    public @NonNull List<String> getGenres() {return genres;}
 }
