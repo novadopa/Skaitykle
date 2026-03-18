@@ -6,12 +6,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.skaitykle.DataBase.BookWithReadingProgress;
+import com.example.skaitykle.DataBase.BooksViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.navigation.NavigationBarView;
@@ -21,11 +26,12 @@ import android.view.View;
 import android.widget.PopupMenu;
 
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -34,10 +40,25 @@ import java.util.Set;
 public class Library extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
-    BookAdapter bookAdapter;
+    LibraryBookAdapter libraryBookAdapter;
     Chip authorChip;
     Chip genresChip;
-    BookEntity bookInProgress;
+
+    BooksViewModel booksViewModel;
+
+    List<BookWithReadingProgress> currentBooks = new ArrayList<>();
+
+    private static final int currentUserId = 1;
+
+
+    private final ActivityResultLauncher<Intent> readerLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    new androidx.activity.result.ActivityResultCallback<ActivityResult>() {
+                        @Override
+                        public void onActivityResult(ActivityResult result) {
+                        }
+                    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +80,19 @@ public class Library extends AppCompatActivity {
 
                 if(id == R.id.menu_home){
                     Intent homeIntent = new Intent(getBaseContext(), Title.class);
+                    homeIntent.addFlags(homeIntent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(homeIntent);
                     return true;
                 }
                 else if (id == R.id.menu_library){
                     Intent libraryIntent = new Intent(getBaseContext(), Library.class);
+                    libraryIntent.addFlags(libraryIntent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(libraryIntent);
                     return true;
                 }
                 else if(id == R.id.menu_profile){
                     Intent profileIntent = new Intent(getBaseContext(), Profile.class);
+                    profileIntent.addFlags(profileIntent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(profileIntent);
                     return true;
                 }
@@ -80,31 +104,45 @@ public class Library extends AppCompatActivity {
         toolbar = findViewById(R.id.libraryToolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.libraryRecyclerView);
-        List<BookEntity> books = new ArrayList<>();
-        List<String> genres1 = Arrays.asList("Horror");
-        List<String> genres2 = Arrays.asList("Fantasy");
-        books.add(new BookEntity("Book One", "Author A", R.drawable.profile,
-                200, 100, genres1));
-        books.add(new BookEntity("Book tuah", "Author b", R.drawable.profile,
-                400, 50, genres2));
+        booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
 
-        bookAdapter = new BookAdapter(books, new BookAdapter.OnBookClickListener(){
+        libraryBookAdapter = new LibraryBookAdapter(new ArrayList<>(), new LibraryBookAdapter.OnBookClickListener() {
             @Override
-            public void onBookClick(BookEntity book){
-                bookInProgress = book;
-
+            public void onBookClick(BookWithReadingProgress bookItem) {
                 Intent bookReaderIntent = new Intent(Library.this, BookReader.class);
-                bookReaderIntent.putExtra("title", book.getBookTitle());
-                bookReaderIntent.putExtra("author", book.getBookAuthor());
-                bookReaderIntent.putExtra("totalPages", book.getTotalBookPages());
-                bookReaderIntent.putExtra("pagesRead", book.getPagesRead());
+                bookReaderIntent.putExtra("title", bookItem.book.getTitle());
+                bookReaderIntent.putExtra("author", bookItem.book.getAuthor());
+                bookReaderIntent.putExtra("totalPages", bookItem.book.getTotalPages());
+                bookReaderIntent.putExtra("cover", bookItem.book.getCoverUri());
+                bookReaderIntent.putExtra("pagesRead", bookItem.getReadPages());
+                bookReaderIntent.putExtra("bookId",     bookItem.book.getBid());
+                bookReaderIntent.putExtra("userId", currentUserId);
 
-                startActivityForResult(bookReaderIntent, 1);
+                if (bookItem.userBook != null) {
+                    bookReaderIntent.putExtra("userBookId", bookItem.userBook.getUserBookId());
+                } else {
+                    bookReaderIntent.putExtra("userBookId", -1);
+                }
+                readerLauncher.launch(bookReaderIntent);
             }
         });
+
+
+        RecyclerView recyclerView = findViewById(R.id.libraryRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(bookAdapter);
+        recyclerView.setAdapter(libraryBookAdapter);
+
+        booksViewModel.getBooksWithReadingProgress(currentUserId).observe(this,
+                new Observer<List<BookWithReadingProgress>>() {
+            @Override
+            public void onChanged(List<BookWithReadingProgress> books) {
+                if(books != null){
+                    currentBooks.clear();
+                    currentBooks.addAll(books);
+                }
+                libraryBookAdapter.setBooks(currentBooks);
+            }
+        });
 
 
         authorChip = findViewById(R.id.authorFilterChip);
@@ -113,7 +151,7 @@ public class Library extends AppCompatActivity {
             public void onClick(View v) {
                 PopupMenu popup = new PopupMenu(Library.this, v);
 
-                List<String> authors = getAuthors(books);
+                List<String> authors = getAuthors(currentBooks);
                 for(String author : authors){
                     popup.getMenu().add(author);
                 }
@@ -123,7 +161,7 @@ public class Library extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         String selected = item.getTitle().toString();
 
-                        bookAdapter.FilterAuthor(selected);
+                        libraryBookAdapter.FilterAuthor(selected);
 
                         if(selected.equals("All"))
                         {
@@ -143,16 +181,18 @@ public class Library extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PopupMenu popup = new PopupMenu(Library.this, v);
-                popup.getMenu().add("All");
-                popup.getMenu().add("Horror");
-                popup.getMenu().add("Fantasy");
+
+                List<String> genres = getGenres(currentBooks);
+                for(String genre : genres){
+                    popup.getMenu().add(genre);
+                }
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         String selected = item.getTitle().toString();
 
-                        bookAdapter.FilterGenre(selected);
+                        libraryBookAdapter.FilterGenre(selected);
 
                         if (selected.equals("All")) {
                             genresChip.setText("Genres");
@@ -181,13 +221,13 @@ public class Library extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                bookAdapter.SearchBooks(query.toLowerCase());
+                libraryBookAdapter.SearchBooks(query.toLowerCase());
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                bookAdapter.SearchBooks(newText.toLowerCase());
+                libraryBookAdapter.SearchBooks(newText.toLowerCase());
                 return true;
             }
         });
@@ -196,11 +236,11 @@ public class Library extends AppCompatActivity {
     }
 
 
-    private List<String> getAuthors(List<BookEntity> books){
+    private List<String> getAuthors(List<BookWithReadingProgress> books){
         Set<String> authors = new HashSet<>();
 
-        for(BookEntity book : books){
-            authors.add(book.getBookAuthor());
+        for(BookWithReadingProgress bookItem : books){
+            authors.add(bookItem.book.getAuthor());
         }
 
         List<String> authorList = new ArrayList<>(authors);
@@ -211,17 +251,17 @@ public class Library extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
+    private List<String> getGenres(List<BookWithReadingProgress> books){
+        Set<String> genres = new HashSet<>();
 
-        if(requestCode == 1 && resultCode == RESULT_OK){
-            int updatePagesRead = data.getIntExtra("updatePagesRead", 0);
-
-            if(bookAdapter != null){
-                bookInProgress.setPagesRead(updatePagesRead);
-            }
-            bookAdapter.notifyDataSetChanged();
+        for(BookWithReadingProgress bookItem : books){
+            genres.addAll(bookItem.book.getGenres());
         }
+
+        List<String> genreList = new ArrayList<>(genres);
+        Collections.sort(genreList);
+
+        genreList.add(0, "All");
+        return genreList;
     }
 }

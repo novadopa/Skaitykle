@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/bookReaderMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BookReader">
@@ -18,20 +18,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <!-- Fills all space between the toolbar and the progress label -->
     <TextView
         android:id="@+id/reader_placeholder_text"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
         android:gravity="center"
         android:text="Book text here"
         android:textColor="?android:attr/textColorSecondary"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/reader_toolbar"
         app:layout_constraintBottom_toTopOf="@+id/reader_progress_label"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/reader_toolbar" />
 
     <TextView
         android:id="@+id/reader_progress_label"
@@ -39,21 +38,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/reader_progress_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/reader_seek_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/reader_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
+    <SeekBar
+        android:id="@+id/reader_seek_bar"
         android:layout_width="0dp"
-        android:layout_height="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:max="100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/reader_page_count"
@@ -62,6 +62,6 @@
         android:layout_marginEnd="16dp"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/reader_progress_bar" />
+        app:layout_constraintBottom_toTopOf="@+id/reader_seek_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
