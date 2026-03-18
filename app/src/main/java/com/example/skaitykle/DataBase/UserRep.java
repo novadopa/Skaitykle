@@ -16,7 +16,7 @@ public class UserRep {
 
     public UserRep(Application application){
         AppDatabase Adb = AppDatabase.getInstance(application);
-        userDao = Adb.userDao();
+        //userDao = Adb.userDao();
         users = userDao.getAllUsers();
     }
 

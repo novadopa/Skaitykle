@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.Skaitykle" parent="Base.Theme.Skaitykle" />
+    
+    <style name="RoundedCorners" parent="">
+
+        <item name="cornerSize">16dp</item>
+        <item name="cornerRadius">15dp</item>
+    </style>
+
+    <style name="LargeRoundedCorners" parent="">
+
+        <item name="cornerSize">40dp</item>
+        <item name="cornerRadius">40dp</item>
+    </style>
 </resources>

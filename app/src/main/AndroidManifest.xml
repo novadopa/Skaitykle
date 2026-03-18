@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skaitykle">
+        <activity
+            android:name=".BookDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Genres"
+            android:exported="false" />
         <activity
             android:name=".BookReader"
             android:exported="false" />

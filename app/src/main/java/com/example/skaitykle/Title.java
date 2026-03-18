@@ -2,7 +2,12 @@ package com.example.skaitykle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -12,25 +17,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skaitykle.DataBase.Book;
-import com.example.skaitykle.DataBase.User;
-import com.example.skaitykle.DataBase.UserViewAdapter;
-import com.example.skaitykle.DataBase.UserViewModel;
-import com.example.skaitykle.DataBase.BookViewAdapter;
 import com.example.skaitykle.DataBase.BooksViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.List;
 
 public class Title extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
-
-    private UserViewModel userViewModel;
+    private BottomNavigationView bottomNavigationView;
     private BooksViewModel booksViewModel;
 
     @Override
@@ -39,29 +37,49 @@ public class Title extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_title);
 
-        RecyclerView recyclerView = findViewById(R.id.RecyclerViewTitle);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Button genres = findViewById(R.id.button_Genres);
+        genres.setOnClickListener(view -> {
+            Intent intent = new Intent(Title.this, Genres.class);
+            startActivity(intent);
+        });
 
-        BookViewAdapter bAdapater = new BookViewAdapter();
-        //UserViewAdapter adapter = new UserViewAdapter();
-        recyclerView.setAdapter(bAdapater);
-        booksViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
-                .create(BooksViewModel.class);
-       // userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        /*userViewModel.getUsers().observe(this, new Observer<List<User>>() {
-            @Override
-            public void onChanged(List<User> users) {
+        //Book Layout
+        LinearLayout booksContainer = findViewById(R.id.LineOfBooks);
 
-                adapter.setUsers(users);
-            }
-        });*/
+        booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
+
         booksViewModel.getBooks().observe(this, new Observer<List<Book>>() {
+
             @Override
             public void onChanged(List<Book> books) {
+                booksContainer.removeAllViews();
 
-                bAdapater.setBooks(books);
+                for (Book book : books) {
+                    View bookView = LayoutInflater.from(Title.this)
+                            .inflate(R.layout.books_for_title, booksContainer, false);
+
+                    TextView title = bookView.findViewById(R.id.textViewBookTitle);
+                    TextView author = bookView.findViewById(R.id.textViewAuthor);
+
+                    title.setText(book.getTitle());
+                    author.setText(book.getAuthor());
+
+                    bookView.setOnClickListener(view -> {
+                        Intent intent = new Intent(Title.this, BookDetails.class);
+                        intent.putExtra("BookId", book.getBid());
+                        intent.putExtra("BookTitle", book.getTitle());
+                        intent.putExtra("BookAuthor", book.getAuthor());
+                        intent.putExtra("BookDescription", book.getDescription());
+                        startActivity(intent);
+                    });
+
+
+                    booksContainer.addView(bookView);
+                }
             }
         });
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

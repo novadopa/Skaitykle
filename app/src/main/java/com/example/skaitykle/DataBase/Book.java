@@ -1,5 +1,6 @@
 package com.example.skaitykle.DataBase;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.ColumnInfo;
 
@@ -28,6 +29,8 @@ public class Book {
     @NonNull
     @ColumnInfo(name = "cover_uri")
     public String coverUri;
+
+
 
 
     public Book(@NonNull String title, @NonNull String description, @NonNull String author,
