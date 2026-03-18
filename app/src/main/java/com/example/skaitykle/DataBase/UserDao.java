@@ -13,6 +13,9 @@ public interface UserDao {
     @Query("SELECT * FROM user ORDER BY uid ASC")
     LiveData<List<User>> getAllUsers();
 
+    @Query("SELECT * FROM user WHERE uid = :userId LIMIT 1")
+    User getUserByIdDirect(int userId);
+
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     List<User> loadAllIds(int[] userIds);
 

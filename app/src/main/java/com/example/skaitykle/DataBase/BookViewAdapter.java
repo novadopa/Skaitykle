@@ -54,8 +54,8 @@ public class BookViewAdapter extends RecyclerView.Adapter<BookViewAdapter.BookHo
         public BookHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            textViewAuthor = itemView.findViewById(R.id.textViewAuthor);
+            textViewTitle = itemView.findViewById(R.id.book_title);
+            textViewAuthor = itemView.findViewById(R.id.book_author);
 
         }
     }
