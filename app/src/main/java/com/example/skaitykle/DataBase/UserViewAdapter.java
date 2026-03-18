@@ -21,7 +21,7 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.UserHo
     @Override
     public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_item
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.books_for_title
                 , parent, false);
 
 
@@ -32,8 +32,8 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.UserHo
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
 
         User currentUser = users.get(position);
-        holder.textViewFirstName.setText(currentUser.getFirstName());
-        holder.textViewEmail.setText(currentUser.getEmail());
+        //holder.textViewFirstName.setText(currentUser.getFirstName());
+        //holder.textViewEmail.setText(currentUser.getEmail());
 
     }
 
@@ -48,14 +48,14 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.UserHo
     }
 
     class UserHolder extends RecyclerView.ViewHolder{
-        TextView textViewFirstName;
+        TextView textViewBookTitle;
         TextView textViewEmail;
 
         public UserHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewFirstName = itemView.findViewById(R.id.textView_FirstName);
-            textViewEmail = itemView.findViewById(R.id.textView_Email);
+            textViewBookTitle = itemView.findViewById(R.id.textViewBookTitle);
+            textViewEmail = itemView.findViewById(R.id.textViewAuthor);
 
         }
     }

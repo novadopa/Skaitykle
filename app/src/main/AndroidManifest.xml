@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skaitykle">
         <activity
+            android:name=".BookDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Genres"
             android:name=".CommentWriting"
             android:exported="false" />
         <activity

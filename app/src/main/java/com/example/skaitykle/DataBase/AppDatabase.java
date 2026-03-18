@@ -20,7 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase Adb;
 
-    public abstract UserDao userDao();
+    //public abstract UserDao userDao();
     public abstract BookDao bookDao();
     public abstract UserBookDao userBookDao();
 
@@ -47,14 +47,14 @@ public abstract class AppDatabase extends RoomDatabase {
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    UserDao userDao = Adb.userDao();
+                    //UserDao userDao = Adb.userDao();
                     // Users
-                    userDao.insert(new User("Vardenis", "Pavardenis",
+                    /*userDao.insert(new User("Vardenis", "Pavardenis",
                             "vardenis@gmail.com", "123"));
                     userDao.insert(new User("Antras", "Pavardas",
                             "antras@gmail.com", "123"));
                     userDao.insert(new User("trečias", "Krepšias",
-                            "trečias@gmail.com", "123"));
+                            "trečias@gmail.com", "123"));*/
 
                     BookDao bookDao = Adb.bookDao();
                     // Books
