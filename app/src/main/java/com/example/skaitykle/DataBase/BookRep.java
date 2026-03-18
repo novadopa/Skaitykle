@@ -53,6 +53,10 @@ public class BookRep {
 
     public LiveData<List<Book>> getBooks() {return books;}
 
+    public LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId) {
+        return bookDao.getBooksWithReadingProgress(userId);
+    }
+
     /*private static class InsertUserAsyncTask extends AsyncTask<User,Void,Void> {
 
         private UserDao userDao;

@@ -19,6 +19,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.skaitykle.DataBase.Book;
+import com.example.skaitykle.DataBase.UserViewModel;
+import com.example.skaitykle.DataBase.BookViewAdapter;
 import com.example.skaitykle.DataBase.BooksViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -79,9 +81,7 @@ public class Title extends AppCompatActivity {
             }
         });
 
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bookReaderMain), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;

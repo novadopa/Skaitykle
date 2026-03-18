@@ -16,6 +16,7 @@
             android:exported="false" />
         <activity
             android:name=".Genres"
+            android:name=".CommentWriting"
             android:exported="false" />
         <activity
             android:name=".BookReader"

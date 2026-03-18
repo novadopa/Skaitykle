@@ -53,6 +53,10 @@ public class UserRep {
 
     public LiveData<List<User>> getUsers() {return users;}
 
+    public User getUserByIdDirect(int userId) {
+        return userDao.getUserByIdDirect(userId);
+    }
+
     /*private static class InsertUserAsyncTask extends AsyncTask<User,Void,Void> {
 
         private UserDao userDao;

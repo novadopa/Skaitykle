@@ -3,22 +3,26 @@ package com.example.skaitykle.DataBase;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import android.content.Context;
 
 import org.jspecify.annotations.NonNull;
 
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Book.class},version = 2)
+@Database(entities = {User.class, Book.class, UserBook.class},version = 3)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase Adb;
 
     //public abstract UserDao userDao();
     public abstract BookDao bookDao();
+    public abstract UserBookDao userBookDao();
 
     public static synchronized AppDatabase getInstance(Context context) {
         if (Adb == null){
@@ -56,15 +60,18 @@ public abstract class AppDatabase extends RoomDatabase {
                     // Books
                     bookDao.insert(new Book("The Great Gatsby",
                             "A story of the fabulously wealthy Jay Gatsby",
-                            "F. Scott Fitzgerald", "", ""));
+                            "F. Scott Fitzgerald", "", "",  245,
+                            Arrays.asList("Drama")));
 
                     bookDao.insert(new Book("1984",
                             "A dystopian novel set in a totalitarian society",
-                            "George Orwell", "", ""));
+                            "George Orwell", "", "", 268,
+                            Arrays.asList("Dystopian")));
 
                     bookDao.insert(new Book("To Kill a Mockingbird",
                             "A story of racial injustice in the American South",
-                            "Harper Lee", "", ""));
+                            "Harper Lee", "", "", 178,
+                            Arrays.asList("Drama")));
                 }
             });
         }

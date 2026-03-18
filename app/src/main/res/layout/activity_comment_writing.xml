@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CommentWriting">
+
+    <RatingBar
+        android:id="@+id/bookRatingBar"
+        android:layout_width="235dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="19dp"
+        android:numStars="5"
+        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/giveRatingTextView" />
+
+    <Button
+        android:id="@+id/saveCommentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="48dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentEditText" />
+
+    <Button
+        android:id="@+id/cancelCommentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="54dp"
+        android:text="Cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentEditText" />
+
+    <TextView
+        android:id="@+id/giveRatingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:layout_marginBottom="7dp"
+        android:text="Give your rating:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/bookRatingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/commentEditText"
+        android:layout_width="315dp"
+        android:layout_height="314dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:hint="Write your comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookRatingBar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

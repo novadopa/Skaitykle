@@ -163,7 +163,7 @@ fi
 
 # Collect all arguments for the java command, stacking in reverse order:
 #   * args from the command line
-#   * the main class name
+#   * the bookReaderMain class name
 #   * -classpath
 #   * -D...appname settings
 #   * --module-path (only if needed)
