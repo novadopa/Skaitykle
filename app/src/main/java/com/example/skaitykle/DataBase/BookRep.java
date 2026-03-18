@@ -12,7 +12,7 @@ public class BookRep {
     private BookDao bookDao;
     private LiveData<List<Book>> books;
 
-    ExecutorService executors = Executors.newSingleThreadExecutor();
+    //ExecutorService executors = Executors.newSingleThreadExecutor();
 
     public BookRep(Application application){
         AppDatabase Adb = AppDatabase.getInstance(application);
@@ -21,6 +21,18 @@ public class BookRep {
     }
 
     public void insert(Book book) {
+        AppDatabase.databaseWriteExecutor.execute(() -> bookDao.insert(book));
+    }
+
+    public void update(Book book) {
+        AppDatabase.databaseWriteExecutor.execute(() -> bookDao.update(book));
+    }
+
+    public void delete(Book book) {
+        AppDatabase.databaseWriteExecutor.execute(() -> bookDao.delete(book));
+    }
+
+    /*public void insert(Book book) {
         //new InsertUserAsyncTask(userDao).execute(user);
 
         executors.execute(new Runnable() {
@@ -49,7 +61,7 @@ public class BookRep {
                 bookDao.delete(book);
             }
         });
-    }
+    }*/
 
     public LiveData<List<Book>> getBooks() {return books;}
 

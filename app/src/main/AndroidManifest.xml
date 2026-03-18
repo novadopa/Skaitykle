@@ -16,6 +16,8 @@
             android:exported="false" />
         <activity
             android:name=".Genres"
+            android:exported="false" />
+        <activity
             android:name=".CommentWriting"
             android:exported="false" />
         <activity
