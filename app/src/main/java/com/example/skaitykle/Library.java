@@ -110,18 +110,19 @@ public class Library extends AppCompatActivity {
             @Override
             public void onBookClick(BookWithReadingProgress bookItem) {
                 Intent bookReaderIntent = new Intent(Library.this, BookReader.class);
-                bookReaderIntent.putExtra("title", bookItem.book.getTitle());
-                bookReaderIntent.putExtra("author", bookItem.book.getAuthor());
-                bookReaderIntent.putExtra("totalPages", bookItem.book.getTotalPages());
-                bookReaderIntent.putExtra("cover", bookItem.book.getCoverUri());
-                bookReaderIntent.putExtra("pagesRead", bookItem.getReadPages());
-                bookReaderIntent.putExtra("bookId",     bookItem.book.getBid());
-                bookReaderIntent.putExtra("userId", currentUserId);
+                bookReaderIntent.putExtra("BookTitle", bookItem.book.getTitle());
+                bookReaderIntent.putExtra("BookAuthor", bookItem.book.getAuthor());
+                bookReaderIntent.putExtra("BookDescription", bookItem.book.getDescription());
+                bookReaderIntent.putExtra("BookTotalPages", bookItem.book.getTotalPages());
+                bookReaderIntent.putExtra("BookCover", bookItem.book.getCoverUri());
+                bookReaderIntent.putExtra("BookPagesRead", bookItem.getReadPages());
+                bookReaderIntent.putExtra("BookId",     bookItem.book.getBid());
+                bookReaderIntent.putExtra("UserId", currentUserId);
 
                 if (bookItem.userBook != null) {
-                    bookReaderIntent.putExtra("userBookId", bookItem.userBook.getUserBookId());
+                    bookReaderIntent.putExtra("UserBookId", bookItem.userBook.getUserBookId());
                 } else {
-                    bookReaderIntent.putExtra("userBookId", -1);
+                    bookReaderIntent.putExtra("UserBookId", -1);
                 }
                 readerLauncher.launch(bookReaderIntent);
             }

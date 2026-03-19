@@ -33,6 +33,7 @@ public class BookDetails extends AppCompatActivity {
         ImageButton imageButton = findViewById(R.id.button_Back);
         imageButton.setOnClickListener(view -> finish());
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

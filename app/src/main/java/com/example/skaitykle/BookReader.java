@@ -31,6 +31,8 @@ import java.util.Arrays;
 public class BookReader extends AppCompatActivity {
     GestureDetector gestureDetector;
     String title;
+    String author;
+    String description;
     Toolbar toolbar;
     TextView pageCountView;
     SeekBar seekBar;
@@ -55,12 +57,14 @@ public class BookReader extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_book_reader);
 
-        title      = getIntent().getStringExtra("title");
-        totalPages = getIntent().getIntExtra("totalPages", 0);
-        pagesRead  = getIntent().getIntExtra("pagesRead",  0);
+        title      = getIntent().getStringExtra("BookTitle");
+        totalPages = getIntent().getIntExtra("BookTotalPages", 0);
+        pagesRead  = getIntent().getIntExtra("BookPagesRead",  0);
         userBookId = getIntent().getIntExtra("userBookId", -1);
-        userId     = getIntent().getIntExtra("userId",      1);
-        bookId     = getIntent().getIntExtra("bookId",      0);
+        userId     = getIntent().getIntExtra("UserId",      1);
+        bookId     = getIntent().getIntExtra("BookId",      0);
+        author = getIntent().getStringExtra("BookAuthor");
+        description = getIntent().getStringExtra("BookDescription");
 
         toolbar = findViewById(R.id.reader_toolbar);
         setSupportActionBar(toolbar);
@@ -211,9 +215,11 @@ public class BookReader extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Intent commentIntent = new Intent(BookReader.this, CommentWriting.class);
 
-                commentIntent.putExtra("bookTitle", title);
-                commentIntent.putExtra("bookId", bookId);
-                commentIntent.putExtra("userId", userId);
+                commentIntent.putExtra("BookTitle", title);
+                commentIntent.putExtra("BookId", bookId);
+                commentIntent.putExtra("UserId", userId);
+                commentIntent.putExtra("BookAuthor", author);
+                commentIntent.putExtra("BookDescription", description);
                 startActivity(commentIntent);
                 finish();
             }

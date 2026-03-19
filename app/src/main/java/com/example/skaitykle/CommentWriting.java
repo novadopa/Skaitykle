@@ -33,6 +33,11 @@ public class CommentWriting extends AppCompatActivity {
         cancelButton = (Button) findViewById(R.id.cancelCommentButton);
         saveButton = (Button) findViewById(R.id.saveCommentButton);
 
+        int bookId = getIntent().getIntExtra("BookId", -1);
+        String title = getIntent().getStringExtra("BookTitle");
+        String author = getIntent().getStringExtra("BookAuthor");
+        String description = getIntent().getStringExtra("BookDescription");
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +48,11 @@ public class CommentWriting extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Stars cannot be empty",
                             Toast.LENGTH_SHORT).show();
                 }else{
-                    Intent saveComment = new Intent(getBaseContext(), Title.class);
+                    Intent saveComment = new Intent(getBaseContext(), BookDetails.class);
+                    saveComment.putExtra("BookId", bookId);
+                    saveComment.putExtra("BookTitle", title);
+                    saveComment.putExtra("BookAuthor", author);
+                    saveComment.putExtra("BookDescription", description);
                     startActivity(saveComment);
                     finish();
                 }
