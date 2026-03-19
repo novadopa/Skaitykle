@@ -24,6 +24,8 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     private String currentAuthor = "All";
     private String currentGenre = "All";
 
+    private String searchMode = "All";
+
     public interface OnBookClickListener {
         void onBookClick(BookWithReadingProgress book);
     }
@@ -106,6 +108,12 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     }
 
 
+    public void setSearchMode(String mode){
+        searchMode = mode;
+        ApplyFilters();
+    }
+
+
     public void SearchBooks(String searchText){
         currentSearch = searchText.toLowerCase();
         ApplyFilters();
@@ -128,9 +136,19 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         bookList.clear();
 
         for(BookWithReadingProgress bookItem : fullBookList) {
-            boolean matchesSearch =
+            /*boolean matchesSearch =
                     bookItem.book.getTitle().toLowerCase().contains(currentSearch) ||
-                            bookItem.book.getAuthor().toLowerCase().contains(currentSearch);
+                            bookItem.book.getAuthor().toLowerCase().contains(currentSearch);*/
+            boolean matchesSearch;
+            if(searchMode.equals("Title")){
+                matchesSearch = bookItem.book.getTitle().toLowerCase().contains(currentSearch);
+            }else if(searchMode.equals("Author")){
+                matchesSearch = bookItem.book.getAuthor().toLowerCase().contains(currentSearch);
+            }
+            else{
+                matchesSearch = bookItem.book.getTitle().toLowerCase().contains(currentSearch) ||
+                        bookItem.book.getAuthor().toLowerCase().contains(currentSearch);
+            }
 
             boolean matchesAuthor =
                     currentAuthor.equals("All") ||

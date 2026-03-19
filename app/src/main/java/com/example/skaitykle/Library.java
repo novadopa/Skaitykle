@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -23,6 +24,8 @@ import com.google.android.material.navigation.NavigationBarView;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import androidx.appcompat.widget.SearchView;
@@ -43,6 +46,10 @@ public class Library extends AppCompatActivity {
     LibraryBookAdapter libraryBookAdapter;
     Chip authorChip;
     Chip genresChip;
+
+    LinearLayout searchOptionsLayout;
+    CheckBox checkTitle;
+    CheckBox checkAuthor;
 
     BooksViewModel booksViewModel;
 
@@ -146,6 +153,34 @@ public class Library extends AppCompatActivity {
         });
 
 
+        searchOptionsLayout = findViewById(R.id.searchOptionsLayout);
+        checkTitle = findViewById(R.id.checkTitle);
+        checkAuthor = findViewById(R.id.checkAuthor);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean titleChecked = checkTitle.isChecked();
+                boolean authorChecked = checkAuthor.isChecked();
+
+                if(titleChecked && authorChecked){
+                    libraryBookAdapter.setSearchMode("All");
+                }
+                else if(titleChecked){
+                    libraryBookAdapter.setSearchMode("Title");
+                }
+                else if(authorChecked){
+                    libraryBookAdapter.setSearchMode("Author");
+                }
+                else{
+                    libraryBookAdapter.setSearchMode("All");
+                }
+            }
+        };
+
+        checkTitle.setOnClickListener(listener);
+        checkAuthor.setOnClickListener(listener);
+
         authorChip = findViewById(R.id.authorFilterChip);
         authorChip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,6 +253,20 @@ public class Library extends AppCompatActivity {
         MenuItem searchItem = menu.findItem(R.id.search);
 
         SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchOptionsLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                searchOptionsLayout.setVisibility(View.GONE);
+                return false;
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -62,7 +62,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
                     BookDao bookDao = Adb.bookDao();
                     // Books
-                    bookDao.insert(new Book("The Great Gatsby",
+                    bookDao.insert(new Book("Ant stuff",
                             "A story of the fabulously wealthy Jay Gatsby",
                             "F. Scott Fitzgerald", "", "",  245,
                             Arrays.asList("Drama")));
@@ -75,7 +75,11 @@ public abstract class AppDatabase extends RoomDatabase {
                     bookDao.insert(new Book("To Kill a Mockingbird",
                             "A story of racial injustice in the American South",
                             "Harper Lee", "", "", 178,
-                            Arrays.asList("Drama")));
+                            Arrays.asList("Drama, comedy")));
+
+                    bookDao.insert(new Book("Great gatsby", "nonel about ants",
+                            "Antman johnson", "", "", 245,
+                            Arrays.asList("Horror, Fantasy")));
                 }
             });
         }
