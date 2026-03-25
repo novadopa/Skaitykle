@@ -38,8 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
+        android:elevation="8dp"
         android:visibility="gone"
+        android:background="?attr/colorSurface"
         app:layout_constraintTop_toBottomOf="@id/libraryToolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -78,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchOptionsLayout">
+        app:layout_constraintTop_toBottomOf="@+id/libraryToolbar">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/authorFilterChip"
