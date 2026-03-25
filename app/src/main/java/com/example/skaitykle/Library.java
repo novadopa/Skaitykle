@@ -1,5 +1,7 @@
 package com.example.skaitykle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
@@ -10,12 +12,12 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.BookWithReadingProgress;
 import com.example.skaitykle.DataBase.BooksViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +26,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -146,7 +149,9 @@ public class Library extends AppCompatActivity {
             public void onChanged(List<BookWithReadingProgress> books) {
                 if(books != null){
                     currentBooks.clear();
-                    currentBooks.addAll(books);
+                    if(books != null){
+                        currentBooks.addAll(books);
+                    }
                 }
                 libraryBookAdapter.setBooks(currentBooks);
             }
@@ -251,22 +256,23 @@ public class Library extends AppCompatActivity {
         menuInflater.inflate(R.menu.actionbar_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.search);
-
         SearchView searchView = (SearchView) searchItem.getActionView();
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
+
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onMenuItemActionExpand(@NonNull MenuItem item) {
                 searchOptionsLayout.setVisibility(View.VISIBLE);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(@NonNull MenuItem item) {
+                searchOptionsLayout.setVisibility(View.GONE);
+                libraryBookAdapter.SearchBooks("");
+                return true;
             }
         });
 
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                searchOptionsLayout.setVisibility(View.GONE);
-                return false;
-            }
-        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -278,6 +284,35 @@ public class Library extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 libraryBookAdapter.SearchBooks(newText.toLowerCase());
+                return true;
+            }
+        });
+
+
+        MenuItem deleteBooksItem = menu.findItem(R.id.deleteAllBooks);
+
+        deleteBooksItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                new AlertDialog.Builder(Library.this).setMessage("Are you sure you want to delete " +
+                        "all your books?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AppDatabase db = AppDatabase.getInstance(Library.this);
+                        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                db.userBookDao().deleteAllBooks(currentUserId);
+                            }
+                        });
+                        libraryBookAdapter.FilterAuthor("All");
+                        libraryBookAdapter.FilterGenre("All");
+                        authorChip.setText("Authors");
+                        genresChip.setText("Genres");
+                    }
+                }).setNegativeButton("No", null).show();
+
+
                 return true;
             }
         });

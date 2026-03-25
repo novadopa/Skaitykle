@@ -72,6 +72,7 @@ public class Title extends AppCompatActivity {
                         intent.putExtra("BookTitle", book.getTitle());
                         intent.putExtra("BookAuthor", book.getAuthor());
                         intent.putExtra("BookDescription", book.getDescription());
+                        intent.putExtra("BookTotalPages", book.getTotalPages());
                         startActivity(intent);
                     });
 

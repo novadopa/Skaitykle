@@ -1,15 +1,19 @@
 package com.example.skaitykle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.BookWithReadingProgress;
 
 import java.util.ArrayList;
@@ -25,6 +29,8 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     private String currentGenre = "All";
 
     private String searchMode = "All";
+
+    private static final int currentUserId = 1;
 
     public interface OnBookClickListener {
         void onBookClick(BookWithReadingProgress book);
@@ -51,6 +57,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         TextView author;
         TextView bookPages;
         TextView bookPercentage;
+        Button deleteBookButton;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,6 +66,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
             author = itemView.findViewById(R.id.bookAuthorTextView);
             bookPages = itemView.findViewById(R.id.bookPagesTextView);
             bookPercentage = itemView.findViewById(R.id.bookPercentageTextView);
+            deleteBookButton = itemView.findViewById(R.id.deleteBookButton);
         }
     }
 
@@ -92,6 +100,28 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         } else {
             holder.bookPercentage.setText("Reading progress: 0%");
         }
+
+        holder.deleteBookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(v.getContext()).setMessage("Are you sure you want to " +
+                        "delete this book?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(bookItem.userBook == null) {return;}
+                        AppDatabase db = AppDatabase.getInstance(v.getContext());
+                        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                db.userBookDao().deleteBookByUserAndBook(currentUserId,
+                                        bookItem.book.getBid());
+                            }
+                        });
+                    }
+                }).setNegativeButton("No", null).show();
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
