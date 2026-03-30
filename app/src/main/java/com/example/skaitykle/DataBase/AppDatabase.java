@@ -75,7 +75,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     bookDao.insert(new Book("To Kill a Mockingbird",
                             "A story of racial injustice in the American South",
                             "Harper Lee", "", "", 178,
-                            Arrays.asList("Drama")));
+                            Arrays.asList("Drama, comedy")));
                 }
             });
         }

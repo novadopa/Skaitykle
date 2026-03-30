@@ -1,6 +1,8 @@
 package com.example.skaitykle;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -32,6 +34,12 @@ public class BookDetails extends AppCompatActivity {
 
         ImageButton imageButton = findViewById(R.id.button_Back);
         imageButton.setOnClickListener(view -> finish());
+
+        Button readBook = findViewById(R.id.button_ReadBook);
+        readBook.setOnClickListener(view -> {
+            Intent intent = new Intent(BookDetails.this, BookReader.class);
+            startActivity(intent);
+        });
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

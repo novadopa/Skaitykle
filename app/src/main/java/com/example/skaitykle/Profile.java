@@ -45,7 +45,6 @@ import java.util.concurrent.Executors;
 public class Profile extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    TextView userInfoText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +57,25 @@ public class Profile extends AppCompatActivity {
             return insets;
         });
 
-
         bottomNavigationView = findViewById(R.id.bottom_nav_title);
         bottomNavigationView.setSelectedItemId(R.id.menu_profile);
 
-        TextView nameText = findViewById(R.id.nameText);
+        TextView nameText    = findViewById(R.id.nameText);
         TextView surnameText = findViewById(R.id.surnameText);
-        TextView emailText = findViewById(R.id.emailText);
+        TextView emailText   = findViewById(R.id.emailText);
+
+        int userId = getIntent().getIntExtra("userId", -1);
+
+        if (userId == -1) {
+            startActivity(new Intent(this, Login.class));
+            finish();
+            return;
+        }
 
         UserRep userRep = new UserRep(getApplication());
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
-            User user = userRep.getUserByIdDirect(1);
+            User user = userRep.getUserByIdDirect(userId);
 
             runOnUiThread(() -> {
                 if (user != null) {
@@ -80,29 +86,27 @@ public class Profile extends AppCompatActivity {
             });
         });
 
-
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 int id = menuItem.getItemId();
 
-                if(id == R.id.menu_home){
+                if (id == R.id.menu_home) {
                     Intent homeIntent = new Intent(getBaseContext(), Title.class);
+                    homeIntent.putExtra("userId", userId); // ← keep passing it
                     startActivity(homeIntent);
                     return true;
-                }
-                else if (id == R.id.menu_library){
+                } else if (id == R.id.menu_library) {
                     Intent libraryIntent = new Intent(getBaseContext(), Library.class);
+                    libraryIntent.putExtra("userId", userId); // ← keep passing it
                     startActivity(libraryIntent);
                     return true;
-                }
-                else if(id == R.id.menu_profile){
+                } else if (id == R.id.menu_profile) {
                     Intent profileIntent = new Intent(getBaseContext(), Profile.class);
+                    profileIntent.putExtra("userId", userId); // ← keep passing it
                     startActivity(profileIntent);
                     return true;
                 }
-
                 return false;
             }
         });
