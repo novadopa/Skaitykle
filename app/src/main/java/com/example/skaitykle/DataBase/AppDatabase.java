@@ -62,20 +62,24 @@ public abstract class AppDatabase extends RoomDatabase {
 
                     BookDao bookDao = Adb.bookDao();
                     // Books
-                    bookDao.insert(new Book("The Great Gatsby",
+                    bookDao.insert(new Book("Ant stuff",
                             "A story of the fabulously wealthy Jay Gatsby",
-                            "F. Scott Fitzgerald", "", "",  245,
+                            "F. Scott Fitzgerald", "ant stuff.pdf", "",  245,
                             Arrays.asList("Drama")));
 
                     bookDao.insert(new Book("1984",
                             "A dystopian novel set in a totalitarian society",
-                            "George Orwell", "", "", 268,
+                            "George Orwell", "1984test.pdf", "", 268,
                             Arrays.asList("Dystopian")));
 
                     bookDao.insert(new Book("To Kill a Mockingbird",
                             "A story of racial injustice in the American South",
-                            "Harper Lee", "", "", 178,
+                            "Harper Lee", "mockingTest.pdf", "", 178,
                             Arrays.asList("Drama, comedy")));
+
+                    bookDao.insert(new Book("Great gatsby", "nonel about ants",
+                            "Antman johnson", "gatsbytest.pdf", "", 245,
+                            Arrays.asList("Horror, Fantasy")));
                 }
             });
         }

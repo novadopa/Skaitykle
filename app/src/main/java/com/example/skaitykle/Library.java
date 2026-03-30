@@ -1,5 +1,7 @@
 package com.example.skaitykle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
@@ -15,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.BookWithReadingProgress;
 import com.example.skaitykle.DataBase.BooksViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +26,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import androidx.appcompat.widget.SearchView;
@@ -43,6 +49,10 @@ public class Library extends AppCompatActivity {
     LibraryBookAdapter libraryBookAdapter;
     Chip authorChip;
     Chip genresChip;
+
+    LinearLayout searchOptionsLayout;
+    CheckBox checkTitle;
+    CheckBox checkAuthor;
 
     BooksViewModel booksViewModel;
 
@@ -113,6 +123,7 @@ public class Library extends AppCompatActivity {
                 bookReaderIntent.putExtra("BookTitle", bookItem.book.getTitle());
                 bookReaderIntent.putExtra("BookAuthor", bookItem.book.getAuthor());
                 bookReaderIntent.putExtra("BookDescription", bookItem.book.getDescription());
+                bookReaderIntent.putExtra("BookPath", bookItem.book.getBookPath());
                 bookReaderIntent.putExtra("BookTotalPages", bookItem.book.getTotalPages());
                 bookReaderIntent.putExtra("BookCover", bookItem.book.getCoverUri());
                 bookReaderIntent.putExtra("BookPagesRead", bookItem.getReadPages());
@@ -139,12 +150,42 @@ public class Library extends AppCompatActivity {
             public void onChanged(List<BookWithReadingProgress> books) {
                 if(books != null){
                     currentBooks.clear();
-                    currentBooks.addAll(books);
+                    if(books != null){
+                        currentBooks.addAll(books);
+                    }
                 }
                 libraryBookAdapter.setBooks(currentBooks);
             }
         });
 
+
+        searchOptionsLayout = findViewById(R.id.searchOptionsLayout);
+        checkTitle = findViewById(R.id.checkTitle);
+        checkAuthor = findViewById(R.id.checkAuthor);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean titleChecked = checkTitle.isChecked();
+                boolean authorChecked = checkAuthor.isChecked();
+
+                if(titleChecked && authorChecked){
+                    libraryBookAdapter.setSearchMode("All");
+                }
+                else if(titleChecked){
+                    libraryBookAdapter.setSearchMode("Title");
+                }
+                else if(authorChecked){
+                    libraryBookAdapter.setSearchMode("Author");
+                }
+                else{
+                    libraryBookAdapter.setSearchMode("All");
+                }
+            }
+        };
+
+        checkTitle.setOnClickListener(listener);
+        checkAuthor.setOnClickListener(listener);
 
         authorChip = findViewById(R.id.authorFilterChip);
         authorChip.setOnClickListener(new View.OnClickListener() {
@@ -216,8 +257,23 @@ public class Library extends AppCompatActivity {
         menuInflater.inflate(R.menu.actionbar_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.search);
-
         SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(@NonNull MenuItem item) {
+                searchOptionsLayout.setVisibility(View.VISIBLE);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(@NonNull MenuItem item) {
+                searchOptionsLayout.setVisibility(View.GONE);
+                libraryBookAdapter.SearchBooks("");
+                return true;
+            }
+        });
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -229,6 +285,35 @@ public class Library extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 libraryBookAdapter.SearchBooks(newText.toLowerCase());
+                return true;
+            }
+        });
+
+
+        MenuItem deleteBooksItem = menu.findItem(R.id.deleteAllBooks);
+
+        deleteBooksItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                new AlertDialog.Builder(Library.this).setMessage("Are you sure you want to delete " +
+                        "all your books?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AppDatabase db = AppDatabase.getInstance(Library.this);
+                        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                db.userBookDao().deleteAllBooks(currentUserId);
+                            }
+                        });
+                        libraryBookAdapter.FilterAuthor("All");
+                        libraryBookAdapter.FilterGenre("All");
+                        authorChip.setText("Authors");
+                        genresChip.setText("Genres");
+                    }
+                }).setNegativeButton("No", null).show();
+
+
                 return true;
             }
         });

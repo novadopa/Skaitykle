@@ -3,13 +3,17 @@ package com.example.skaitykle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.pdf.PdfRenderer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -22,34 +26,34 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.Book;
 import com.example.skaitykle.DataBase.UserBook;
 import com.example.skaitykle.DataBase.UserBookViewModel;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 public class BookReader extends AppCompatActivity {
     GestureDetector gestureDetector;
-    String title;
-    String author;
-    String description;
     Toolbar toolbar;
     TextView pageCountView;
     SeekBar seekBar;
     TextView progressLabel;
+    ImageView pageView;
 
     UserBookViewModel userBookViewModel;
 
-    int totalPages;
-    int pagesRead;
-    int readingProgress;
-    int userBookId;
-    int userId;
-    int bookId;
-
-
+    String title, author, description, path;
+    int totalPages, pagesRead, readingProgress, userBookId, userId, bookId;
     boolean commentSuggestionShown;
 
+    PdfRenderer pdfRenderer;
+    PdfRenderer.Page currentPage;
+    int pdfPageCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,9 @@ public class BookReader extends AppCompatActivity {
         bookId     = getIntent().getIntExtra("BookId",      0);
         author = getIntent().getStringExtra("BookAuthor");
         description = getIntent().getStringExtra("BookDescription");
+        path = getIntent().getStringExtra("BookPath");
+
+        if (pagesRead > 0) pagesRead = pagesRead - 1;
 
         toolbar = findViewById(R.id.reader_toolbar);
         setSupportActionBar(toolbar);
@@ -73,18 +80,36 @@ public class BookReader extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        pageView = findViewById(R.id.reader_page_view);
         pageCountView = findViewById(R.id.reader_page_count);
         seekBar = findViewById(R.id.reader_seek_bar);
         progressLabel = findViewById(R.id.reader_progress_label);
 
         userBookViewModel = new ViewModelProvider(this).get(UserBookViewModel.class);
 
-        updateProgress();
+        openPdf();
+
+        if(pdfRenderer != null){
+            /*pdfPageCount = pdfRenderer.getPageCount();
+            totalPages = pdfPageCount;*/
+            totalPages = pdfRenderer.getPageCount();
+
+            AppDatabase.databaseWriteExecutor.execute(() -> {
+                AppDatabase.getInstance(BookReader.this)
+                        .bookDao().updateTotalPages(bookId, totalPages);
+            });
+        }
+
+        if(pagesRead >= totalPages && totalPages > 0){
+            pagesRead = totalPages - 1;
+        }
+
+        showPages(pagesRead);
 
         gestureDetector = new GestureDetector(this,
                 new GestureDetector.SimpleOnGestureListener(){
-            private static final int swipeThreshold = 100;
-            private static  final int swipeVelocityThreshold = 100;
+            private static final int swipeThreshold = 60;
+            private static  final int swipeVelocityThreshold = 60;
 
             @Override
             public boolean onDown(MotionEvent e) {
@@ -110,7 +135,7 @@ public class BookReader extends AppCompatActivity {
 
         });
 
-        View readerArea = findViewById(R.id.reader_placeholder_text);
+        View readerArea = findViewById(R.id.reader_page_view);
         readerArea.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -125,8 +150,8 @@ public class BookReader extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(fromUser && totalPages > 0){
-                    pagesRead = (progress * totalPages) / 100;
-                    updateProgress();
+                    int targetPage = (progress * totalPages) / 100;
+                    showPages(targetPage);
                 }
             }
 
@@ -162,23 +187,67 @@ public class BookReader extends AppCompatActivity {
     }
 
 
+    private void openPdf(){
+        if(path == null || path.isEmpty()) return;
+
+        try{
+            InputStream inputStream = getAssets().open("books/"+path);
+            File tempFile = File.createTempFile("book", ".pdf", getCacheDir());
+            tempFile.deleteOnExit();
+            FileOutputStream outputStream = new FileOutputStream(tempFile);
+            byte[] buffer = new byte[4096];
+            int len;
+            while((len = inputStream.read(buffer)) != -1) outputStream.write(buffer, 0, len);
+            outputStream.close();
+            inputStream.close();
+            ParcelFileDescriptor fileDescriptor = ParcelFileDescriptor.open(tempFile,
+                    ParcelFileDescriptor.MODE_READ_ONLY);
+            pdfRenderer = new PdfRenderer(fileDescriptor);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void showPages(int pageIndex){
+        if(pdfRenderer == null) return;
+        if(pageIndex >= pdfRenderer. getPageCount())
+            pageIndex = pdfRenderer.getPageCount() - 1;
+
+        pagesRead = pageIndex;
+
+        if(currentPage != null) currentPage.close();
+        currentPage = pdfRenderer.openPage(pageIndex);
+
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = (int) ((float) currentPage.getHeight() / currentPage.getWidth() * width);
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        currentPage.render(bitmap, null, null,
+                PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+        pageView.setImageBitmap(bitmap);
+
+        updateProgress();
+    }
+
+
     private void saveProgress() {
+        int pageToSave = pagesRead + 1;
         if (userBookId != -1) {
-            UserBook updated = new UserBook(userId, bookId, pagesRead, pagesRead);
+            UserBook updated = new UserBook(userId, bookId, pageToSave, pagesRead);
             updated.setUserBookId(userBookId);
             userBookViewModel.update(updated);
         } else {
-            UserBook newUserBook = new UserBook(userId, bookId, pagesRead, pagesRead);
+            UserBook newUserBook = new UserBook(userId, bookId, pageToSave, pagesRead);
             userBookViewModel.insert(newUserBook);
         }
     }
 
 
     private void updateProgress(){
-        pageCountView.setText("Page " + pagesRead + " of " + totalPages);
+        pageCountView.setText("Page " + (pagesRead+1) + " of " + totalPages);
 
         if (totalPages > 0) {
-            readingProgress = (pagesRead * 100)/ totalPages;
+            readingProgress = (pagesRead * 100) / (totalPages - 1);
         }else{
             readingProgress = 0;
         }
@@ -189,9 +258,9 @@ public class BookReader extends AppCompatActivity {
 
 
     private void nextPage(){
-        if(pagesRead < totalPages){
-            pagesRead++;
-            updateProgress();
+        if(pagesRead + 1 < totalPages){
+            showPages(pagesRead + 1);
+            //updateProgress();
             saveProgress();
         }
     }
@@ -199,8 +268,8 @@ public class BookReader extends AppCompatActivity {
 
     private void previousPage(){
         if(pagesRead > 0){
-            pagesRead--;
-            updateProgress();
+            showPages(pagesRead - 1);
+            //updateProgress();
             saveProgress();
         }
     }
@@ -235,7 +304,7 @@ public class BookReader extends AppCompatActivity {
     private void handleExit(){
         saveProgress();
 
-        if(pagesRead > 0 && !commentSuggestionShown && pagesRead >= totalPages){
+        if((pagesRead+1) > 0 && !commentSuggestionShown && (pagesRead+1) >= totalPages){
             showCommentSuggestion();
         }else{
             finish();

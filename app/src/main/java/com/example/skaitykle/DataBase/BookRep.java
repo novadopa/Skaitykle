@@ -69,6 +69,11 @@ public class BookRep {
         return bookDao.getBooksWithReadingProgress(userId);
     }
 
+    public void updateTotalPages(int bookId, int totalPages) {
+        AppDatabase.databaseWriteExecutor.execute(() ->
+                bookDao.updateTotalPages(bookId, totalPages));
+    }
+
     /*private static class InsertUserAsyncTask extends AsyncTask<User,Void,Void> {
 
         private UserDao userDao;

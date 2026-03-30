@@ -12,7 +12,7 @@
         android:layout_height="120dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/bookTitleTextView"
@@ -47,8 +47,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/bookTitleTextView"
-        app:layout_constraintTop_toBottomOf="@id/bookPagesTextView"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/bookPagesTextView" />
+
+    <Button
+        android:id="@+id/deleteBookButton"
+        android:layout_width="88dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="227dp"
+        android:layout_marginTop="23dp"
+        android:text="Delete"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookCoverImageView"
+        app:layout_constraintTop_toBottomOf="@+id/bookPercentageTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
