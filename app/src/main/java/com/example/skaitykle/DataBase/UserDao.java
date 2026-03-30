@@ -22,6 +22,12 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
     User findByName(String first, String last);
 
+    @Query("SELECT * FROM user WHERE email = :email")
+    User getUserByEmail(String email);
+
+    @Query("SELECT * FROM User WHERE email = :email AND password = :password LIMIT 1")
+    User login(String email, String password);
+
     @Insert
     void insertAll(User... users);
 

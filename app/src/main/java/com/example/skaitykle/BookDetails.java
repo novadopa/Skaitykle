@@ -66,6 +66,12 @@ public class BookDetails extends AppCompatActivity {
         ImageButton imageButton = findViewById(R.id.button_Back);
         imageButton.setOnClickListener(view -> finish());
 
+        Button readBook = findViewById(R.id.button_ReadBook);
+        readBook.setOnClickListener(view -> {
+            Intent intent = new Intent(BookDetails.this, BookReader.class);
+            startActivity(intent);
+        });
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

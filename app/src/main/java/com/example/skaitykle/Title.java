@@ -2,12 +2,8 @@ package com.example.skaitykle;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,23 +11,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skaitykle.DataBase.Book;
-import com.example.skaitykle.DataBase.UserViewModel;
-import com.example.skaitykle.DataBase.BookViewAdapter;
 import com.example.skaitykle.DataBase.BooksViewModel;
+import com.example.skaitykle.DataBase.GenreRow;
+import com.example.skaitykle.DataBase.GenreRowAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Title extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private BooksViewModel booksViewModel;
+    private List<Book> allBooks = new ArrayList<>();
+    private List<GenreRow> allRows = new ArrayList<>();
+    private GenreRowAdapter genreRowAdapter;
+    private static final List<String> GENRES =
+            Arrays.asList("Dystopian", "Drama", "Fantasy", "Comedy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,47 +42,26 @@ public class Title extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_title);
 
-        Button genres = findViewById(R.id.button_Genres);
-        genres.setOnClickListener(view -> {
-            Intent intent = new Intent(Title.this, Genres.class);
-            startActivity(intent);
-        });
+        RecyclerView recyclerView = findViewById(R.id.RecyclerViewTitleBooks);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        genreRowAdapter = new GenreRowAdapter();
+        recyclerView.setAdapter(genreRowAdapter);
 
-        //Book Layout
-        LinearLayout booksContainer = findViewById(R.id.LineOfBooks);
+        Button dystopian = findViewById(R.id.button_Genres);
+        Button dramas = findViewById(R.id.button_Dramas);
+        Button fantasy = findViewById(R.id.button_Fantasy);
+        Button comedy = findViewById(R.id.button_Comedy);
+
+        dystopian.setOnClickListener(view -> filterByGenre("Dystopian"));
+        dramas.setOnClickListener(view -> filterByGenre("Drama"));
+        fantasy.setOnClickListener(view -> filterByGenre("Fantasy"));
+        comedy.setOnClickListener(view -> filterByGenre("Comedy"));
 
         booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
-
-        booksViewModel.getBooks().observe(this, new Observer<List<Book>>() {
-
-            @Override
-            public void onChanged(List<Book> books) {
-                booksContainer.removeAllViews();
-
-                for (Book book : books) {
-                    View bookView = LayoutInflater.from(Title.this)
-                            .inflate(R.layout.books_for_title, booksContainer, false);
-
-                    TextView title = bookView.findViewById(R.id.textViewBookTitle);
-                    TextView author = bookView.findViewById(R.id.textViewAuthor);
-
-                    title.setText(book.getTitle());
-                    author.setText(book.getAuthor());
-
-                    bookView.setOnClickListener(view -> {
-                        Intent intent = new Intent(Title.this, BookDetails.class);
-                        intent.putExtra("BookId", book.getBid());
-                        intent.putExtra("BookTitle", book.getTitle());
-                        intent.putExtra("BookAuthor", book.getAuthor());
-                        intent.putExtra("BookDescription", book.getDescription());
-                        intent.putExtra("BookTotalPages", book.getTotalPages());
-                        startActivity(intent);
-                    });
-
-
-                    booksContainer.addView(bookView);
-                }
-            }
+        booksViewModel.getBooks().observe(this, books -> {
+            allBooks = books;
+            allRows = buildGenreRows(books, GENRES);
+            genreRowAdapter.setGenreRows(allRows);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bookReaderMain), (v, insets) -> {
@@ -88,32 +70,53 @@ public class Title extends AppCompatActivity {
             return insets;
         });
 
-        bottomNavigationView = findViewById(R.id.bottom_nav_title);
+        int userId = getIntent().getIntExtra("userId", -1);
 
+        bottomNavigationView = findViewById(R.id.bottom_nav_title);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 int id = menuItem.getItemId();
-
-                if(id == R.id.menu_home){
-                    Intent homeIntent = new Intent(getBaseContext(), Title.class);
-                    startActivity(homeIntent);
+                if (id == R.id.menu_home) {
+                    startActivity(new Intent(getBaseContext(), Title.class));
                     return true;
-                }
-                else if (id == R.id.menu_library){
-                    Intent libraryIntent = new Intent(getBaseContext(), Library.class);
-                    startActivity(libraryIntent);
+                } else if (id == R.id.menu_library) {
+                    startActivity(new Intent(getBaseContext(), Library.class));
                     return true;
-                }
-                else if(id == R.id.menu_profile){
+                } else if (id == R.id.menu_profile) {
                     Intent profileIntent = new Intent(getBaseContext(), Profile.class);
+                    profileIntent.putExtra("userId", userId);
                     startActivity(profileIntent);
                     return true;
                 }
-
                 return false;
             }
         });
+    }
+
+    private List<GenreRow> buildGenreRows(List<Book> books, List<String> genres) {
+        List<GenreRow> rows = new ArrayList<>();
+        for (String genre : genres) {
+            List<Book> filtered = new ArrayList<>();
+            for (Book book : books) {
+                if (book.getGenres().contains(genre)) {
+                    filtered.add(book);
+                }
+            }
+            if (!filtered.isEmpty()) {
+                rows.add(new GenreRow(genre, filtered));
+            }
+        }
+        return rows;
+    }
+
+    private void filterByGenre(String genre) {
+        List<GenreRow> filtered = new ArrayList<>();
+        for (GenreRow row : allRows) {
+            if (row.genreName.equals(genre)) {
+                filtered.add(row);
+            }
+        }
+        genreRowAdapter.setGenreRows(filtered);
     }
 }

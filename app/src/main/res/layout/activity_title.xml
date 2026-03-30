@@ -7,76 +7,74 @@
     android:layout_height="match_parent"
     tools:context=".Title">
 
-    <!--tools:listitem="@layout/user_item"-->
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/search_view"
+        android:hint="Search for books, authors..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollViewCategoties"
-        android:layout_width="385dp"
+        android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
         android:fadeScrollbars="false"
-        app:layout_constraintStart_toStartOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:scrollbars="horizontal">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_Genres"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="8dp"
-                android:text="Genres" />
+                android:text="Dystopian" />
 
             <Button
-                android:id="@+id/button_NewReleases"
-                android:layout_width="match_parent"
+                android:id="@+id/button_Dramas"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:text="New releases" />
+                android:text="Drama" />
 
             <Button
-                android:id="@+id/button_MostPopular"
-                android:layout_width="match_parent"
+                android:id="@+id/button_Fantasy"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:scrollbarAlwaysDrawHorizontalTrack="false"
-                android:text="Most popular" />
+                android:text="Fantasy" />
 
             <Button
-                android:id="@+id/button_TopRated"
-                android:layout_width="match_parent"
+                android:id="@+id/button_Comedy"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Top rated" />
+                android:text="Comedy" />
 
         </LinearLayout>
     </HorizontalScrollView>
 
-    <HorizontalScrollView
-        android:id="@+id/HorizontalSrollViewBooks"
-        android:layout_width="385dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewTitleBooks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/searchView"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollViewCategoties">
-
-        <LinearLayout
-            android:id="@+id/LineOfBooks"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" />
-
-
-    </HorizontalScrollView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollViewCategoties"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_title"
+        tools:listitem="@layout/genre_row" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_title"
@@ -85,23 +83,7 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_nav" >
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="385dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/search_view"
-        android:queryHint="Search for books, authors..."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/menu_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -84,4 +84,5 @@ public class Book {
 
     public  @NonNull int getTotalPages(){return totalPages;}
     public @NonNull List<String> getGenres() {return genres;}
+
 }
