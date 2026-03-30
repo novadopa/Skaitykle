@@ -123,6 +123,7 @@ public class Library extends AppCompatActivity {
                 bookReaderIntent.putExtra("BookTitle", bookItem.book.getTitle());
                 bookReaderIntent.putExtra("BookAuthor", bookItem.book.getAuthor());
                 bookReaderIntent.putExtra("BookDescription", bookItem.book.getDescription());
+                bookReaderIntent.putExtra("BookPath", bookItem.book.getBookPath());
                 bookReaderIntent.putExtra("BookTotalPages", bookItem.book.getTotalPages());
                 bookReaderIntent.putExtra("BookCover", bookItem.book.getCoverUri());
                 bookReaderIntent.putExtra("BookPagesRead", bookItem.getReadPages());

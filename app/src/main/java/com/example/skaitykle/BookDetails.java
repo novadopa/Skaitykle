@@ -1,7 +1,9 @@
 package com.example.skaitykle;
 
 import android.content.Intent;
+import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,12 +19,18 @@ import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.User;
 import com.example.skaitykle.DataBase.UserBook;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class BookDetails extends AppCompatActivity {
     private int bookId;
     private int totalPages;
     String title;
     String author;
     String description;
+    String path;
     private static final int currentUserId = 1;
 
 
@@ -37,6 +45,7 @@ public class BookDetails extends AppCompatActivity {
         author = getIntent().getStringExtra("BookAuthor");
         description = getIntent().getStringExtra("BookDescription");
         totalPages = getIntent().getIntExtra("BookTotalPages", 0);
+        path = getIntent().getStringExtra("BookPath");
 
         TextView textViewTitle = findViewById(R.id.textViewTitle);
         TextView textViewAuthor = findViewById(R.id.textViewBookAuthor);
@@ -95,6 +104,7 @@ public class BookDetails extends AppCompatActivity {
                         addBookIntent.putExtra("BookTitle", title);
                         addBookIntent.putExtra("BookAuthor", author);
                         addBookIntent.putExtra("BookDescription", description);
+                        addBookIntent.putExtra("BookPath", path);
                         addBookIntent.putExtra("BookTotalPages", totalPages);
                         addBookIntent.putExtra("BookCover", getIntent().getStringExtra("BookCover"));
                         addBookIntent.putExtra("BookPagesRead", readPages);

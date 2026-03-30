@@ -18,15 +18,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <TextView
-        android:id="@+id/reader_placeholder_text"
+    <ImageView
+        android:id="@+id/reader_page_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        android:gravity="center"
-        android:text="Book text here"
-        android:textColor="?android:attr/textColorSecondary"
-        android:textSize="16sp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toTopOf="@+id/reader_progress_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
