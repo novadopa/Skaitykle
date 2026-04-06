@@ -66,11 +66,11 @@ public class BookDetails extends AppCompatActivity {
         ImageButton imageButton = findViewById(R.id.button_Back);
         imageButton.setOnClickListener(view -> finish());
 
-        Button readBook = findViewById(R.id.button_ReadBook);
+        /*Button readBook = findViewById(R.id.button_ReadBook);
         readBook.setOnClickListener(view -> {
             Intent intent = new Intent(BookDetails.this, BookReader.class);
             startActivity(intent);
-        });
+        });*/
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -106,7 +106,7 @@ public class BookDetails extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Intent addBookIntent = new Intent(getBaseContext(), Library.class);
+                        Intent addBookIntent = new Intent(BookDetails.this, BookReader.class);
                         addBookIntent.putExtra("BookTitle", title);
                         addBookIntent.putExtra("BookAuthor", author);
                         addBookIntent.putExtra("BookDescription", description);

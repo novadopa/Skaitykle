@@ -39,6 +39,9 @@ public class BookViewAdapter extends RecyclerView.Adapter<BookViewAdapter.BookHo
             intent.putExtra("BookTitle", currentBook.getTitle());
             intent.putExtra("BookAuthor", currentBook.getAuthor());
             intent.putExtra("BookDescription", currentBook.getDescription());
+            intent.putExtra("BookPath",        currentBook.getBookPath());
+            intent.putExtra("BookCover",       currentBook.getCoverUri());
+            intent.putExtra("BookTotalPages",  currentBook.getTotalPages());
             v.getContext().startActivity(intent);
         });
     }
