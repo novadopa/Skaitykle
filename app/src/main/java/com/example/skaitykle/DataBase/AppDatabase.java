@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Book.class, UserBook.class},version = 3)
+@Database(entities = {User.class, Book.class, UserBook.class},version = 4)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -80,6 +80,16 @@ public abstract class AppDatabase extends RoomDatabase {
                     bookDao.insert(new Book("Great gatsby", "nonel about ants",
                             "Antman johnson", "gatsbytest.pdf", "", 245,
                             Arrays.asList("Horror, Fantasy")));
+
+                    bookDao.insert(new Book("Collected Works of Poe",
+                            "A collection of Edgar Allan Poe's most celebrated works",
+                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "", 207,
+                            Arrays.asList("Horror")));
+
+                    bookDao.insert(new Book("The Art of War",
+                            "An ancient Chinese military treatise on strategy and tactics",
+                            "Sun Tzu", "TheArtofWar.pdf", "", 150,
+                            Arrays.asList("Drama")));
                 }
             });
         }

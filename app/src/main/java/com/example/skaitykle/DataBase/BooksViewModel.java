@@ -36,4 +36,8 @@ public class BooksViewModel extends AndroidViewModel {
             bookRep.updateTotalPages(bookId, totalPages);
         });
     }
+
+    public LiveData<List<Book>> searchBooks(String query) {
+        return bookRep.searchBooks(query);
+    }
 }

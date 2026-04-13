@@ -38,4 +38,7 @@ public interface BookDao {
 
     @Query("UPDATE Book SET total_pages = :totalPages WHERE bid = :bookId")
     void updateTotalPages(int bookId, int totalPages);
+
+    @Query("SELECT * FROM book WHERE title LIKE '%' || :query || '%' OR author LIKE '%' || :query || '%' ORDER BY title ASC")
+    LiveData<List<Book>> searchBooks(String query);
 }
