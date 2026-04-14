@@ -94,8 +94,8 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         holder.bookPages.setText(bookItem.book.getTotalPages() + " pages");
         int totalPages = bookItem.book.getTotalPages();
         int pagesRead  = bookItem.getReadPages();
-        if (totalPages > 0) {
-            int percent = (pagesRead * 100) / totalPages;
+        if (totalPages > 1) {
+            int percent = (pagesRead * 100) / (totalPages-1);
             holder.bookPercentage.setText("Reading progress: " + percent + "%");
         } else {
             holder.bookPercentage.setText("Reading progress: 0%");
@@ -104,7 +104,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         holder.deleteBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(v.getContext()).setMessage("Are you sure you want to " +
+                new AlertDialog.Builder(v.getContext(), R.style.AnimatedDialog).setMessage("Are you sure you want to " +
                         "delete this book?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

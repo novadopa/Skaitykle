@@ -55,6 +55,8 @@ public class BookReader extends AppCompatActivity {
     PdfRenderer.Page currentPage;
     int pdfPageCount;
 
+    boolean isImmersive = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +78,7 @@ public class BookReader extends AppCompatActivity {
         description = getIntent().getStringExtra("BookDescription");
         path = getIntent().getStringExtra("BookPath");
 
-        if (pagesRead > 0) pagesRead = pagesRead - 1;
+        pagesRead = getIntent().getIntExtra("BookPagesRead", 0);
 
         toolbar = findViewById(R.id.reader_toolbar);
         setSupportActionBar(toolbar);
@@ -84,6 +86,8 @@ public class BookReader extends AppCompatActivity {
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        //toolbar.setVisibility(View.GONE);
 
         pageView = findViewById(R.id.reader_page_view);
         pageCountView = findViewById(R.id.reader_page_count);
@@ -166,9 +170,6 @@ public class BookReader extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {saveProgress();}
         });
-
-
-
     }
 
     @Override
@@ -279,7 +280,7 @@ public class BookReader extends AppCompatActivity {
     private void showCommentSuggestion(){
         commentSuggestionShown = true;
 
-        new AlertDialog.Builder(this).setMessage("You have finished this book. " +
+        new AlertDialog.Builder(this, R.style.AnimatedDialog).setMessage("You have finished this book. " +
                 "Would you like to rate it").setPositiveButton("Yes, I would", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -296,7 +297,7 @@ public class BookReader extends AppCompatActivity {
         }).setNegativeButton("No thank you", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+                goToLibraryScreen();
             }
         }).setCancelable(false).show();
     }
@@ -308,7 +309,14 @@ public class BookReader extends AppCompatActivity {
         if((pagesRead+1) > 0 && !commentSuggestionShown && (pagesRead+1) >= totalPages){
             showCommentSuggestion();
         }else{
-            finish();
+            goToLibraryScreen();
         }
+    }
+
+    private void goToLibraryScreen(){
+        Intent libraryIntent = new Intent(getBaseContext(), Library.class);
+        libraryIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(libraryIntent);
+        finish();
     }
 }

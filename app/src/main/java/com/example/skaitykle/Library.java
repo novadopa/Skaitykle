@@ -26,6 +26,8 @@ import com.google.android.material.navigation.NavigationBarView;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -262,13 +264,15 @@ public class Library extends AppCompatActivity {
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(@NonNull MenuItem item) {
-                searchOptionsLayout.setVisibility(View.VISIBLE);
+                //searchOptionsLayout.setVisibility(View.VISIBLE);
+                showSearchOptions();
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(@NonNull MenuItem item) {
-                searchOptionsLayout.setVisibility(View.GONE);
+                //searchOptionsLayout.setVisibility(View.GONE);
+                hideSearchOptions();
                 libraryBookAdapter.SearchBooks("");
                 return true;
             }
@@ -295,7 +299,7 @@ public class Library extends AppCompatActivity {
         deleteBooksItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-                new AlertDialog.Builder(Library.this).setMessage("Are you sure you want to delete " +
+                new AlertDialog.Builder(Library.this, R.style.AnimatedDialog).setMessage("Are you sure you want to delete " +
                         "all your books?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -319,6 +323,36 @@ public class Library extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+
+    private void showSearchOptions(){
+        searchOptionsLayout.setVisibility(View.VISIBLE);
+        Animation slideDown = AnimationUtils.loadAnimation(this, R.anim.checkboxes_slide_down);
+        searchOptionsLayout.startAnimation(slideDown);
+    }
+
+
+    private void hideSearchOptions(){
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.checkboxes_slide_up);
+
+        slideUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                searchOptionsLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+        });
+        searchOptionsLayout.startAnimation(slideUp);
     }
 
 
