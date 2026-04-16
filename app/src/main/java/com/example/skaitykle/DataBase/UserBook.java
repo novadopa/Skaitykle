@@ -40,7 +40,5 @@ public class UserBook {
     public void setUserBookId(int ubId){this.ubId=ubId;}
     public int getUserBookId(){return ubId;}
     public int getUserId(){return userId;}
-    public int getBookId() {return bookId;}
-    public int getReadPages(){return readPages;}
     public int getLastReadPage(){return lastReadPage;}
 }

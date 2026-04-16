@@ -16,11 +16,4 @@ public class BookWithReadingProgress {
         }
         return userBook.getLastReadPage();
     }
-
-    public int getLastReadPage(){
-        if(userBook == null){
-            return 0;
-        }
-        return userBook.getLastReadPage();
-    }
 }
