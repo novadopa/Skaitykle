@@ -16,9 +16,6 @@ public interface UserBookDao {
     @Query("SELECT * FROM UserBook ORDER BY ubId ASC")
     LiveData<List<UserBook>> getAllUserBooks();
 
-    @Query("SELECT * FROM UserBook WHERE ubId IN (:userBookIds)")
-    List<UserBook> loadAllIds(int[] userBookIds);
-
     @Query("DELETE FROM UserBook WHERE user_id=:userId")
     void deleteAllBooks(int userId);
 
@@ -27,9 +24,6 @@ public interface UserBookDao {
 
     @Query("DELETE FROM UserBook WHERE user_id = :userId AND book_id = :bookId")
     void deleteBookByUserAndBook(int userId, int bookId);
-
-    @Insert
-    void insertAll(UserBook... userBook);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(UserBook userBook);

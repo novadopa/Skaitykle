@@ -166,9 +166,6 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         bookList.clear();
 
         for(BookWithReadingProgress bookItem : fullBookList) {
-            /*boolean matchesSearch =
-                    bookItem.book.getTitle().toLowerCase().contains(currentSearch) ||
-                            bookItem.book.getAuthor().toLowerCase().contains(currentSearch);*/
             boolean matchesSearch;
             if(searchMode.equals("Title")){
                 matchesSearch = bookItem.book.getTitle().toLowerCase().contains(currentSearch);

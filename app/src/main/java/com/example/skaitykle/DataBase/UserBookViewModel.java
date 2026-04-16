@@ -23,5 +23,4 @@ public class UserBookViewModel extends AndroidViewModel {
     public void insert(UserBook userBook) {userBookRep.insert(userBook);}
     public void update(UserBook userBook) {userBookRep.update(userBook);}
     public void delete(UserBook userBook) {userBookRep.delete(userBook);}
-    public LiveData<List<UserBook>> getUserBooks() {return userBooks;}
 }
