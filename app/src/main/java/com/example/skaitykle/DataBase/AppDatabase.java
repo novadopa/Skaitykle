@@ -83,7 +83,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
                     bookDao.insert(new Book("Collected Works of Poe",
                             "A collection of Edgar Allan Poe's most celebrated works",
-                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "https://cdn.kobo.com/book-images/26570cb4-12b2-495…oe-a-complete-collection-of-poems-and-tales-1.jpg", 207,
+                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "\thttps://cdn.waterstones.com/bookjackets/large/9781/8402/9781840221725.jpg", 207,
                             Arrays.asList("Horror")));
 
                     bookDao.insert(new Book("The Art of War",
