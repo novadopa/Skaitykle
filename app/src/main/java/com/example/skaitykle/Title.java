@@ -1,5 +1,6 @@
 package com.example.skaitykle;
 
+import android.net.Uri;
 import android.view.animation.OvershootInterpolator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -20,6 +21,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.skaitykle.DataBase.Book;
 import com.example.skaitykle.DataBase.BooksViewModel;
 import com.example.skaitykle.DataBase.GenreRow;
@@ -72,6 +75,16 @@ public class Title extends AppCompatActivity {
             allBooks = books;
             allRows = buildGenreRows(books, GENRES);
             genreRowAdapter.setGenreRows(allRows);
+
+            for (Book book : books) {
+                String uri = book.getCoverUri();
+                if (uri != null && !uri.isEmpty()) {
+                    Glide.with(getApplicationContext())
+                            .load(Uri.parse(uri))
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .preload();
+                }
+            }
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bookReaderMain), (v, insets) -> {
@@ -105,14 +118,14 @@ public class Title extends AppCompatActivity {
     }
 
 
-    // Staggered slide-in + fade-in for each button, with a bounce at the end
+
     private void animateCategoryButtons(Button... buttons) {
-        long delay = 100L; // ms between each button
+        long delay = 100L;
 
         for (int i = 0; i < buttons.length; i++) {
             Button btn = buttons[i];
 
-            // Start offscreen to the left and invisible
+
             btn.setAlpha(0f);
             btn.setTranslationX(-200f);
 
@@ -122,8 +135,8 @@ public class Title extends AppCompatActivity {
             AnimatorSet set = new AnimatorSet();
             set.playTogether(slideIn, fadeIn);
             set.setDuration(400);
-            set.setStartDelay(i * delay);                      // stagger each button
-            set.setInterpolator(new OvershootInterpolator(1.5f)); // bounce at end
+            set.setStartDelay(i * delay);
+            set.setInterpolator(new OvershootInterpolator(1.5f));
             set.start();
         }
     }
@@ -172,17 +185,16 @@ public class Title extends AppCompatActivity {
     }
 
     private void performSearch(String query) {
-        // Remove previous observer to avoid stacking observers
+
         if (currentSearchLiveData != null && searchObserver != null) {
             currentSearchLiveData.removeObserver(searchObserver);
         }
 
         currentSearchLiveData = booksViewModel.searchBooks(query);
         searchObserver = books -> genreRowAdapter.setGenreRows(
-                buildGenreRows(books, GENRES)  // reuse your existing grouping, or:
+                buildGenreRows(books, GENRES)
         );
 
-        // Actually show as a flat list instead of genre rows:
         searchObserver = books -> {
             List<GenreRow> searchRow = new ArrayList<>();
             if (!books.isEmpty()) {
@@ -195,13 +207,13 @@ public class Title extends AppCompatActivity {
     }
 
     private void showGenreRows() {
-        // Remove search observer
+
         if (currentSearchLiveData != null && searchObserver != null) {
             currentSearchLiveData.removeObserver(searchObserver);
             currentSearchLiveData = null;
             searchObserver = null;
         }
-        // Restore the original genre rows
+
         genreRowAdapter.setGenreRows(allRows);
     }
 

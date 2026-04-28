@@ -64,31 +64,31 @@ public abstract class AppDatabase extends RoomDatabase {
                     // Books
                     bookDao.insert(new Book("Ant stuff",
                             "A story of the fabulously wealthy Jay Gatsby",
-                            "F. Scott Fitzgerald", "ant stuff.pdf", "",  245,
+                            "F. Scott Fitzgerald", "ant stuff.pdf", "https://m.media-amazon.com/images/I/61QcGn33VEL._AC_UF1000,1000_QL80_.jpg",  245,
                             Arrays.asList("Drama")));
 
                     bookDao.insert(new Book("1984",
                             "A dystopian novel set in a totalitarian society",
-                            "George Orwell", "1984test.pdf", "", 268,
+                            "George Orwell", "1984test.pdf", "https://thumb.knygos-static.lt/38AErHlkzN0gJaV4mh2…/books/14459668/1701258239_1984-ieji_virselis.jpg", 268,
                             Arrays.asList("Dystopian")));
 
                     bookDao.insert(new Book("To Kill a Mockingbird",
                             "A story of racial injustice in the American South",
-                            "Harper Lee", "mockingTest.pdf", "", 178,
+                            "Harper Lee", "mockingTest.pdf", "https://m.media-amazon.com/images/I/81O7u0dGaWL._AC_UF1000,1000_QL80_.jpg", 178,
                             Arrays.asList("Drama, comedy")));
 
                     bookDao.insert(new Book("Great gatsby", "nonel about ants",
-                            "Antman johnson", "gatsbytest.pdf", "", 245,
+                            "Antman johnson", "gatsbytest.pdf", "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg", 245,
                             Arrays.asList("Horror, Fantasy")));
 
                     bookDao.insert(new Book("Collected Works of Poe",
                             "A collection of Edgar Allan Poe's most celebrated works",
-                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "", 207,
+                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "https://www.freebooks-app.com/wp-content/uploads/2…collected-works-of-edgar-allan-poe-free-books.jpg", 207,
                             Arrays.asList("Horror")));
 
                     bookDao.insert(new Book("The Art of War",
                             "An ancient Chinese military treatise on strategy and tactics",
-                            "Sun Tzu", "TheArtofWar.pdf", "", 150,
+                            "Sun Tzu", "TheArtofWar.pdf", "https://d28hgpri8am2if.cloudfront.net/book_images/…9781626860605/the-art-of-war-9781626860605_hr.jpg", 150,
                             Arrays.asList("Drama")));
                 }
             });

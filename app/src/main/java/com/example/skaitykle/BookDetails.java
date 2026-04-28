@@ -3,6 +3,8 @@ package com.example.skaitykle;
 import android.content.Intent;
 import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +17,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.User;
 import com.example.skaitykle.DataBase.UserBook;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,6 +59,8 @@ public class BookDetails extends AppCompatActivity {
         textViewTitle.setText(title);
         textViewAuthor.setText(author);
         textViewDescription.setText(description);
+        TextView textViewPages = findViewById(R.id.textView_Pages);
+        textViewPages.setText(totalPages + " pages");
 
         Button readButton = (Button) findViewById(R.id.button_ReadBook);
         readButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +72,18 @@ public class BookDetails extends AppCompatActivity {
 
         ImageButton imageButton = findViewById(R.id.button_Back);
         imageButton.setOnClickListener(view -> finish());
+
+        String coverUri = getIntent().getStringExtra("BookCover");
+
+        ShapeableImageView coverImage = findViewById(R.id.shapeableImageView);
+
+        Glide.with(this)
+                .load(coverUri)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.cover)
+                .error(R.drawable.cover)
+                .centerCrop()
+                .into(coverImage);
 
         /*Button readBook = findViewById(R.id.button_ReadBook);
         readBook.setOnClickListener(view -> {
