@@ -69,7 +69,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
                     bookDao.insert(new Book("1984",
                             "A dystopian novel set in a totalitarian society",
-                            "George Orwell", "1984test.pdf", "https://thumb.knygos-static.lt/38AErHlkzN0gJaV4mh2…/books/14459668/1701258239_1984-ieji_virselis.jpg", 268,
+                            "George Orwell", "1984test.pdf", "https://images.cdn1.buscalibre.com/fit-in/360x360/ab/54/ab54a82815e061d7fc8f22bcd22f2605.jpg", 268,
                             Arrays.asList("Dystopian")));
 
                     bookDao.insert(new Book("To Kill a Mockingbird",
@@ -83,12 +83,12 @@ public abstract class AppDatabase extends RoomDatabase {
 
                     bookDao.insert(new Book("Collected Works of Poe",
                             "A collection of Edgar Allan Poe's most celebrated works",
-                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "https://www.freebooks-app.com/wp-content/uploads/2…collected-works-of-edgar-allan-poe-free-books.jpg", 207,
+                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "https://cdn.kobo.com/book-images/26570cb4-12b2-495…oe-a-complete-collection-of-poems-and-tales-1.jpg", 207,
                             Arrays.asList("Horror")));
 
                     bookDao.insert(new Book("The Art of War",
                             "An ancient Chinese military treatise on strategy and tactics",
-                            "Sun Tzu", "TheArtofWar.pdf", "https://d28hgpri8am2if.cloudfront.net/book_images/…9781626860605/the-art-of-war-9781626860605_hr.jpg", 150,
+                            "Sun Tzu", "TheArtofWar.pdf", "https://www.hachettebookgroup.com/wp-content/uploads/2025/05/9780813319513.jpg", 150,
                             Arrays.asList("Drama")));
                 }
             });

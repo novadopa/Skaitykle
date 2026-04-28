@@ -76,6 +76,27 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_title"
         tools:listitem="@layout/genre_row" />
 
+    <!-- Search dropdown overlay — sits on top of everything -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/searchDropdownCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="8dp"
+        android:visibility="gone"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchDropdownRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_title"
         android:layout_width="match_parent"

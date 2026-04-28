@@ -1,6 +1,7 @@
 package com.example.skaitykle;
 
 import android.net.Uri;
+import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -43,6 +44,9 @@ public class Title extends AppCompatActivity {
     private List<Book> allBooks = new ArrayList<>();
     private List<GenreRow> allRows = new ArrayList<>();
     private GenreRowAdapter genreRowAdapter;
+
+    private SearchDropdownAdapter searchDropdownAdapter;
+    private androidx.cardview.widget.CardView searchDropdownCard;
     private static final List<String> GENRES =
             Arrays.asList("Dystopian", "Drama", "Fantasy", "Comedy", "Science Fiction", "Romance", "Mystery", "Horror");
 
@@ -86,6 +90,12 @@ public class Title extends AppCompatActivity {
                 }
             }
         });
+
+        searchDropdownCard = findViewById(R.id.searchDropdownCard);
+        RecyclerView dropdownRecycler = findViewById(R.id.searchDropdownRecycler);
+        dropdownRecycler.setLayoutManager(new LinearLayoutManager(this));
+        searchDropdownAdapter = new SearchDropdownAdapter();
+        dropdownRecycler.setAdapter(searchDropdownAdapter);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bookReaderMain), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -144,7 +154,7 @@ public class Title extends AppCompatActivity {
     private void animateSearchView() {
         android.widget.SearchView searchView = findViewById(R.id.searchView);
 
-        // Entrance animation (keep your existing ones)
+
         searchView.setAlpha(0f);
         searchView.setTranslationY(-30f);
         searchView.animate()
@@ -154,12 +164,12 @@ public class Title extends AppCompatActivity {
                 .setInterpolator(new OvershootInterpolator(1.2f))
                 .start();
 
-        // Focus scale animation
+
         searchView.setOnQueryTextFocusChangeListener((view, hasFocus) -> {
             float targetScale = hasFocus ? 1.03f : 1.0f;
             view.animate().scaleX(targetScale).setDuration(200).start();
 
-            // When focus is lost and query is empty, restore full genre list
+
             if (!hasFocus && searchView.getQuery().toString().isEmpty()) {
                 showGenreRows();
             }
@@ -185,35 +195,24 @@ public class Title extends AppCompatActivity {
     }
 
     private void performSearch(String query) {
-
         if (currentSearchLiveData != null && searchObserver != null) {
             currentSearchLiveData.removeObserver(searchObserver);
         }
 
+        searchDropdownCard.setVisibility(View.VISIBLE);
+
         currentSearchLiveData = booksViewModel.searchBooks(query);
-        searchObserver = books -> genreRowAdapter.setGenreRows(
-                buildGenreRows(books, GENRES)
-        );
-
-        searchObserver = books -> {
-            List<GenreRow> searchRow = new ArrayList<>();
-            if (!books.isEmpty()) {
-                searchRow.add(new GenreRow("Results", books));
-            }
-            genreRowAdapter.setGenreRows(searchRow);
-        };
-
+        searchObserver = books -> searchDropdownAdapter.setBooks(books);
         currentSearchLiveData.observe(this, searchObserver);
     }
 
     private void showGenreRows() {
-
         if (currentSearchLiveData != null && searchObserver != null) {
             currentSearchLiveData.removeObserver(searchObserver);
             currentSearchLiveData = null;
             searchObserver = null;
         }
-
+        searchDropdownCard.setVisibility(View.GONE);
         genreRowAdapter.setGenreRows(allRows);
     }
 
