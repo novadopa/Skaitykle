@@ -13,16 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skaitykle">
-
+        <activity
+            android:name=".AddBook"
+            android:exported="false" />
         <activity
             android:name=".Register"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Skaitykle.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Login"
             android:exported="false" />
@@ -47,7 +50,6 @@
         <activity
             android:name=".Title"
             android:exported="false" />
-
     </application>
 
 </manifest>

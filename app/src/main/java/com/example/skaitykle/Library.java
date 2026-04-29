@@ -82,31 +82,27 @@ public class Library extends AppCompatActivity {
         });
 
         bottomNavigationView = findViewById(R.id.libraryBottomNav);
+        bottomNavigationView.setSelectedItemId(R.id.menu_library);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 int id = menuItem.getItemId();
-
-                if(id == R.id.menu_home){
-                    Intent homeIntent = new Intent(getBaseContext(), Title.class);
-                    homeIntent.addFlags(homeIntent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(homeIntent);
+                if (id == R.id.menu_home) {
+                    startActivity(new Intent(getBaseContext(), Title.class));
+                    return true;
+                } else if (id == R.id.menu_add_book) {
+                    startActivity(new Intent(getBaseContext(), AddBook.class));
                     return true;
                 }
-                else if (id == R.id.menu_library){
-                    Intent libraryIntent = new Intent(getBaseContext(), Library.class);
-                    libraryIntent.addFlags(libraryIntent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(libraryIntent);
+                else if (id == R.id.menu_library) {
+                    startActivity(new Intent(getBaseContext(), Library.class));
                     return true;
-                }
-                else if(id == R.id.menu_profile){
+                } else if (id == R.id.menu_profile) {
                     Intent profileIntent = new Intent(getBaseContext(), Profile.class);
-                    profileIntent.addFlags(profileIntent.FLAG_ACTIVITY_CLEAR_TOP);
+                    profileIntent.putExtra("userId", currentUserId);
                     startActivity(profileIntent);
                     return true;
                 }
-
                 return false;
             }
         });

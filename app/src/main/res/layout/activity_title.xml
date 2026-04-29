@@ -31,38 +31,15 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView">
 
         <LinearLayout
+            android:id="@+id/genreButtonContainer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:background="?attr/colorPrimary"
+            app:shapeAppearanceOverlay="@style/RoundedCorners"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp" />
 
-            <Button
-                android:id="@+id/button_Genres"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:text="Dystopian" />
-
-            <Button
-                android:id="@+id/button_Dramas"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:text="Drama" />
-
-            <Button
-                android:id="@+id/button_Fantasy"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:text="Fantasy" />
-
-            <Button
-                android:id="@+id/button_Comedy"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Comedy" />
-
-        </LinearLayout>
     </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -76,7 +53,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_title"
         tools:listitem="@layout/genre_row" />
 
-    <!-- Search dropdown overlay — sits on top of everything -->
+
     <androidx.cardview.widget.CardView
         android:id="@+id/searchDropdownCard"
         android:layout_width="0dp"
@@ -97,6 +74,30 @@
 
     </androidx.cardview.widget.CardView>
 
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_icon" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="164dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Books by you for you"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_title"
         android:layout_width="match_parent"
@@ -104,6 +105,7 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_bottom_nav" />
 
