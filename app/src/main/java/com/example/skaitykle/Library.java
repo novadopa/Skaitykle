@@ -260,17 +260,75 @@ public class Library extends AppCompatActivity {
         MenuItem searchItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
+        View searchIcon = toolbar.findViewById(R.id.search);
+
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(@NonNull MenuItem item) {
-                //searchOptionsLayout.setVisibility(View.VISIBLE);
+                toolbar.post(() -> {
+                    for (int i = 0; i < toolbar.getChildCount(); i++) {
+                        View child = toolbar.getChildAt(i);
+                        if (child instanceof android.widget.ImageButton ||
+                                child instanceof androidx.appcompat.widget.AppCompatImageButton) {
+                            child.setScaleX(0f);
+                            child.setScaleY(0f);
+                            child.setAlpha(0f);
+                            child.animate().scaleX(1f).scaleY(1f).alpha(1f)
+                                    .setDuration(220).setStartDelay(80).start();
+                            break;
+                        }
+                    }
+                });
+
+                if(searchIcon != null){
+                    searchIcon.animate().scaleX(0f).scaleY(0f).alpha(0f).
+                            setDuration(200).start();
+                }
+
+                if (searchView != null) {
+                    searchView.setScaleX(0.8f);
+                    searchView.setAlpha(0f);
+                    searchView.animate().scaleX(1f).scaleY(1f).alpha(1f).
+                            setDuration(250).start();
+                }
+
+
                 showSearchOptions();
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(@NonNull MenuItem item) {
-                //searchOptionsLayout.setVisibility(View.GONE);
+                for (int i = 0; i < toolbar.getChildCount(); i++) {
+                    View child = toolbar.getChildAt(i);
+                    if (child instanceof android.widget.ImageButton ||
+                            child instanceof androidx.appcompat.widget.AppCompatImageButton) {
+                        child.animate()
+                                .scaleX(0f).scaleY(0f)
+                                .alpha(0f)
+                                .setDuration(160)
+                                .start();
+                        break;
+                    }
+                }
+
+                if(searchIcon != null){
+                    searchIcon.setScaleX(0f);
+                    searchIcon.setScaleY(0f);
+                    searchIcon.setAlpha(0f);
+                    searchIcon.animate().scaleX(1f).scaleY(1f).alpha(1f).
+                            setDuration(200).start();
+                }
+
+
+                if (searchView != null) {
+                    searchView.setScaleX(0f);
+                    searchView.setAlpha(0f);
+                    searchView.animate().scaleX(0f).scaleY(0f).alpha(0f).
+                            setDuration(250).start();
+                }
+
+
                 hideSearchOptions();
                 libraryBookAdapter.SearchBooks("");
                 return true;

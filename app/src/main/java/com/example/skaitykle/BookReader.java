@@ -187,17 +187,24 @@ public class BookReader extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {saveProgress();}
         });
 
-        enterImmersiveMode();
+        currentPageView.post(() -> enterImmersiveMode());
     }
 
 
     private void enterImmersiveMode() {
         isImmersiveMode = true;
 
-        toolbar.animate().alpha(0f).setDuration(200).withEndAction(() ->
-                toolbar.setVisibility(View.GONE)).start();
-        seekBar.animate().alpha(0f).setDuration(200).withEndAction(() ->
-                seekBar.setVisibility(View.GONE)).start();
+        toolbar.animate().translationY(-toolbar.getHeight()).alpha(0f).setDuration(220)
+                .withEndAction(() -> {
+                    toolbar.setVisibility(View.GONE);
+                    toolbar.setTranslationY(0);
+                }).start();
+
+        seekBar.animate().translationY(seekBar.getHeight()).alpha(0f).setDuration(220)
+                .withEndAction(() -> {
+                    seekBar.setVisibility(View.GONE);
+                    seekBar.setTranslationY(0);
+                }).start();
 
         androidx.constraintlayout.widget.ConstraintLayout.LayoutParams params =
                 (androidx.constraintlayout.widget.ConstraintLayout.LayoutParams)
@@ -213,11 +220,13 @@ public class BookReader extends AppCompatActivity {
 
         toolbar.setVisibility(View.VISIBLE);
         toolbar.setAlpha(0f);
-        toolbar.animate().alpha(1f).setDuration(200).start();
+        toolbar.setTranslationY(-toolbar.getHeight());
+        toolbar.animate().translationY(0).alpha(1f).setDuration(220).start();
 
         seekBar.setVisibility(View.VISIBLE);
         seekBar.setAlpha(0f);
-        seekBar.animate().alpha(1f).setDuration(200).start();
+        seekBar.setTranslationY(seekBar.getHeight());
+        seekBar.animate().translationY(0).alpha(1f).setDuration(220).start();
 
         androidx.constraintlayout.widget.ConstraintLayout.LayoutParams params =
                 (androidx.constraintlayout.widget.ConstraintLayout.LayoutParams)
