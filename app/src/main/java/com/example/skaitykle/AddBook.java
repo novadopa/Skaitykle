@@ -31,7 +31,6 @@ import java.util.List;
 public class AddBook extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-
     private Uri pdfUri;
     private BooksViewModel booksViewModel;
 
@@ -48,19 +47,17 @@ public class AddBook extends AppCompatActivity {
 
         booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
 
-        EditText title = findViewById(R.id.editTitle);
-        EditText desc = findViewById(R.id.editDescription);
+        EditText title  = findViewById(R.id.editTitle);
+        EditText desc   = findViewById(R.id.editDescription);
         EditText author = findViewById(R.id.editAuthor);
-        EditText cover = findViewById(R.id.editCover);
-        EditText pages = findViewById(R.id.editPages);
+        EditText cover  = findViewById(R.id.editCover);
+        EditText pages  = findViewById(R.id.editPages);
         AutoCompleteTextView genre = findViewById(R.id.editGenre);
 
         Button upload = findViewById(R.id.buttonPickPdf);
-        Button save = findViewById(R.id.buttonSaveBook);
+        Button save   = findViewById(R.id.buttonSaveBook);
 
-        genre.setFocusable(false);
-        genre.setFocusableInTouchMode(false);
-
+        // Build autocomplete list from all genres already in the database
         booksViewModel.getBooks().observe(this, books -> {
             List<String> usedGenres = new ArrayList<>();
             for (Book book : books) {
@@ -76,9 +73,6 @@ public class AddBook extends AppCompatActivity {
                     usedGenres
             ));
         });
-
-
-        genre.setOnClickListener(v -> genre.showDropDown());
 
         upload.setOnClickListener(v -> pdfPicker.launch("application/pdf"));
 
@@ -138,8 +132,7 @@ public class AddBook extends AppCompatActivity {
                 } else if (id == R.id.menu_add_book) {
                     startActivity(new Intent(getBaseContext(), AddBook.class));
                     return true;
-                }
-                else if (id == R.id.menu_library) {
+                } else if (id == R.id.menu_library) {
                     startActivity(new Intent(getBaseContext(), Library.class));
                     return true;
                 } else if (id == R.id.menu_profile) {
@@ -151,9 +144,8 @@ public class AddBook extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
+
     private void animateBounce(View view) {
         ObjectAnimator bounce = ObjectAnimator.ofFloat(view, "translationY", 0f, -40f, 0f);
         bounce.setDuration(600);
