@@ -54,6 +54,8 @@ public class BookReader extends AppCompatActivity {
 
     boolean isAnimating = false;
 
+    int seekBarStartPage = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,17 +176,32 @@ public class BookReader extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(fromUser && totalPages > 0){
-                    int targetPage = (progress * totalPages) / 100;
-                    showPages(targetPage);
+                if (fromUser && totalPages > 0) {
+                    int targetPage = (progress * (totalPages - 1)) / 100;
+                    if (targetPage != pagesRead) {
+                        showPages(targetPage);
+                    }
                 }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {seekBarStartPage = pagesRead;}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {saveProgress();}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int endPage = pagesRead;
+                if (endPage != seekBarStartPage) {
+                    boolean forward = endPage > seekBarStartPage;
+
+                    Bitmap destination = renderPage(endPage);
+
+                    Bitmap startBitmap = renderPage(seekBarStartPage);
+                    currentPageView.setImageBitmap(startBitmap);
+
+                    animatePageSlide(destination, forward, endPage);
+                }
+                saveProgress();
+            }
         });
 
         currentPageView.post(() -> enterImmersiveMode());
@@ -323,7 +340,7 @@ public class BookReader extends AppCompatActivity {
     }
 
 
-    private void animatePageSlide(Bitmap nextBitmap, boolean forward) {
+    private void animatePageSlide(Bitmap nextBitmap, boolean forward, int targetPage) {
         if (isAnimating) return;
         isAnimating = true;
 
@@ -331,12 +348,10 @@ public class BookReader extends AppCompatActivity {
         nextPageView.setVisibility(View.VISIBLE);
 
         float width = currentPageView.getWidth();
-
-        float startNext = forward ? width : -width;
+        float startNext  = forward ? width : -width;
         float endCurrent = forward ? -width : width;
 
         nextPageView.setTranslationX(startNext);
-
         nextPageView.setAlpha(0.7f);
         currentPageView.setAlpha(1f);
 
@@ -354,10 +369,9 @@ public class BookReader extends AppCompatActivity {
                     currentPageView.setImageBitmap(nextBitmap);
                     currentPageView.setTranslationX(0);
                     currentPageView.setAlpha(1f);
-
                     nextPageView.setVisibility(View.GONE);
 
-                    pagesRead += forward ? 1 : -1;
+                    pagesRead = targetPage;
                     saveProgress();
                     updateProgress();
 
@@ -395,18 +409,18 @@ public class BookReader extends AppCompatActivity {
 
     private void nextPage(){
         if(pagesRead + 1 < totalPages){
-            Bitmap next = renderPage(pagesRead + 1);
-            animatePageSlide(next, true);
-            saveProgress();
+            int target = pagesRead + 1;
+            Bitmap next = renderPage(target);
+            animatePageSlide(next, true, target);
         }
     }
 
 
     private void previousPage(){
         if(pagesRead > 0){
-            Bitmap prev = renderPage(pagesRead - 1);
-            animatePageSlide(prev, false);
-            saveProgress();
+            int target = pagesRead - 1;
+            Bitmap prev = renderPage(target);
+            animatePageSlide(prev, false, target);
         }
     }
 

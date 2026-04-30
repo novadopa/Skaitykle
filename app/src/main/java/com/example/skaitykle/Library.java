@@ -280,18 +280,17 @@ public class Library extends AppCompatActivity {
                     }
                 });
 
-                if(searchIcon != null){
-                    searchIcon.animate().scaleX(0f).scaleY(0f).alpha(0f).
-                            setDuration(200).start();
+                if (searchIcon != null) {
+                    searchIcon.animate().scaleX(0f).scaleY(0f).alpha(0f)
+                            .setDuration(200).start();
                 }
 
                 if (searchView != null) {
                     searchView.setScaleX(0.8f);
                     searchView.setAlpha(0f);
-                    searchView.animate().scaleX(1f).scaleY(1f).alpha(1f).
-                            setDuration(250).start();
+                    searchView.animate().scaleX(1f).scaleY(1f).alpha(1f)
+                            .setDuration(250).start();
                 }
-
 
                 showSearchOptions();
                 return true;
@@ -304,30 +303,27 @@ public class Library extends AppCompatActivity {
                     if (child instanceof android.widget.ImageButton ||
                             child instanceof androidx.appcompat.widget.AppCompatImageButton) {
                         child.animate()
-                                .scaleX(0f).scaleY(0f)
-                                .alpha(0f)
+                                .scaleX(0f).scaleY(0f).alpha(0f)
                                 .setDuration(160)
                                 .start();
                         break;
                     }
                 }
 
-                if(searchIcon != null){
+                if (searchView != null) {
+                    searchView.animate()
+                            .scaleX(0.8f).scaleY(0.8f).alpha(0f)
+                            .setDuration(180)
+                            .start();
+                }
+
+                if (searchIcon != null) {
                     searchIcon.setScaleX(0f);
                     searchIcon.setScaleY(0f);
                     searchIcon.setAlpha(0f);
-                    searchIcon.animate().scaleX(1f).scaleY(1f).alpha(1f).
-                            setDuration(200).start();
+                    searchIcon.animate().scaleX(1f).scaleY(1f).alpha(1f)
+                            .setDuration(200).setStartDelay(180).start();
                 }
-
-
-                if (searchView != null) {
-                    searchView.setScaleX(0f);
-                    searchView.setAlpha(0f);
-                    searchView.animate().scaleX(0f).scaleY(0f).alpha(0f).
-                            setDuration(250).start();
-                }
-
 
                 hideSearchOptions();
                 libraryBookAdapter.SearchBooks("");
