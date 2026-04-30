@@ -1,5 +1,6 @@
 package com.example.skaitykle;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
@@ -244,7 +245,9 @@ public class Title extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
-        params.setMarginEnd(8);
+        params.setMarginEnd(20);
+        btn.setBackgroundResource(R.drawable.genre_button_icon);
+        btn.setTextColor(Color.WHITE);
         btn.setLayoutParams(params);
 
         return btn;
@@ -288,7 +291,7 @@ public class Title extends AppCompatActivity {
     }
 
     private void animateCategoryButtons(List<View> buttons) {
-        long delay = 100L;
+        long delay = 200L;
         for (int i = 0; i < buttons.size(); i++) {
             View btn = buttons.get(i);
             btn.setAlpha(0f);
@@ -299,7 +302,7 @@ public class Title extends AppCompatActivity {
 
             AnimatorSet set = new AnimatorSet();
             set.playTogether(slideIn, fadeIn);
-            set.setDuration(400);
+            set.setDuration(1000);
             set.setStartDelay(i * delay);
             set.setInterpolator(new OvershootInterpolator(1.5f));
             set.start();

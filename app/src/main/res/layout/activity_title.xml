@@ -34,11 +34,10 @@
             android:id="@+id/genreButtonContainer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="?attr/colorPrimary"
-            app:shapeAppearanceOverlay="@style/RoundedCorners"
             android:orientation="horizontal"
             android:paddingStart="8dp"
-            android:paddingEnd="8dp" />
+            android:paddingEnd="8dp"
+            app:shapeAppearanceOverlay="@style/RoundedCorners" />
 
     </HorizontalScrollView>
 
