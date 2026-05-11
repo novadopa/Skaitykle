@@ -44,7 +44,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Library extends AppCompatActivity {
+public class Library extends ScreenBrightnessManager {
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
     LibraryBookAdapter libraryBookAdapter;
@@ -250,7 +250,6 @@ public class Library extends AppCompatActivity {
             }
         });
     }
-
 
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();

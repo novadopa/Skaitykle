@@ -3,6 +3,7 @@ package com.example.skaitykle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -32,7 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class BookReader extends AppCompatActivity {
+public class BookReader extends ScreenBrightnessManager {
     GestureDetector gestureDetector;
     Toolbar toolbar;
     TextView pageCountView;
@@ -207,6 +209,15 @@ public class BookReader extends AppCompatActivity {
         currentPageView.post(() -> enterImmersiveMode());
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        currentPageView.post(() -> {
+            Bitmap bitmap = renderPage(pagesRead);
+            currentPageView.setImageBitmap(bitmap);
+        });
+    }
+
 
     private void enterImmersiveMode() {
         isImmersiveMode = true;
@@ -333,10 +344,31 @@ public class BookReader extends AppCompatActivity {
 
         Bitmap bitmap = Bitmap.createBitmap(renderWidth, renderHeight, Bitmap.Config.ARGB_8888);
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
-
         page.close();
 
+        int nightModeFlags = getResources().getConfiguration().uiMode
+                & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+        boolean isDark = (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES);
+
+        if (isDark) {
+            invertBitmap(bitmap);
+        }
+
         return bitmap;
+    }
+
+
+    private void invertBitmap(Bitmap bitmap) {
+        int[] pixels = new int[bitmap.getWidth() * bitmap.getHeight()];
+        bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+        for (int i = 0; i < pixels.length; i++) {
+            int a = pixels[i] & 0xFF000000;
+            int r = 255 - ((pixels[i] >> 16) & 0xFF);
+            int g = 255 - ((pixels[i] >> 8)  & 0xFF);
+            int b = 255 - (pixels[i] & 0xFF);
+            pixels[i] = a | (r << 16) | (g << 8) | b;
+        }
+        bitmap.setPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
     }
 
 
