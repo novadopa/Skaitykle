@@ -25,6 +25,9 @@ public interface UserBookDao {
     @Query("DELETE FROM UserBook WHERE user_id = :userId AND book_id = :bookId")
     void deleteBookByUserAndBook(int userId, int bookId);
 
+    @Query("UPDATE UserBook SET alternate_cover_uri = :uri WHERE user_id = :userId AND book_id = :bookId")
+    void updateAlternateCoverUri(int userId, int bookId, String uri);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(UserBook userBook);
 

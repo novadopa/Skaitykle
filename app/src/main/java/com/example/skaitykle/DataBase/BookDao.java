@@ -32,8 +32,12 @@ public interface BookDao {
     void delete(Book book);
 
 
-    @Query("SELECT b.*, ub.ubId, ub.user_id, ub.book_id, ub.read_pages, ub.last_read_page " +
+    /*@Query("SELECT b.*, ub.ubId, ub.user_id, ub.book_id, ub.read_pages, ub.last_read_page " +
             "FROM Book b INNER JOIN UserBook ub ON b.bid = ub.book_id AND ub.user_id = :userId")
+    LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId);*/
+
+    @Query("SELECT * FROM Book WHERE bid IN " +
+            "(SELECT book_id FROM UserBook WHERE user_id = :userId)")
     LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId);
 
     @Query("UPDATE Book SET total_pages = :totalPages WHERE bid = :bookId")

@@ -28,6 +28,9 @@ public class UserBook {
     @ColumnInfo(name = "last_read_page")
     public int lastReadPage;
 
+    @ColumnInfo(name = "alternate_cover_uri")
+    public String alternateCoverUri;
+
 
     public UserBook(@NonNull int userId, @NonNull int bookId, @NonNull int readPages,
                     @NonNull int lastReadPage){
@@ -41,4 +44,7 @@ public class UserBook {
     public int getUserBookId(){return ubId;}
     public int getUserId(){return userId;}
     public int getLastReadPage(){return lastReadPage;}
+
+    public String getAlternateCoverUri() { return alternateCoverUri; }
+    public void setAlternateCoverUri(String uri) { this.alternateCoverUri = uri; }
 }

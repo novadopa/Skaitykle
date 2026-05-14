@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Book.class, UserBook.class},version = 3)
+@Database(entities = {User.class, Book.class, UserBook.class},version = 4)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 

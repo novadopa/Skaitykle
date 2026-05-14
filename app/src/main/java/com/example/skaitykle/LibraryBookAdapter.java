@@ -34,6 +34,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
 
     public interface OnBookClickListener {
         void onBookClick(BookWithReadingProgress book);
+        void onAddBookCoverClick(BookWithReadingProgress book);
     }
 
     private OnBookClickListener bookClickListener;
@@ -58,6 +59,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         TextView bookPages;
         TextView bookPercentage;
         Button deleteBookButton;
+        Button addCoverButton;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +69,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
             bookPages = itemView.findViewById(R.id.bookPagesTextView);
             bookPercentage = itemView.findViewById(R.id.bookPercentageTextView);
             deleteBookButton = itemView.findViewById(R.id.deleteBookButton);
+            addCoverButton = itemView.findViewById(R.id.addCoverButton);
         }
     }
 
@@ -85,11 +88,11 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         holder.title.setText(bookItem.book.getTitle());
         holder.author.setText(bookItem.book.getAuthor());
 
-        if(bookItem.book.getCoverUri() != null && !bookItem.book.getCoverUri().isEmpty()){
+        /*if(bookItem.book.getCoverUri() != null && !bookItem.book.getCoverUri().isEmpty()){
             holder.cover.setImageURI(Uri.parse(bookItem.book.getCoverUri()));
         }else{
             holder.cover.setImageResource(R.drawable.ic_launcher_background);
-        }
+        }*/
 
         holder.bookPages.setText(bookItem.book.getTotalPages() + " pages");
         int totalPages = bookItem.book.getTotalPages();
@@ -122,6 +125,26 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
                 }).setNegativeButton("No", null).show();
             }
         });
+
+        holder.addCoverButton.setOnClickListener(v -> {
+            bookClickListener.onAddBookCoverClick(bookItem);
+        });
+
+        String coverToShow = null;
+        if (bookItem.userBook != null
+                && bookItem.userBook.getAlternateCoverUri() != null
+                && !bookItem.userBook.getAlternateCoverUri().isEmpty()) {
+            coverToShow = bookItem.userBook.getAlternateCoverUri();
+        } else if (bookItem.book.getCoverUri() != null
+                && !bookItem.book.getCoverUri().isEmpty()) {
+            coverToShow = bookItem.book.getCoverUri();
+        }
+
+        if (coverToShow != null) {
+            holder.cover.setImageURI(Uri.parse(coverToShow));
+        } else {
+            holder.cover.setImageResource(R.drawable.ic_launcher_background);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

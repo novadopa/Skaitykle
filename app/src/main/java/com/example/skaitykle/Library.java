@@ -1,8 +1,11 @@
 package com.example.skaitykle;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,7 +15,9 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,6 +43,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -59,6 +65,10 @@ public class Library extends ScreenBrightnessManager {
 
     List<BookWithReadingProgress> currentBooks = new ArrayList<>();
 
+    BookWithReadingProgress pendingAlternateCover = null;
+    Uri pendingAlternateUri = null;
+    //private final ActivityResultLauncher<Uri> cameraLauncher;
+
     private static final int currentUserId = 1;
 
 
@@ -71,6 +81,34 @@ public class Library extends ScreenBrightnessManager {
                         }
                     });
 
+    private final ActivityResultLauncher<Uri> cameraLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.TakePicture(),
+                    success -> {
+                        if (success && pendingAlternateCover != null && pendingAlternateUri != null) {
+
+                            // DELETE these two lines:
+                            // getContentResolver().takePersistableUriPermission(
+                            //     pendingAlternateUri,
+                            //     Intent.FLAG_GRANT_READ_URI_PERMISSION
+                            // );
+
+                            String uriString = pendingAlternateUri.toString();
+                            int bookId = pendingAlternateCover.book.getBid();
+
+                            AppDatabase.databaseWriteExecutor.execute(() -> {
+                                AppDatabase.getInstance(Library.this)
+                                        .userBookDao()
+                                        .updateAlternateCoverUri(currentUserId, bookId, uriString);
+                            });
+
+                            pendingAlternateCover = null;
+                            pendingAlternateUri = null;
+                        }
+                    }
+            );
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +119,12 @@ public class Library extends ScreenBrightnessManager {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
+                    100);
+        }
 
         bottomNavigationView = findViewById(R.id.libraryBottomNav);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -137,6 +181,19 @@ public class Library extends ScreenBrightnessManager {
                     bookReaderIntent.putExtra("UserBookId", -1);
                 }
                 readerLauncher.launch(bookReaderIntent);
+            }
+
+            @Override
+            public void onAddBookCoverClick(BookWithReadingProgress bookItem) {
+                pendingAlternateCover = bookItem;
+
+                File photoFile = new File(getFilesDir(), "cover_"+bookItem.book.getBid()+
+                        ".jpg");
+
+                pendingAlternateUri = FileProvider.getUriForFile(Library.this, getPackageName() +
+                        ".fileprovider", photoFile);
+
+                cameraLauncher.launch(pendingAlternateUri);
             }
         });
 
