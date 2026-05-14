@@ -180,7 +180,7 @@ public class Library extends ScreenBrightnessManager {
             }
 
             @Override
-            public void onAddBookCoverClick(BookWithReadingProgress bookItem) {
+            public void onAddAltCoverClick(BookWithReadingProgress bookItem) {
                 pendingAlternateCover = bookItem;
 
                 File photoFile = new File(getFilesDir(), "cover_"+bookItem.book.getBid()+

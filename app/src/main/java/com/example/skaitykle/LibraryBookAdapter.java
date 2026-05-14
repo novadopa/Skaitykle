@@ -35,6 +35,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
 
     public interface OnBookClickListener {
         void onBookClick(BookWithReadingProgress book);
+        void onAddAltCoverClick(BookWithReadingProgress book);
     }
 
     private OnBookClickListener bookClickListener;
@@ -59,6 +60,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         TextView bookPages;
         TextView bookPercentage;
         Button deleteBookButton;
+        Button addCoverButton;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +70,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
             bookPages = itemView.findViewById(R.id.bookPagesTextView);
             bookPercentage = itemView.findViewById(R.id.bookPercentageTextView);
             deleteBookButton = itemView.findViewById(R.id.deleteBookButton);
+            addCoverButton = itemView.findViewById(R.id.addCoverButton);
         }
     }
 
@@ -86,10 +89,30 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         holder.title.setText(bookItem.book.getTitle());
         holder.author.setText(bookItem.book.getAuthor());
 
-        String coverUri = bookItem.book.getCoverUri();
+       /* String coverUri = bookItem.book.getCoverUri();
         if (coverUri != null && !coverUri.isEmpty()) {
             Glide.with(holder.itemView.getContext())
                     .load(Uri.parse(coverUri))
+                    .placeholder(R.drawable.cover)
+                    .error(R.drawable.cover)
+                    .centerCrop()
+                    .into(holder.cover);
+        } else {
+            holder.cover.setImageResource(R.drawable.cover);
+        }*/
+        String coverToShow = null;
+        if (bookItem.userBook != null
+                && bookItem.userBook.getAlternateCoverUri() != null
+                && !bookItem.userBook.getAlternateCoverUri().isEmpty()) {
+            coverToShow = bookItem.userBook.getAlternateCoverUri();
+        } else if (bookItem.book.getCoverUri() != null
+                && !bookItem.book.getCoverUri().isEmpty()) {
+            coverToShow = bookItem.book.getCoverUri();
+        }
+
+        if (coverToShow != null) {
+            Glide.with(holder.itemView.getContext())
+                    .load(Uri.parse(coverToShow))
                     .placeholder(R.drawable.cover)
                     .error(R.drawable.cover)
                     .centerCrop()
@@ -128,6 +151,27 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
                     }
                 }).setNegativeButton("No", null).show();
             }
+        });
+
+        /*String coverToShow = null;
+
+        if (bookItem.userBook != null
+                && bookItem.userBook.getAlternateCoverUri() != null
+                && !bookItem.userBook.getAlternateCoverUri().isEmpty()) {
+            coverToShow = bookItem.userBook.getAlternateCoverUri();
+        } else if (bookItem.book.getCoverUri() != null
+                && !bookItem.book.getCoverUri().isEmpty()) {
+            coverToShow = bookItem.book.getCoverUri();
+        }
+
+        if (coverToShow != null) {
+            holder.cover.setImageURI(Uri.parse(coverToShow));
+        } else {
+            holder.cover.setImageResource(R.drawable.ic_launcher_background);
+        }*/
+
+        holder.addCoverButton.setOnClickListener(v -> {
+            bookClickListener.onAddAltCoverClick(bookItem);
         });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
