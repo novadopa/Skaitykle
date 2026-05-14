@@ -14,7 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class CommentWriting extends AppCompatActivity {
+public class CommentWriting extends ScreenBrightnessManager {
     RatingBar ratingBar;
     EditText editText;
     Button cancelButton;

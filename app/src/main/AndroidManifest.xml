@@ -37,16 +37,19 @@
             android:exported="false" />
         <activity
             android:name=".CommentWriting"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="uiMode"/>
         <activity
             android:name=".BookReader"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation|screenSize|screenLayout|uiMode"/>
         <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".Library"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="uiMode"/>
         <activity
             android:name=".Title"
             android:exported="false" />

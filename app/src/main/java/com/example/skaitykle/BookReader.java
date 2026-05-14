@@ -3,6 +3,7 @@ package com.example.skaitykle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -32,7 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class BookReader extends AppCompatActivity {
+public class BookReader extends ScreenBrightnessManager {
     GestureDetector gestureDetector;
     Toolbar toolbar;
     TextView pageCountView;
@@ -53,6 +55,8 @@ public class BookReader extends AppCompatActivity {
     boolean isImmersiveMode = true;
 
     boolean isAnimating = false;
+
+    int seekBarStartPage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,30 +178,61 @@ public class BookReader extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(fromUser && totalPages > 0){
-                    int targetPage = (progress * totalPages) / 100;
-                    showPages(targetPage);
+                if (fromUser && totalPages > 0) {
+                    int targetPage = (progress * (totalPages - 1)) / 100;
+                    if (targetPage != pagesRead) {
+                        showPages(targetPage);
+                    }
                 }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {seekBarStartPage = pagesRead;}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {saveProgress();}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int endPage = pagesRead;
+                if (endPage != seekBarStartPage) {
+                    boolean forward = endPage > seekBarStartPage;
+
+                    Bitmap destination = renderPage(endPage);
+
+                    Bitmap startBitmap = renderPage(seekBarStartPage);
+                    currentPageView.setImageBitmap(startBitmap);
+
+                    animatePageSlide(destination, forward, endPage);
+                }
+                saveProgress();
+            }
         });
 
-        enterImmersiveMode();
+        currentPageView.post(() -> enterImmersiveMode());
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        currentPageView.post(() -> {
+            Bitmap bitmap = renderPage(pagesRead);
+            currentPageView.setImageBitmap(bitmap);
+        });
     }
 
 
     private void enterImmersiveMode() {
         isImmersiveMode = true;
 
-        toolbar.animate().alpha(0f).setDuration(200).withEndAction(() ->
-                toolbar.setVisibility(View.GONE)).start();
-        seekBar.animate().alpha(0f).setDuration(200).withEndAction(() ->
-                seekBar.setVisibility(View.GONE)).start();
+        toolbar.animate().translationY(-toolbar.getHeight()).alpha(0f).setDuration(220)
+                .withEndAction(() -> {
+                    toolbar.setVisibility(View.GONE);
+                    toolbar.setTranslationY(0);
+                }).start();
+
+        seekBar.animate().translationY(seekBar.getHeight()).alpha(0f).setDuration(220)
+                .withEndAction(() -> {
+                    seekBar.setVisibility(View.GONE);
+                    seekBar.setTranslationY(0);
+                }).start();
 
         androidx.constraintlayout.widget.ConstraintLayout.LayoutParams params =
                 (androidx.constraintlayout.widget.ConstraintLayout.LayoutParams)
@@ -213,11 +248,13 @@ public class BookReader extends AppCompatActivity {
 
         toolbar.setVisibility(View.VISIBLE);
         toolbar.setAlpha(0f);
-        toolbar.animate().alpha(1f).setDuration(200).start();
+        toolbar.setTranslationY(-toolbar.getHeight());
+        toolbar.animate().translationY(0).alpha(1f).setDuration(220).start();
 
         seekBar.setVisibility(View.VISIBLE);
         seekBar.setAlpha(0f);
-        seekBar.animate().alpha(1f).setDuration(200).start();
+        seekBar.setTranslationY(seekBar.getHeight());
+        seekBar.animate().translationY(0).alpha(1f).setDuration(220).start();
 
         androidx.constraintlayout.widget.ConstraintLayout.LayoutParams params =
                 (androidx.constraintlayout.widget.ConstraintLayout.LayoutParams)
@@ -307,14 +344,35 @@ public class BookReader extends AppCompatActivity {
 
         Bitmap bitmap = Bitmap.createBitmap(renderWidth, renderHeight, Bitmap.Config.ARGB_8888);
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
-
         page.close();
+
+        int nightModeFlags = getResources().getConfiguration().uiMode
+                & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+        boolean isDark = (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES);
+
+        if (isDark) {
+            invertBitmap(bitmap);
+        }
 
         return bitmap;
     }
 
 
-    private void animatePageSlide(Bitmap nextBitmap, boolean forward) {
+    private void invertBitmap(Bitmap bitmap) {
+        int[] pixels = new int[bitmap.getWidth() * bitmap.getHeight()];
+        bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+        for (int i = 0; i < pixels.length; i++) {
+            int a = pixels[i] & 0xFF000000;
+            int r = 255 - ((pixels[i] >> 16) & 0xFF);
+            int g = 255 - ((pixels[i] >> 8)  & 0xFF);
+            int b = 255 - (pixels[i] & 0xFF);
+            pixels[i] = a | (r << 16) | (g << 8) | b;
+        }
+        bitmap.setPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+    }
+
+
+    private void animatePageSlide(Bitmap nextBitmap, boolean forward, int targetPage) {
         if (isAnimating) return;
         isAnimating = true;
 
@@ -322,12 +380,10 @@ public class BookReader extends AppCompatActivity {
         nextPageView.setVisibility(View.VISIBLE);
 
         float width = currentPageView.getWidth();
-
-        float startNext = forward ? width : -width;
+        float startNext  = forward ? width : -width;
         float endCurrent = forward ? -width : width;
 
         nextPageView.setTranslationX(startNext);
-
         nextPageView.setAlpha(0.7f);
         currentPageView.setAlpha(1f);
 
@@ -345,10 +401,9 @@ public class BookReader extends AppCompatActivity {
                     currentPageView.setImageBitmap(nextBitmap);
                     currentPageView.setTranslationX(0);
                     currentPageView.setAlpha(1f);
-
                     nextPageView.setVisibility(View.GONE);
 
-                    pagesRead += forward ? 1 : -1;
+                    pagesRead = targetPage;
                     saveProgress();
                     updateProgress();
 
@@ -386,18 +441,18 @@ public class BookReader extends AppCompatActivity {
 
     private void nextPage(){
         if(pagesRead + 1 < totalPages){
-            Bitmap next = renderPage(pagesRead + 1);
-            animatePageSlide(next, true);
-            saveProgress();
+            int target = pagesRead + 1;
+            Bitmap next = renderPage(target);
+            animatePageSlide(next, true, target);
         }
     }
 
 
     private void previousPage(){
         if(pagesRead > 0){
-            Bitmap prev = renderPage(pagesRead - 1);
-            animatePageSlide(prev, false);
-            saveProgress();
+            int target = pagesRead - 1;
+            Bitmap prev = renderPage(target);
+            animatePageSlide(prev, false, target);
         }
     }
 
