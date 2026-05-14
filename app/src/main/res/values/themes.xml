@@ -27,12 +27,10 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
-    <style name="AlertDialogScaleAnimation" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/alert_dialog_scale_in</item>
-        <item name="android:windowExitAnimation">@anim/alert_dialog_scale_out</item>
-    </style>
-
-    <style name="AnimatedDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
-        <item name="android:windowAnimationStyle">@style/AlertDialogScaleAnimation</item>
+    <style name="Theme.Skaitykle.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FAFAFA</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/animated_book_loading</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="postSplashScreenTheme">@style/Theme.Skaitykle</item>
     </style>
 </resources>

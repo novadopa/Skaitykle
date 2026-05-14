@@ -8,10 +8,11 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageViewCover"
+        android:transitionName="bookCover"
         android:layout_width="match_parent"
         android:layout_height="175dp"
         app:shapeAppearanceOverlay="@style/RoundedCorners"
-        app:srcCompat="@drawable/cover" />
+        app:srcCompat="@drawable/outline_imagesmode_24" />
 
     <TextView
         android:id="@+id/textViewBookTitle"

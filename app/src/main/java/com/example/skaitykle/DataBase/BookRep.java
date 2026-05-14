@@ -31,6 +31,9 @@ public class BookRep {
     public void delete(Book book) {
         AppDatabase.databaseWriteExecutor.execute(() -> bookDao.delete(book));
     }
+    public LiveData<List<Book>> searchBooks(String query) {
+        return bookDao.searchBooks(query);
+    }
 
     /*public void insert(Book book) {
         //new InsertUserAsyncTask(userDao).execute(user);
