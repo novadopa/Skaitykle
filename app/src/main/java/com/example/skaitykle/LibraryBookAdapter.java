@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.BookWithReadingProgress;
 
@@ -85,10 +86,16 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         holder.title.setText(bookItem.book.getTitle());
         holder.author.setText(bookItem.book.getAuthor());
 
-        if(bookItem.book.getCoverUri() != null && !bookItem.book.getCoverUri().isEmpty()){
-            holder.cover.setImageURI(Uri.parse(bookItem.book.getCoverUri()));
-        }else{
-            holder.cover.setImageResource(R.drawable.ic_launcher_background);
+        String coverUri = bookItem.book.getCoverUri();
+        if (coverUri != null && !coverUri.isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(Uri.parse(coverUri))
+                    .placeholder(R.drawable.cover)
+                    .error(R.drawable.cover)
+                    .centerCrop()
+                    .into(holder.cover);
+        } else {
+            holder.cover.setImageResource(R.drawable.cover);
         }
 
         holder.bookPages.setText(bookItem.book.getTotalPages() + " pages");
