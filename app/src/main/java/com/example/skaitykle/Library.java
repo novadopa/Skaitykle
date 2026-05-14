@@ -26,7 +26,8 @@ import com.google.android.material.navigation.NavigationBarView;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -82,31 +83,27 @@ public class Library extends AppCompatActivity {
         });
 
         bottomNavigationView = findViewById(R.id.libraryBottomNav);
+        bottomNavigationView.setSelectedItemId(R.id.menu_library);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 int id = menuItem.getItemId();
-
-                if(id == R.id.menu_home){
-                    Intent homeIntent = new Intent(getBaseContext(), Title.class);
-                    homeIntent.addFlags(homeIntent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(homeIntent);
+                if (id == R.id.menu_home) {
+                    startActivity(new Intent(getBaseContext(), Title.class));
+                    return true;
+                } else if (id == R.id.menu_add_book) {
+                    startActivity(new Intent(getBaseContext(), AddBook.class));
                     return true;
                 }
-                else if (id == R.id.menu_library){
-                    Intent libraryIntent = new Intent(getBaseContext(), Library.class);
-                    libraryIntent.addFlags(libraryIntent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(libraryIntent);
+                else if (id == R.id.menu_library) {
+                    startActivity(new Intent(getBaseContext(), Library.class));
                     return true;
-                }
-                else if(id == R.id.menu_profile){
+                } else if (id == R.id.menu_profile) {
                     Intent profileIntent = new Intent(getBaseContext(), Profile.class);
-                    profileIntent.addFlags(profileIntent.FLAG_ACTIVITY_CLEAR_TOP);
+                    profileIntent.putExtra("userId", currentUserId);
                     startActivity(profileIntent);
                     return true;
                 }
-
                 return false;
             }
         });
@@ -262,13 +259,15 @@ public class Library extends AppCompatActivity {
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(@NonNull MenuItem item) {
-                searchOptionsLayout.setVisibility(View.VISIBLE);
+                //searchOptionsLayout.setVisibility(View.VISIBLE);
+                showSearchOptions();
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(@NonNull MenuItem item) {
-                searchOptionsLayout.setVisibility(View.GONE);
+                //searchOptionsLayout.setVisibility(View.GONE);
+                hideSearchOptions();
                 libraryBookAdapter.SearchBooks("");
                 return true;
             }
@@ -295,7 +294,7 @@ public class Library extends AppCompatActivity {
         deleteBooksItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-                new AlertDialog.Builder(Library.this).setMessage("Are you sure you want to delete " +
+                new AlertDialog.Builder(Library.this, R.style.AnimatedDialog).setMessage("Are you sure you want to delete " +
                         "all your books?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -319,6 +318,36 @@ public class Library extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+
+    private void showSearchOptions(){
+        searchOptionsLayout.setVisibility(View.VISIBLE);
+        Animation slideDown = AnimationUtils.loadAnimation(this, R.anim.checkboxes_slide_down);
+        searchOptionsLayout.startAnimation(slideDown);
+    }
+
+
+    private void hideSearchOptions(){
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.checkboxes_slide_up);
+
+        slideUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                searchOptionsLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+        });
+        searchOptionsLayout.startAnimation(slideUp);
     }
 
 

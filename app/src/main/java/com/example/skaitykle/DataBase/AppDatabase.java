@@ -83,7 +83,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
                     bookDao.insert(new Book("Collected Works of Poe",
                             "A collection of Edgar Allan Poe's most celebrated works",
-                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "\thttps://cdn.waterstones.com/bookjackets/large/9781/8402/9781840221725.jpg", 207,
+                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "https://cdn.waterstones.com/bookjackets/large/9781/8402/9781840221725.jpg", 207,
                             Arrays.asList("Horror")));
 
                     bookDao.insert(new Book("The Art of War",
@@ -94,26 +94,4 @@ public abstract class AppDatabase extends RoomDatabase {
             });
         }
     };
-
-    /*private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
-
-        private UserDao userDao;
-
-        private PopulateDbAsyncTask(AppDatabase database){
-            userDao = database.userDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            userDao.insert(new User("Vardenis", "Pavardenis"
-                    , "vardenis@gmail.com", "123"));
-            userDao.insert(new User("Antras", "Pavardas"
-                    , "antras@gmail.com", "123"));
-            userDao.insert(new User("trečias", "Krepšias"
-                    , "trečias@gmail.com", "123"));
-
-            return null;
-        }
-    }*/
 }

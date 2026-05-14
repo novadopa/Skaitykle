@@ -7,29 +7,58 @@
     android:layout_height="match_parent"
     tools:context=".BookDetails">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
-        android:transitionName="bookCover"
+    <FrameLayout
+        android:id="@+id/cardFlipContainer"
         android:layout_width="217dp"
         android:layout_height="349dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/LargeRoundedCorners"
-        app:srcCompat="@drawable/cover" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shapeAppearanceOverlay="@style/LargeRoundedCorners"
+            app:srcCompat="@drawable/cover" />
+
+
+        <LinearLayout
+            android:id="@+id/descriptionBackLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="@drawable/rounded_description_bg">
+
+            <TextView
+                android:id="@+id/textViewDescriptionBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:text="" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="372dp"
         android:layout_height="55dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textAlignment="viewStart"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/cardFlipContainer" />
 
     <TextView
         android:id="@+id/textViewBookAuthor"
@@ -43,39 +72,28 @@
         app:layout_constraintStart_toStartOf="@+id/textViewTitle"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <TextView
-        android:id="@+id/textViewDescription"
-        android:layout_width="372dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewBookAuthor"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBookAuthor" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="19dp"
         android:src="@drawable/outline_article_24"
-        app:layout_constraintStart_toStartOf="@+id/textViewDescription"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBookAuthor" />
 
     <TextView
         android:id="@+id/textView_Pages"
         android:layout_width="146dp"
         android:layout_height="27dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
         android:text=""
         android:textAlignment="textStart"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBookAuthor" />
 
     <Button
         android:id="@+id/button_ReadBook"
@@ -83,6 +101,7 @@
         android:layout_height="55dp"
         android:layout_marginBottom="32dp"
         android:text="Read book"
+        android:textColorLink="@color/design_default_color_primary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
