@@ -57,7 +57,7 @@ public class Profile extends AppCompatActivity {
             return insets;
         });
 
-        bottomNavigationView = findViewById(R.id.bottom_nav_title);
+        bottomNavigationView = findViewById(R.id.bottom_nav_profile);
         bottomNavigationView.setSelectedItemId(R.id.menu_profile);
 
         TextView nameText    = findViewById(R.id.nameText);
@@ -90,20 +90,19 @@ public class Profile extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-
                 if (id == R.id.menu_home) {
-                    Intent homeIntent = new Intent(getBaseContext(), Title.class);
-                    homeIntent.putExtra("userId", userId); // ← keep passing it
-                    startActivity(homeIntent);
+                    startActivity(new Intent(getBaseContext(), Title.class));
                     return true;
-                } else if (id == R.id.menu_library) {
-                    Intent libraryIntent = new Intent(getBaseContext(), Library.class);
-                    libraryIntent.putExtra("userId", userId); // ← keep passing it
-                    startActivity(libraryIntent);
+                } else if (id == R.id.menu_add_book) {
+                    startActivity(new Intent(getBaseContext(), AddBook.class));
+                    return true;
+                }
+                else if (id == R.id.menu_library) {
+                    startActivity(new Intent(getBaseContext(), Library.class));
                     return true;
                 } else if (id == R.id.menu_profile) {
                     Intent profileIntent = new Intent(getBaseContext(), Profile.class);
-                    profileIntent.putExtra("userId", userId); // ← keep passing it
+                    profileIntent.putExtra("userId", userId);
                     startActivity(profileIntent);
                     return true;
                 }

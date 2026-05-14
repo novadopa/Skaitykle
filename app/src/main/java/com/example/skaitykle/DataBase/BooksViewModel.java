@@ -30,4 +30,14 @@ public class BooksViewModel extends AndroidViewModel {
     public LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId) {
         return bookRep.getBooksWithReadingProgress(userId);
     }
+
+    public void updateTotalPages(int bookId, int totalPages) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            bookRep.updateTotalPages(bookId, totalPages);
+        });
+    }
+
+    public LiveData<List<Book>> searchBooks(String query) {
+        return bookRep.searchBooks(query);
+    }
 }

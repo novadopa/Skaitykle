@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,16 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skaitykle">
-
+        <activity
+            android:name=".AddBook"
+            android:exported="false" />
         <activity
             android:name=".Register"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Skaitykle.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Login"
             android:exported="false" />
@@ -51,18 +53,6 @@
         <activity
             android:name=".Title"
             android:exported="false" />
-        
-        <provider
-            android:authorities="${applicationId}.fileprovider"
-            android:name="androidx.core.content.FileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/alternate_library_book_covers">
-            </meta-data>
-        </provider>
-
     </application>
 
 </manifest>
