@@ -1,80 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bookReaderMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile">
+    android:background="#FAFAF8"
+    tools:context=".Login">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/profile_toolbar"
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <EditText
-        android:id="@+id/passwordLogin"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="440dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:elevation="0dp"
+        app:elevation="0dp">
 
-    <EditText
-        android:id="@+id/emailLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="351dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/profile_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#5B3DC8"
+            app:title="Welcome Back"
+            app:titleTextColor="#FFFFFF"
+            app:titleTextAppearance="@style/ToolbarTitleStyle" />
 
-    <Button
-        android:id="@+id/loginLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="280dp"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLogin"
-        app:layout_constraintVertical_bias="0.405" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <Button
-        android:id="@+id/registerInLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="313dp"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginLogin" />
+    <!-- Scrollable form content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="32dp">
+
+            <!-- Subtitle -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:text="Sign in to continue"
+                android:textColor="#7B6EBD"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif" />
+
+            <!-- Email field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxStrokeColor="#5B3DC8"
+                app:hintTextColor="#7B6EBD"
+                app:hintTextAppearance="@style/HintTextStyle"
+                app:errorTextColor="#A32D2D"
+                android:hint="EMAIL">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#2C2C2A"
+                    android:textSize="15sp"
+                    android:hint="Enter your email"
+                    android:textColorHint="#BDBDBD"
+                    android:background="@android:color/transparent"
+                    android:paddingBottom="8dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxStrokeColor="#C8BFF0"
+                app:hintTextColor="#7B6EBD"
+                app:hintTextAppearance="@style/HintTextStyle"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#7B6EBD"
+                app:errorTextColor="#A32D2D"
+                android:hint="PASSWORD">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="#2C2C2A"
+                    android:textSize="15sp"
+                    android:hint="••••••••"
+                    android:textColorHint="#BDBDBD"
+                    android:background="@android:color/transparent"
+                    android:paddingBottom="8dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Login button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginLogin"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:text="Login"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:letterSpacing="0.02"
+                app:backgroundTint="#5B3DC8"
+                app:cornerRadius="12dp"
+                app:elevation="0dp"
+                app:rippleColor="#3A1FA0"
+                style="@style/Widget.MaterialComponents.Button" />
+
+            <!-- Register button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/registerInLogin"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="Create an account"
+                android:textColor="#5B3DC8"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:letterSpacing="0.01"
+                app:backgroundTint="@android:color/transparent"
+                app:strokeColor="#C8BFF0"
+                app:strokeWidth="1.5dp"
+                app:cornerRadius="12dp"
+                app:elevation="0dp"
+                app:rippleColor="#EDE8FC"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Loading overlay — must be last child to appear on top -->
+    <include layout="@layout/overlay_loading" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
