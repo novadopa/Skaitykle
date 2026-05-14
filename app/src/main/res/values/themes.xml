@@ -36,6 +36,14 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
+    <style name="ToolbarTitleStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="HintTextStyle" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.08</item>
     <style name="Theme.Skaitykle.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#FAFAFA</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/animated_book_loading</item>
