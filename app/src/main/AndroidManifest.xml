@@ -3,8 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skaitykle">
+        <activity
+            android:name=".Map"
+            android:exported="false" />
         <activity
             android:name=".AddBook"
             android:exported="false" />
@@ -39,19 +48,19 @@
             android:exported="false" />
         <activity
             android:name=".CommentWriting"
-            android:exported="false"
-            android:configChanges="uiMode"/>
+            android:configChanges="uiMode"
+            android:exported="false" />
         <activity
             android:name=".BookReader"
-            android:exported="false"
-            android:configChanges="orientation|screenSize|screenLayout|uiMode"/>
+            android:configChanges="orientation|screenSize|screenLayout|uiMode"
+            android:exported="false" />
         <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".Library"
-            android:exported="false"
-            android:configChanges="uiMode"/>
+            android:configChanges="uiMode"
+            android:exported="false" />
         <activity
             android:name=".Title"
             android:exported="false" />
@@ -65,8 +74,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/alternate_library_book_covers" />
         </provider>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBE6mOKFX_eHs3AsdiH8b0-l7CDKyW6z7w" />
     </application>
-
-
 
 </manifest>

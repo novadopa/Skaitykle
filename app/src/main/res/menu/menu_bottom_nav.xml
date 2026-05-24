@@ -19,6 +19,12 @@
     </item>
 
     <item
+        android:id="@+id/menu_map"
+        android:icon="@drawable/map_icon"
+        android:title="Stuff near you">
+    </item>
+
+    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/profile"
         android:title="Profile">

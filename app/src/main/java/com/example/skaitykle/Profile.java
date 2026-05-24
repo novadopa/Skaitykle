@@ -100,6 +100,10 @@ public class Profile extends AppCompatActivity {
                 else if (id == R.id.menu_library) {
                     startActivity(new Intent(getBaseContext(), Library.class));
                     return true;
+                }else if(id == R.id.menu_map){
+                    Intent mapIntent = new Intent(getBaseContext(), Map.class);
+                    startActivity(mapIntent);
+                    return true;
                 } else if (id == R.id.menu_profile) {
                     Intent profileIntent = new Intent(getBaseContext(), Profile.class);
                     profileIntent.putExtra("userId", userId);
