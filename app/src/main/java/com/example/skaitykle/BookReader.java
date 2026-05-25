@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.view.GestureDetector;
@@ -15,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -34,7 +39,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class BookReader extends ScreenBrightnessManager {
+public class BookReader extends ScreenBrightnessManager{
     GestureDetector gestureDetector;
     Toolbar toolbar;
     TextView pageCountView;
@@ -53,8 +58,14 @@ public class BookReader extends ScreenBrightnessManager {
     PdfRenderer.Page currentPage;
 
     boolean isImmersiveMode = true;
-
     boolean isAnimating = false;
+
+    private SensorEventListener shakeListener;
+    private SensorManager sensorManager;
+    private Sensor accelerometer;
+    private long lastShakeTime = 0;
+    private static final float SHAKE_THRESHOLD = 12f;
+    private static final long SHAKE_COOLDOWN = 2000;
 
     int seekBarStartPage = 0;
 
@@ -206,8 +217,41 @@ public class BookReader extends ScreenBrightnessManager {
             }
         });
 
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        shakeListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.sensor.getType() != Sensor.TYPE_ACCELEROMETER) return;
+
+                float x = event.values[0];
+                float y = event.values[1];
+                float z = event.values[2];
+                double force = Math.sqrt(x*x + y*y + z*z);
+
+                if (force > SHAKE_THRESHOLD) {
+                    long now = System.currentTimeMillis();
+                    if (now - lastShakeTime > SHAKE_COOLDOWN) {
+                        lastShakeTime = now;
+                        if (totalPages > 1) {
+                            int randomPage = (int)(Math.random() * totalPages);
+                            showPages(randomPage);
+                            Toast.makeText(BookReader.this,
+                                    "Jumped to page " + (randomPage + 1),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+        };
+
         currentPageView.post(() -> enterImmersiveMode());
     }
+
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
@@ -276,9 +320,22 @@ public class BookReader extends ScreenBrightnessManager {
 
 
     @Override
+    protected void onResume(){
+        super.onResume();
+        if (accelerometer != null) {
+            sensorManager.registerListener(shakeListener, accelerometer,
+                    SensorManager.SENSOR_DELAY_UI);
+        }
+    }
+
+
+    @Override
     protected void onPause() {
         super.onPause();
         saveProgress();
+        if (sensorManager != null && shakeListener != null) {
+            sensorManager.unregisterListener(shakeListener);
+        }
     }
 
 
