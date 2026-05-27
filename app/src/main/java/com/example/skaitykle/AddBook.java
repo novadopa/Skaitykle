@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -89,6 +91,7 @@ public class AddBook extends AppCompatActivity {
         EditText title = findViewById(R.id.editTitle);
         EditText desc = findViewById(R.id.editDescription);
         EditText author = findViewById(R.id.editAuthor);
+        EditText country = findViewById(R.id.editCountry);
         EditText cover = findViewById(R.id.editCover);
         EditText pages = findViewById(R.id.editPages);
 
@@ -159,57 +162,37 @@ public class AddBook extends AppCompatActivity {
                 pdfPicker.launch("application/pdf")
         );
 
+        String titleText = title.getText().toString().trim();
+        String authorText = author.getText().toString().trim();
+        String pagesText = pages.getText().toString().trim();
+
         // Save book
         save.setOnClickListener(v -> {
 
             if (pdfUri == null) {
-
-                Toast.makeText(
-                        this,
-                        "No file is uploaded",
-                        Toast.LENGTH_SHORT
-                ).show();
-
+                Toast.makeText(this, "No file is uploaded", Toast.LENGTH_SHORT).show();
+                vibrateError();
                 animateBounce(save);
                 return;
             }
 
-            String titleText = title.getText().toString().trim();
-            String authorText = author.getText().toString().trim();
-            String pagesText = pages.getText().toString().trim();
-
             if (titleText.isEmpty()) {
-
-                Toast.makeText(
-                        this,
-                        "No title is written",
-                        Toast.LENGTH_SHORT
-                ).show();
-
+                Toast.makeText(this, "No title is written", Toast.LENGTH_SHORT).show();
+                vibrateError();
                 animateBounce(title);
                 return;
             }
 
             if (authorText.isEmpty()) {
-
-                Toast.makeText(
-                        this,
-                        "No author is written",
-                        Toast.LENGTH_SHORT
-                ).show();
-
+                Toast.makeText(this, "No author is written", Toast.LENGTH_SHORT).show();
+                vibrateError();
                 animateBounce(author);
                 return;
             }
 
             if (pagesText.isEmpty()) {
-
-                Toast.makeText(
-                        this,
-                        "No pages are written",
-                        Toast.LENGTH_SHORT
-                ).show();
-
+                Toast.makeText(this, "No pages are written", Toast.LENGTH_SHORT).show();
+                vibrateError();
                 animateBounce(pages);
                 return;
             }
@@ -223,6 +206,7 @@ public class AddBook extends AppCompatActivity {
                     titleText,
                     desc.getText().toString(),
                     authorText,
+                    country.getText().toString(),
                     pdfUri.toString(),
                     coverString,
                     Integer.parseInt(pagesText),
@@ -239,6 +223,8 @@ public class AddBook extends AppCompatActivity {
 
             finish();
         });
+
+
 
         // Bottom navigation
         int userId = getIntent().getIntExtra("userId", -1);
@@ -309,6 +295,15 @@ public class AddBook extends AppCompatActivity {
                 });
     }
 
+    private void vibrateError() {
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            vibrator.vibrate(
+                    VibrationEffect.createOneShot(120, VibrationEffect.DEFAULT_AMPLITUDE)
+            );
+        }
+    }
+
     // Open camera
     private void openCamera() {
 
@@ -352,6 +347,8 @@ public class AddBook extends AppCompatActivity {
                 .centerCrop()
                 .into(preview);
     }
+
+
 
     // Bounce animation
     private void animateBounce(View view) {

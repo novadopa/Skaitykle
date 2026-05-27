@@ -162,6 +162,7 @@ public class Library extends ScreenBrightnessManager {
                 Intent bookReaderIntent = new Intent(Library.this, BookReader.class);
                 bookReaderIntent.putExtra("BookTitle", bookItem.book.getTitle());
                 bookReaderIntent.putExtra("BookAuthor", bookItem.book.getAuthor());
+                bookReaderIntent.putExtra("BookAuthorCountry", bookItem.book.getAuthorCountry());
                 bookReaderIntent.putExtra("BookDescription", bookItem.book.getDescription());
                 bookReaderIntent.putExtra("BookPath", bookItem.book.getBookPath());
                 bookReaderIntent.putExtra("BookTotalPages", bookItem.book.getTotalPages());

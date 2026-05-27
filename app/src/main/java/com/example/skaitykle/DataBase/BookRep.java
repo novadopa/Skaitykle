@@ -35,36 +35,6 @@ public class BookRep {
         return bookDao.searchBooks(query);
     }
 
-    /*public void insert(Book book) {
-        //new InsertUserAsyncTask(userDao).execute(user);
-
-        executors.execute(new Runnable() {
-            @Override
-            public void run() {
-                bookDao.insert(book);
-            }
-        });
-    }
-    public void update(Book book) {
-        //new InsertUserAsyncTask(userDao).execute(user);
-
-        executors.execute(new Runnable() {
-            @Override
-            public void run() {
-                bookDao.update(book);
-            }
-        });
-    }
-    public void delete(Book book) {
-        //new InsertUserAsyncTask(userDao).execute(user);
-
-        executors.execute(new Runnable() {
-            @Override
-            public void run() {
-                bookDao.delete(book);
-            }
-        });
-    }*/
 
     public LiveData<List<Book>> getBooks() {return books;}
 
@@ -77,54 +47,5 @@ public class BookRep {
                 bookDao.updateTotalPages(bookId, totalPages));
     }
 
-    /*private static class InsertUserAsyncTask extends AsyncTask<User,Void,Void> {
 
-        private UserDao userDao;
-
-        private InsertUserAsyncTask(UserDao userDao){
-            this.userDao = userDao;
-        }
-        @Override
-        protected Void doInBackground(User... users) {
-            userDao.insert(users[0]);
-            return null;
-        }
-        //1.parameter for doInBackground method
-        //2.paramater for onProgressUpdate method
-        //3.parameter return type of doInBackground
-    }
-
-    private static class UpdateUserAsyncTask extends AsyncTask<User,Void,Void> {
-
-        private UserDao userDao;
-
-        private UpdateUserAsyncTask(UserDao userDao){
-            this.userDao = userDao;
-        }
-        @Override
-        protected Void doInBackground(User... users) {
-            userDao.update(users[0]);
-            return null;
-        }
-        //1.parameter for doInBackground method
-        //2.paramater for onProgressUpdate method
-        //3.parameter return type of doInBackground
-    }
-
-    private static class DeleteUserAsyncTask extends AsyncTask<User,Void,Void> {
-
-        private UserDao userDao;
-
-        private DeleteUserAsyncTask(UserDao userDao){
-            this.userDao = userDao;
-        }
-        @Override
-        protected Void doInBackground(User... users) {
-            userDao.delete(users[0]);
-            return null;
-        }
-        //1.parameter for doInBackground method
-        //2.paramater for onProgressUpdate method
-        //3.parameter return type of doInBackground
-    }*/
 }

@@ -25,6 +25,9 @@ public class Book {
     @ColumnInfo(name = "author")
     public String author;
 
+    @ColumnInfo(name = "author_country")
+    public String authorCountry;
+
     @NonNull
     @ColumnInfo(name = "book_path")    //a path to a book file
     public String bookPath;
@@ -43,12 +46,13 @@ public class Book {
     public List<String> genres;
 
 
-    public Book(@NonNull String title, @NonNull String description, @NonNull String author,
+    public Book(@NonNull String title, @NonNull String description, @NonNull String author, @NonNull String authorCountry,
                 @NonNull String bookPath, @NonNull String coverUri, @NonNull int totalPages,
                 @NonNull List<String> genres) {
         this.title = title;
         this.description = description;
         this.author = author;
+        this.authorCountry = authorCountry;
         this.bookPath = bookPath;
         this.coverUri = coverUri;
         this.totalPages = totalPages;
@@ -65,7 +69,6 @@ public class Book {
     public @NonNull String getTitle() {
         return title;
     }
-
     public @NonNull String getDescription() {
         return description;
     }
@@ -73,15 +76,13 @@ public class Book {
     public @NonNull String getAuthor() {
         return author;
     }
-
+    public String getAuthorCountry() {return authorCountry;}
     public @NonNull String getBookPath() {
         return bookPath;
     }
-
     public @NonNull String getCoverUri() {
         return coverUri;
     }
-
     public  @NonNull int getTotalPages(){return totalPages;}
     public @NonNull List<String> getGenres() {return genres;}
 

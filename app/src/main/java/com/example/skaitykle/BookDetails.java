@@ -10,7 +10,10 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.BounceInterpolator;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -31,16 +34,19 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.UserBook;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.imageview.ShapeableImageView;
 
-public class BookDetails extends AppCompatActivity {
+public class BookDetails extends AppCompatActivity implements OnMapReadyCallback  {
 
     private int bookId;
     private int totalPages;
-    String title, author, description, path, coverUri;
+    String title, author, authorCountry, description, path, coverUri;
     private static final int currentUserId = 1;
 
-    // Flip state
+    private GoogleMap mMap;
     private boolean showingFront = true;
     private FrameLayout cardFlipContainer;
     private ShapeableImageView coverImage;
@@ -56,6 +62,7 @@ public class BookDetails extends AppCompatActivity {
         bookId        = getIntent().getIntExtra("BookId", -1);
         title         = getIntent().getStringExtra("BookTitle");
         author        = getIntent().getStringExtra("BookAuthor");
+        authorCountry = getIntent().getStringExtra("BookAuthorCountry");
         description   = getIntent().getStringExtra("BookDescription");
         totalPages    = getIntent().getIntExtra("BookTotalPages", 0);
         path          = getIntent().getStringExtra("BookPath");
@@ -65,6 +72,12 @@ public class BookDetails extends AppCompatActivity {
         TextView textViewAuthor      = findViewById(R.id.textViewBookAuthor);
         TextView textViewDescription = findViewById(R.id.textViewDescriptionBack);
         TextView textViewPages       = findViewById(R.id.textView_Pages);
+
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.map);
+
+        mapFragment.getMapAsync(this);
 
         textViewTitle.setText(title);
         textViewAuthor.setText(author);
@@ -92,6 +105,21 @@ public class BookDetails extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        mMap = googleMap;
+
+        LatLng countryLocation =
+                com.example.skaitykle.CountryCoordinates.getCoordinates(authorCountry);
+
+        mMap.addMarker(new MarkerOptions()
+                .position(countryLocation)
+                .title(author));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(countryLocation, 4f));
     }
 
     private void loadCoverAndExtractColor() {
@@ -190,6 +218,7 @@ public class BookDetails extends AppCompatActivity {
                 Intent intent = new Intent(BookDetails.this, BookReader.class);
                 intent.putExtra("BookTitle",      title);
                 intent.putExtra("BookAuthor",     author);
+                intent.putExtra("BookAuthorCountry", authorCountry);
                 intent.putExtra("BookDescription",description);
                 intent.putExtra("BookPath",       path);
                 intent.putExtra("BookTotalPages", totalPages);

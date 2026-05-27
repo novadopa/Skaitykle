@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 4,
-    "identityHash": "535b534ac0002bf28c1f2a50da1108f9",
+    "version": 5,
+    "identityHash": "10d0c27ece0bdbd5d45814d5f8b2335f",
     "entities": [
       {
         "tableName": "User",
@@ -44,7 +44,7 @@
       },
       {
         "tableName": "Book",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `author` TEXT NOT NULL, `author_country` TEXT, `book_path` TEXT NOT NULL, `cover_uri` TEXT NOT NULL, `total_pages` INTEGER NOT NULL, `genres` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `description` TEXT, `author` TEXT, `author_country` TEXT, `book_path` TEXT, `cover_uri` TEXT, `total_pages` INTEGER NOT NULL, `genres` TEXT)",
         "fields": [
           {
             "fieldPath": "bid",
@@ -55,20 +55,17 @@
           {
             "fieldPath": "title",
             "columnName": "title",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "description",
             "columnName": "description",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "author",
             "columnName": "author",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "authorCountry",
@@ -78,14 +75,12 @@
           {
             "fieldPath": "bookPath",
             "columnName": "book_path",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "coverUri",
             "columnName": "cover_uri",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "totalPages",
@@ -96,8 +91,7 @@
           {
             "fieldPath": "genres",
             "columnName": "genres",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           }
         ],
         "primaryKey": {
@@ -169,7 +163,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '535b534ac0002bf28c1f2a50da1108f9')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '10d0c27ece0bdbd5d45814d5f8b2335f')"
     ]
   }
 }

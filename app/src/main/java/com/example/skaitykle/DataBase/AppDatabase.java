@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Book.class, UserBook.class},version = 4)
+@Database(entities = {User.class, Book.class, UserBook.class},version = 5)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -64,31 +64,31 @@ public abstract class AppDatabase extends RoomDatabase {
                     // Books
                     bookDao.insert(new Book("Ant stuff",
                             "A story of the fabulously wealthy Jay Gatsby",
-                            "F. Scott Fitzgerald", "ant stuff.pdf", "https://m.media-amazon.com/images/I/61QcGn33VEL._AC_UF1000,1000_QL80_.jpg",  245,
+                            "F. Scott Fitzgerald","USA", "ant stuff.pdf", "https://m.media-amazon.com/images/I/61QcGn33VEL._AC_UF1000,1000_QL80_.jpg",  245,
                             Arrays.asList("Drama")));
 
                     bookDao.insert(new Book("1984",
                             "A dystopian novel set in a totalitarian society",
-                            "George Orwell", "1984test.pdf", "https://images.cdn1.buscalibre.com/fit-in/360x360/ab/54/ab54a82815e061d7fc8f22bcd22f2605.jpg", 268,
+                            "George Orwell","United Kingdom", "1984test.pdf", "https://images.cdn1.buscalibre.com/fit-in/360x360/ab/54/ab54a82815e061d7fc8f22bcd22f2605.jpg", 268,
                             Arrays.asList("Dystopian")));
 
                     bookDao.insert(new Book("To Kill a Mockingbird",
                             "A story of racial injustice in the American South",
-                            "Harper Lee", "mockingTest.pdf", "https://m.media-amazon.com/images/I/81O7u0dGaWL._AC_UF1000,1000_QL80_.jpg", 178,
+                            "Harper Lee","USA", "mockingTest.pdf", "https://m.media-amazon.com/images/I/81O7u0dGaWL._AC_UF1000,1000_QL80_.jpg", 178,
                             Arrays.asList("Drama, comedy")));
 
                     bookDao.insert(new Book("Great gatsby", "nonel about ants",
-                            "Antman johnson", "gatsbytest.pdf", "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg", 245,
+                            "Antman johnson","Lithuania", "gatsbytest.pdf", "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg", 245,
                             Arrays.asList("Horror, Fantasy")));
 
                     bookDao.insert(new Book("Collected Works of Poe",
                             "A collection of Edgar Allan Poe's most celebrated works",
-                            "Edgar Allan Poe", "CollectedWorksofPoe.pdf", "https://cdn.waterstones.com/bookjackets/large/9781/8402/9781840221725.jpg", 207,
+                            "Edgar Allan Poe","USA", "CollectedWorksofPoe.pdf", "https://cdn.waterstones.com/bookjackets/large/9781/8402/9781840221725.jpg", 207,
                             Arrays.asList("Horror")));
 
                     bookDao.insert(new Book("The Art of War",
                             "An ancient Chinese military treatise on strategy and tactics",
-                            "Sun Tzu", "TheArtofWar.pdf", "https://www.hachettebookgroup.com/wp-content/uploads/2025/05/9780813319513.jpg", 150,
+                            "Sun Tzu","China", "TheArtofWar.pdf", "https://www.hachettebookgroup.com/wp-content/uploads/2025/05/9780813319513.jpg", 150,
                             Arrays.asList("Drama")));
                 }
             });

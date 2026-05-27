@@ -34,16 +34,28 @@
 
     <EditText
         android:id="@+id/editAuthor"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="56dp"
         android:hint="Author"
         android:inputType="text"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+
+    <EditText
+        android:id="@+id/editCountry"
+        android:layout_width="124dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="56dp"
+        android:hint="Country"
+        android:inputType="text"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editAuthor"
         app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
     <EditText
