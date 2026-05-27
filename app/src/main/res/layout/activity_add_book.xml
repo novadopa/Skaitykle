@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -63,42 +64,38 @@
 
     <EditText
         android:id="@+id/editCover"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="172dp"
+        android:layout_height="42dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="56dp"
         android:hint="Cover URL"
         android:inputType="textUri"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
     <EditText
         android:id="@+id/editPages"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="49dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="56dp"
         android:hint="Number of pages"
         android:inputType="number"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editCover" />
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/genreInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="167dp"
+        android:layout_height="56dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="56dp"
         android:hint="Genre"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPages">
 
@@ -115,8 +112,8 @@
         android:id="@+id/buttonPickPdf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="32dp"
         android:text="Upload PDF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genreInputLayout" />
@@ -125,7 +122,7 @@
         android:id="@+id/buttonSaveBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="56dp"
         android:text="Save Book"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,5 +137,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_bottom_nav" />
+
+    <ImageButton
+        android:id="@+id/buttonCamera"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="55dp"
+        android:background="@color/purple_muted"
+        android:backgroundTint="#673AB7"
+        android:contentDescription="Take cover photo"
+        android:padding="4dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/editDescription"
+        app:shapeAppearanceOverlay="@style/RoundedCorners"
+        app:srcCompat="@drawable/twotone_camera_enhance_24" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="37dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="33dp"
+        android:text="or"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/editCover"
+        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
+
+    <ImageView
+        android:id="@+id/coverPreview"
+        android:layout_width="110dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/editPages"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCamera"
+        app:srcCompat="@drawable/outline_imagesmode_24"
+        app:shapeAppearanceOverlay="@style/RoundedCorners"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

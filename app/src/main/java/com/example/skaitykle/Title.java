@@ -57,7 +57,6 @@ public class Title extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_title);
 
         RecyclerView recyclerView = findViewById(R.id.RecyclerViewTitleBooks);
@@ -92,12 +91,6 @@ public class Title extends AppCompatActivity {
         dropdownRecycler.setLayoutManager(new LinearLayoutManager(this));
         searchDropdownAdapter = new SearchDropdownAdapter();
         dropdownRecycler.setAdapter(searchDropdownAdapter);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bookReaderMain), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         int userId = getIntent().getIntExtra("userId", -1);
 
