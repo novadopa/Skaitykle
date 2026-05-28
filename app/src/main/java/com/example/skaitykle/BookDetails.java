@@ -109,16 +109,23 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
 
-        LatLng countryLocation =
-                com.example.skaitykle.CountryCoordinates.getCoordinates(authorCountry);
+        if (authorCountry == null || authorCountry.isEmpty()) {
+            findViewById(R.id.map).setVisibility(View.GONE);
+            return;
+        }
+
+        LatLng countryLocation = com.example.skaitykle.CountryCoordinates.getCoordinates(authorCountry);
+
+        if (countryLocation == null) {
+            findViewById(R.id.map).setVisibility(View.GONE);
+            return;
+        }
 
         mMap.addMarker(new MarkerOptions()
                 .position(countryLocation)
                 .title(author));
-
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(countryLocation, 4f));
     }
 

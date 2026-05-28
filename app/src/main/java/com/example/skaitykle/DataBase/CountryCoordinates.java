@@ -36,18 +36,48 @@ public class CountryCoordinates {
         countryMap.put("Turkey", new LatLng(38.9637, 35.2433));
         countryMap.put("Greece", new LatLng(39.0742, 21.8243));
         countryMap.put("Egypt", new LatLng(26.8206, 30.8025));
+        countryMap.put("United States", new LatLng(37.0902, -95.7129));
+        countryMap.put("United States of America", new LatLng(37.0902, -95.7129));
+        countryMap.put("America", new LatLng(37.0902, -95.7129));
+        countryMap.put("England", new LatLng(52.3555, -1.1743));
+        countryMap.put("Scotland", new LatLng(56.4907, -4.2026));
+        countryMap.put("Ireland", new LatLng(53.1424, -7.6921));
+        countryMap.put("Czech Republic", new LatLng(49.8175, 15.4730));
+        countryMap.put("Netherlands", new LatLng(52.1326, 5.2913));
+        countryMap.put("Portugal", new LatLng(39.3999, -8.2245));
+        countryMap.put("Denmark", new LatLng(56.2639, 9.5018));
+        countryMap.put("Switzerland", new LatLng(46.8182, 8.2275));
+        countryMap.put("Austria", new LatLng(47.5162, 14.5501));
+        countryMap.put("Romania", new LatLng(45.9432, 24.9668));
+        countryMap.put("Hungary", new LatLng(47.1625, 19.5033));
+        countryMap.put("Colombia", new LatLng(4.5709, -74.2973));
+        countryMap.put("Chile", new LatLng(-35.6751, -71.5430));
+        countryMap.put("Peru", new LatLng(-9.1900, -75.0152));
+        countryMap.put("South Africa", new LatLng(-30.5595, 22.9375));
+        countryMap.put("Nigeria", new LatLng(9.0820, 8.6753));
+        countryMap.put("Iran", new LatLng(32.4279, 53.6880));
+        countryMap.put("Pakistan", new LatLng(30.3753, 69.3451));
+        countryMap.put("Bangladesh", new LatLng(23.6850, 90.3563));
+        countryMap.put("Indonesia", new LatLng(-0.7893, 113.9213));
+        countryMap.put("New Zealand", new LatLng(-40.9006, 174.8860));
 
     }
 
     public static LatLng getCoordinates(String country) {
+        if (country == null || country.isEmpty()) return null;
 
+        // Try exact match first
         if (countryMap.containsKey(country)) {
-
             return countryMap.get(country);
-
-        } else {
-
-            return null;
         }
+
+        // Fall back to case-insensitive match
+        for (Map.Entry<String, LatLng> entry : countryMap.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase(country.trim())) {
+                return entry.getValue();
+            }
+        }
+
+        return null;
     }
 }
