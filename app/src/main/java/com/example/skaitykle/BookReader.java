@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -60,12 +59,13 @@ public class BookReader extends ScreenBrightnessManager{
     boolean isImmersiveMode = true;
     boolean isAnimating = false;
 
-    private SensorEventListener shakeListener;
+    private SensorEventListener tiltListener;
     private SensorManager sensorManager;
-    private Sensor accelerometer;
+    private Sensor gyroscope;
     private long lastShakeTime = 0;
-    private static final float SHAKE_THRESHOLD = 12f;
-    private static final long SHAKE_COOLDOWN = 2000;
+    private static final float TILT_THRESHOLD = 0.5f;
+    private static final long TILT_COOLDOWN = 600;
+    private long lastTiltPageTurn = 0;
 
     int seekBarStartPage = 0;
 
@@ -218,30 +218,24 @@ public class BookReader extends ScreenBrightnessManager{
         });
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
-        shakeListener = new SensorEventListener() {
+        tiltListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
-                if (event.sensor.getType() != Sensor.TYPE_ACCELEROMETER) return;
+                if (event.sensor.getType() != Sensor.TYPE_GYROSCOPE) return;
 
-                float x = event.values[0];
-                float y = event.values[1];
-                float z = event.values[2];
-                double force = Math.sqrt(x*x + y*y + z*z);
+                float rotationY = event.values[1];
+                long now = System.currentTimeMillis();
 
-                if (force > SHAKE_THRESHOLD) {
-                    long now = System.currentTimeMillis();
-                    if (now - lastShakeTime > SHAKE_COOLDOWN) {
-                        lastShakeTime = now;
-                        if (totalPages > 1) {
-                            int randomPage = (int)(Math.random() * totalPages);
-                            showPages(randomPage);
-                            Toast.makeText(BookReader.this,
-                                    "Jumped to page " + (randomPage + 1),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                if (now - lastTiltPageTurn < TILT_COOLDOWN) return;
+
+                if(rotationY > TILT_THRESHOLD){
+                    lastTiltPageTurn = now;
+                    runOnUiThread(() -> nextPage());
+                }else if(rotationY < -TILT_THRESHOLD){
+                    lastTiltPageTurn = now;
+                    runOnUiThread(() -> previousPage());
                 }
             }
 
@@ -322,9 +316,9 @@ public class BookReader extends ScreenBrightnessManager{
     @Override
     protected void onResume(){
         super.onResume();
-        if (accelerometer != null) {
-            sensorManager.registerListener(shakeListener, accelerometer,
-                    SensorManager.SENSOR_DELAY_UI);
+        if (gyroscope != null) {
+            sensorManager.registerListener(tiltListener, gyroscope,
+                    SensorManager.SENSOR_DELAY_GAME);
         }
     }
 
@@ -333,8 +327,8 @@ public class BookReader extends ScreenBrightnessManager{
     protected void onPause() {
         super.onPause();
         saveProgress();
-        if (sensorManager != null && shakeListener != null) {
-            sensorManager.unregisterListener(shakeListener);
+        if (sensorManager != null && tiltListener != null) {
+            sensorManager.unregisterListener(tiltListener);
         }
     }
 
