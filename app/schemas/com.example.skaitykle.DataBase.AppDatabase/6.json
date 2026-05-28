@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 5,
-    "identityHash": "c5629080820ea99f40a6bed611eeea0f",
+    "version": 6,
+    "identityHash": "9f9c2236084db30e7bad37367d885fcc",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, `email` TEXT NOT NULL, `password` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, `email` TEXT NOT NULL, `password` TEXT NOT NULL, `profile_photo_uri` TEXT)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -37,6 +37,11 @@
             "columnName": "password",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "profilePhotoUri",
+            "columnName": "profile_photo_uri",
+            "affinity": "TEXT"
           }
         ],
         "primaryKey": {
@@ -48,7 +53,7 @@
       },
       {
         "tableName": "Book",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `author` TEXT NOT NULL, `author_country` TEXT, `book_path` TEXT NOT NULL, `cover_uri` TEXT NOT NULL, `total_pages` INTEGER NOT NULL, `genres` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `description` TEXT, `author` TEXT, `author_country` TEXT, `book_path` TEXT, `cover_uri` TEXT, `total_pages` INTEGER NOT NULL, `genres` TEXT)",
         "fields": [
           {
             "fieldPath": "bid",
@@ -59,20 +64,17 @@
           {
             "fieldPath": "title",
             "columnName": "title",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "description",
             "columnName": "description",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "author",
             "columnName": "author",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "authorCountry",
@@ -82,14 +84,12 @@
           {
             "fieldPath": "bookPath",
             "columnName": "book_path",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "coverUri",
             "columnName": "cover_uri",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "totalPages",
@@ -100,8 +100,7 @@
           {
             "fieldPath": "genres",
             "columnName": "genres",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           }
         ],
         "primaryKey": {
@@ -173,7 +172,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c5629080820ea99f40a6bed611eeea0f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9f9c2236084db30e7bad37367d885fcc')"
     ]
   }
 }

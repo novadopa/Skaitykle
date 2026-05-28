@@ -42,6 +42,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     BottomNavigationView bottomNavigationView;
     ChipGroup filterChipGroup;
     Chip chipBookstores, chipLibraries, chipMuseums;
+    Chip chipGyms, chipPharmacies;
 
     private GoogleMap googleMap;
     private PlacesClient placesClient;
@@ -101,6 +102,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         chipBookstores  = findViewById(R.id.chipBookstores);
         chipLibraries   = findViewById(R.id.chipLibraries);
         chipMuseums     = findViewById(R.id.chipMuseums);
+        chipGyms         = findViewById(R.id.chipGyms);
+        chipPharmacies   = findViewById(R.id.chipPharmacies);
 
 
         filterChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
@@ -112,6 +115,17 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                 searchNearby("public library");
             } else if (id == R.id.chipMuseums) {
                 searchNearby("museum");
+            }
+        });
+
+        ChipGroup filterChipGroupBottom = findViewById(R.id.filterChipGroupBottom);
+        filterChipGroupBottom.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (currentLatLng == null || checkedIds.isEmpty()) return;
+            int id = checkedIds.get(0);
+            if (id == R.id.chipGyms) {
+                searchNearby("gym");
+            } else if (id == R.id.chipPharmacies) {
+                searchNearby("pharmacy");
             }
         });
 
@@ -264,6 +278,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         if (query.contains("book"))    return BitmapDescriptorFactory.HUE_AZURE;
         if (query.contains("library")) return BitmapDescriptorFactory.HUE_GREEN;
         if (query.contains("museum"))  return BitmapDescriptorFactory.HUE_VIOLET;
+        if (query.contains("gym"))      return BitmapDescriptorFactory.HUE_ORANGE;
+        if (query.contains("pharmacy")) return BitmapDescriptorFactory.HUE_CYAN;
         return BitmapDescriptorFactory.HUE_RED;
     }
 }

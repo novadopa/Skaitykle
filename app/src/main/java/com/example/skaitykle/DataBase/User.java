@@ -25,6 +25,9 @@ public class User {
     @ColumnInfo(name = "password")
     public String password;
 
+    @ColumnInfo(name = "profile_photo_uri")
+    public String profilePhotoUri;
+
     //public void setUid(@NonNull int name) {this.uid = uid; }
     //public int getUid() {return this.uid; }
     //public void setFirstName (@NonNull String firstName) { this.firstName = firstName; }
@@ -58,6 +61,10 @@ public class User {
 
     public @NonNull String getPassword() {
         return password;
+    }
+
+    public String getProfilePhotoUri() {
+        return profilePhotoUri;
     }
 
     public void setUid(int uid) {
