@@ -162,12 +162,14 @@ public class AddBook extends AppCompatActivity {
                 pdfPicker.launch("application/pdf")
         );
 
-        String titleText = title.getText().toString().trim();
-        String authorText = author.getText().toString().trim();
-        String pagesText = pages.getText().toString().trim();
+
 
         // Save book
         save.setOnClickListener(v -> {
+
+            String titleText = title.getText().toString().trim();
+            String authorText = author.getText().toString().trim();
+            String pagesText = pages.getText().toString().trim();
 
             if (pdfUri == null) {
                 Toast.makeText(this, "No file is uploaded", Toast.LENGTH_SHORT).show();
@@ -176,21 +178,21 @@ public class AddBook extends AppCompatActivity {
                 return;
             }
 
-            if (titleText.isEmpty()) {
+            if (titleText.isBlank()) {
                 Toast.makeText(this, "No title is written", Toast.LENGTH_SHORT).show();
                 vibrateError();
                 animateBounce(title);
                 return;
             }
 
-            if (authorText.isEmpty()) {
+            if (authorText.isBlank()) {
                 Toast.makeText(this, "No author is written", Toast.LENGTH_SHORT).show();
                 vibrateError();
                 animateBounce(author);
                 return;
             }
 
-            if (pagesText.isEmpty()) {
+            if (pagesText.isBlank()) {
                 Toast.makeText(this, "No pages are written", Toast.LENGTH_SHORT).show();
                 vibrateError();
                 animateBounce(pages);
