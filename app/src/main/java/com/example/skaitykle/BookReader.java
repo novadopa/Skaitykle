@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -49,7 +48,7 @@ public class BookReader extends ScreenBrightnessManager{
 
     UserBookViewModel userBookViewModel;
 
-    String title, author, description, path;
+    String title, author, description, path, authorCountry, bookCover;
     int totalPages, pagesRead, readingProgress, userBookId, userId, bookId;
     boolean commentSuggestionShown;
 
@@ -89,6 +88,8 @@ public class BookReader extends ScreenBrightnessManager{
         author = getIntent().getStringExtra("BookAuthor");
         description = getIntent().getStringExtra("BookDescription");
         path = getIntent().getStringExtra("BookPath");
+        authorCountry = getIntent().getStringExtra("BookAuthorCountry");
+        bookCover = getIntent().getStringExtra("BookCover");
 
         pagesRead = getIntent().getIntExtra("BookPagesRead", 0);
 
@@ -522,6 +523,10 @@ public class BookReader extends ScreenBrightnessManager{
                 commentIntent.putExtra("UserId", userId);
                 commentIntent.putExtra("BookAuthor", author);
                 commentIntent.putExtra("BookDescription", description);
+                commentIntent.putExtra("BookAuthorCountry", authorCountry);
+                commentIntent.putExtra("BookPath", path);
+                commentIntent.putExtra("BookCover", bookCover);
+                commentIntent.putExtra("BookTotalPages", totalPages);
                 startActivity(commentIntent);
                 finish();
             }

@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Book.class, UserBook.class},version = 6)
+@Database(entities = {User.class, Book.class, UserBook.class, Review.class},version = 7)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -27,6 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract BookDao bookDao();
     public abstract UserBookDao userBookDao();
+    public abstract ReviewDao reviewDao();
 
     public static synchronized AppDatabase getInstance(Context context) {
         if (Adb == null){

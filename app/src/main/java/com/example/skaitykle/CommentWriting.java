@@ -13,11 +13,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.skaitykle.DataBase.AppDatabase;
+import com.example.skaitykle.DataBase.Review;
+
 public class CommentWriting extends ScreenBrightnessManager {
     RatingBar ratingBar;
     EditText editText;
     Button cancelButton;
     Button saveButton;
+
+    private static final int currentUserId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +39,39 @@ public class CommentWriting extends ScreenBrightnessManager {
         String title = getIntent().getStringExtra("BookTitle");
         String author = getIntent().getStringExtra("BookAuthor");
         String description = getIntent().getStringExtra("BookDescription");
+        String authorCountry = getIntent().getStringExtra("BookAuthorCountry");
+        String path = getIntent().getStringExtra("BookPath");
+        String coverUri = getIntent().getStringExtra("BookCover");
+        int totalPages = getIntent().getIntExtra("BookTotalPages", 0);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float ratingStarts = ratingBar.getRating();
+                float ratingStars = ratingBar.getRating();
 
-                if(ratingStarts == 0){
+                if(ratingStars == 0){
                     Toast.makeText(getApplicationContext(), "Stars cannot be empty",
                             Toast.LENGTH_SHORT).show();
                 }else{
-                    Intent saveComment = new Intent(getBaseContext(), BookDetails.class);
-                    saveComment.putExtra("BookId", bookId);
-                    saveComment.putExtra("BookTitle", title);
-                    saveComment.putExtra("BookAuthor", author);
-                    saveComment.putExtra("BookDescription", description);
-                    startActivity(saveComment);
-                    finish();
+                    String commentText = editText.getText().toString().trim();
+
+                    AppDatabase.databaseWriteExecutor.execute(() -> {
+                        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+
+                        Review existing = db.reviewDao()
+                                .getReviewByUserAndBook(bookId, currentUserId);
+
+                        Review review = new Review(bookId, currentUserId,
+                                ratingStars, commentText);
+
+                        if (existing != null) {
+                            review.reviewId = existing.reviewId;
+                        }
+
+                        db.reviewDao().insert(review);
+                    });
+
+                    runOnUiThread(() -> finish());
                 }
             }
         });

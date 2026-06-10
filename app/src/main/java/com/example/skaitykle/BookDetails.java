@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
+import com.example.skaitykle.DataBase.ReviewAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,6 +28,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.palette.graphics.Palette;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -52,6 +55,9 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
     private ShapeableImageView coverImage;
     private LinearLayout descriptionBackLayout;
     private TextView textViewDescriptionBack;
+
+    RecyclerView reviewsRecyclerView;
+    ReviewAdapter reviewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +111,51 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+        reviewsRecyclerView = findViewById(R.id.reviewsRecyclerView);
+        reviewsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        reviewAdapter = new ReviewAdapter();
+        reviewsRecyclerView.setAdapter(reviewAdapter);
+
+        AppDatabase.getInstance(this).reviewDao()
+                .getReviewsWithUserNames(bookId)
+                .observe(this, reviews -> {
+                    reviewAdapter.setReviews(reviews);
+                });
+
+
+        com.google.android.material.tabs.TabLayout tabLayout =
+                findViewById(R.id.detailsTabLayout);
+        View mapView = findViewById(R.id.map);
+
+        tabLayout.addOnTabSelectedListener(
+                new com.google.android.material.tabs.TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(
+                            com.google.android.material.tabs.TabLayout.Tab tab) {
+                        if (tab.getPosition() == 0) {
+                            mapView.setVisibility(View.VISIBLE);
+                            reviewsRecyclerView.setVisibility(View.GONE);
+                        } else {
+                            mapView.setVisibility(View.GONE);
+                            reviewsRecyclerView.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onTabUnselected(
+                            com.google.android.material.tabs.TabLayout.Tab tab) {}
+
+                    @Override
+                    public void onTabReselected(
+                            com.google.android.material.tabs.TabLayout.Tab tab) {}
+                });
+
+        mapView.setVisibility(View.VISIBLE);
+        reviewsRecyclerView.setVisibility(View.GONE);
+        tabLayout.selectTab(tabLayout.getTabAt(0));
     }
 
     @Override
@@ -112,14 +163,14 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         if (authorCountry == null || authorCountry.isEmpty()) {
-            findViewById(R.id.map).setVisibility(View.GONE);
+            //findViewById(R.id.map).setVisibility(View.GONE);
             return;
         }
 
         LatLng countryLocation = com.example.skaitykle.CountryCoordinates.getCoordinates(authorCountry);
 
         if (countryLocation == null) {
-            findViewById(R.id.map).setVisibility(View.GONE);
+            //findViewById(R.id.map).setVisibility(View.GONE);
             return;
         }
 
