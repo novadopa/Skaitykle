@@ -18,9 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.skaitykle.DataBase.AppDatabase;
 import com.example.skaitykle.DataBase.BookWithReadingProgress;
@@ -67,7 +64,6 @@ public class Library extends ScreenBrightnessManager {
 
     BookWithReadingProgress pendingAlternateCover = null;
     Uri pendingAlternateUri = null;
-    //private final ActivityResultLauncher<Uri> cameraLauncher;
 
     private static final int currentUserId = 1;
 
@@ -86,13 +82,6 @@ public class Library extends ScreenBrightnessManager {
                     new ActivityResultContracts.TakePicture(),
                     success -> {
                         if (success && pendingAlternateCover != null && pendingAlternateUri != null) {
-
-                            // DELETE these two lines:
-                            // getContentResolver().takePersistableUriPermission(
-                            //     pendingAlternateUri,
-                            //     Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            // );
-
                             String uriString = pendingAlternateUri.toString();
                             int bookId = pendingAlternateCover.book.getBid();
 
