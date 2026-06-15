@@ -47,14 +47,12 @@ public class AddBook extends AppCompatActivity {
     private Uri cameraImageUri;
     private BooksViewModel booksViewModel;
 
-    // PDF picker
     private final ActivityResultLauncher<String> pdfPicker =
             registerForActivityResult(
                     new ActivityResultContracts.GetContent(),
                     uri -> pdfUri = uri
             );
 
-    // Camera launcher
     private final ActivityResultLauncher<Uri> cameraLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.TakePicture(),
@@ -65,7 +63,6 @@ public class AddBook extends AppCompatActivity {
                         }
                     });
 
-    // Camera permission request
     private final ActivityResultLauncher<String> requestCameraPermission =
             registerForActivityResult(
                     new ActivityResultContracts.RequestPermission(),
@@ -102,7 +99,6 @@ public class AddBook extends AppCompatActivity {
 
         ImageButton camera = findViewById(R.id.buttonCamera);
 
-        // Cover preview from URL
         cover.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
 
@@ -117,7 +113,6 @@ public class AddBook extends AppCompatActivity {
             }
         });
 
-        // Camera button
         camera.setOnClickListener(v -> {
 
             if (ContextCompat.checkSelfPermission(
@@ -133,7 +128,6 @@ public class AddBook extends AppCompatActivity {
             }
         });
 
-        // Genre suggestions
         booksViewModel.getBooks().observe(this, books -> {
 
             List<String> usedGenres = new ArrayList<>();
@@ -157,14 +151,10 @@ public class AddBook extends AppCompatActivity {
             );
         });
 
-        // PDF upload
         upload.setOnClickListener(v ->
                 pdfPicker.launch("application/pdf")
         );
 
-
-
-        // Save book
         save.setOnClickListener(v -> {
 
             String titleText = title.getText().toString().trim();
@@ -199,7 +189,6 @@ public class AddBook extends AppCompatActivity {
                 return;
             }
 
-            // Use camera image if available
             String coverString = (cameraImageUri != null)
                     ? cameraImageUri.toString()
                     : cover.getText().toString().trim();
@@ -227,8 +216,6 @@ public class AddBook extends AppCompatActivity {
         });
 
 
-
-        // Bottom navigation
         int userId = getIntent().getIntExtra("userId", -1);
 
         bottomNavigationView = findViewById(R.id.bottom_nav_add);
@@ -306,7 +293,6 @@ public class AddBook extends AppCompatActivity {
         }
     }
 
-    // Open camera
     private void openCamera() {
 
         cameraImageUri = createCoverImageUri();
@@ -314,7 +300,6 @@ public class AddBook extends AppCompatActivity {
         cameraLauncher.launch(cameraImageUri);
     }
 
-    // Create image file URI
     private Uri createCoverImageUri() {
 
         File coversDir = new File(getFilesDir(), "covers");
@@ -335,7 +320,6 @@ public class AddBook extends AppCompatActivity {
         );
     }
 
-    // Show preview
     private void showCoverPreview(Uri uri) {
 
         ImageView preview = findViewById(R.id.coverPreview);
@@ -350,9 +334,6 @@ public class AddBook extends AppCompatActivity {
                 .into(preview);
     }
 
-
-
-    // Bounce animation
     private void animateBounce(View view) {
 
         ObjectAnimator bounce = ObjectAnimator.ofFloat(

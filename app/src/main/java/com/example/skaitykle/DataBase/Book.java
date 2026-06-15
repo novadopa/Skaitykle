@@ -29,7 +29,7 @@ public class Book {
     public String authorCountry;
 
     @NonNull
-    @ColumnInfo(name = "book_path")    //a path to a book file
+    @ColumnInfo(name = "book_path")
     public String bookPath;
 
     @NonNull

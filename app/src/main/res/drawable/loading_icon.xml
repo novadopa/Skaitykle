@@ -4,19 +4,16 @@
     android:viewportWidth="100"
     android:viewportHeight="60">
 
-    <!--cover-->
     <path
         android:strokeColor="#000000"
         android:strokeWidth="5"
         android:pathData="M15,38 L85,38" />
 
-    <!--spine-->
     <path
         android:strokeColor="#000000"
         android:strokeWidth="7"
         android:pathData="M50,38 L50,43" />
 
-    <!--page-->
     <group
         android:name="page"
         android:pivotX="50"

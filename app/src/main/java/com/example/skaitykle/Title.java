@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Title extends AppCompatActivity {
-
     private Observer<List<Book>> searchObserver;
     private LiveData<List<Book>> currentSearchLiveData;
 
@@ -58,14 +57,12 @@ public class Title extends AppCompatActivity {
     private SearchDropdownAdapter searchDropdownAdapter;
     private CardView searchDropdownCard;
 
-    // ── Gyroscope parallax ────────────────────────────────────────────────────
     private SensorManager sensorManager;
     private Sensor rotationSensor;
 
     private float parallaxX = 0f;
 
-    // Max pixel offset at full tilt — keep subtle
-    private static final float PARALLAX_MAX    = 45f;  // max degrees of rotation
+    private static final float PARALLAX_MAX    = 45f;
     private static final float PARALLAX_SMOOTH = 0.12f;
     private static final float TILT_RANGE_DEG  = 25f;
 
@@ -93,7 +90,6 @@ public class Title extends AppCompatActivity {
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
     };
-    // ─────────────────────────────────────────────────────────────────────────
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,17 +206,9 @@ public class Title extends AppCompatActivity {
         if (sensorManager != null) {
             sensorManager.unregisterListener(gyroListener);
         }
-        // Reset covers to centre so they don't freeze mid-tilt
         applyParallax(0f, 0f);
     }
 
-    // ── Parallax helpers ──────────────────────────────────────────────────────
-
-    /**
-     * Walks the outer RecyclerView → inner RecyclerViews → cover ImageViews
-     * and applies the tilt-based translation directly to each visible cover.
-     * No adapter changes needed.
-     */
     private void applyParallax(float tx, float ty) {
         RecyclerView outerRv = findViewById(R.id.RecyclerViewTitleBooks);
         if (outerRv == null) return;
@@ -244,7 +232,6 @@ public class Title extends AppCompatActivity {
         }
     }
 
-    /** Recursively finds the first RecyclerView inside a ViewGroup. */
     private RecyclerView findInnerRecyclerView(ViewGroup parent) {
         for (int i = 0; i < parent.getChildCount(); i++) {
             View child = parent.getChildAt(i);
@@ -257,7 +244,6 @@ public class Title extends AppCompatActivity {
         return null;
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
 
     private void animateSearchView() {
         android.widget.SearchView searchView = findViewById(R.id.searchView);

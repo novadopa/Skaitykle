@@ -66,12 +66,10 @@ public class CountryCoordinates {
     public static LatLng getCoordinates(String country) {
         if (country == null || country.isEmpty()) return null;
 
-        // Try exact match first
         if (countryMap.containsKey(country)) {
             return countryMap.get(country);
         }
 
-        // Fall back to case-insensitive match
         for (Map.Entry<String, LatLng> entry : countryMap.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(country.trim())) {
                 return entry.getValue();

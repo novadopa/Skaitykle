@@ -62,7 +62,6 @@ public class BookViewAdapter extends RecyclerView.Adapter<BookViewAdapter.BookHo
             intent.putExtra("BookCover", currentBook.getCoverUri());
             intent.putExtra("BookTotalPages", currentBook.getTotalPages());
 
-            // Create the transition animation
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
                     (Activity) v.getContext(),
                     holder.imageViewCover,

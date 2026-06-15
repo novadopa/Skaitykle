@@ -9,7 +9,6 @@
     android:background="#FAFAF8"
     tools:context=".Register">
 
-    <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +26,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Scrollable form content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,7 +40,6 @@
             android:paddingTop="28dp"
             android:paddingBottom="32dp">
 
-            <!-- Name field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,7 +65,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Surname field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +90,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Password field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,7 +118,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Email field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,7 +144,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Register button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/registerLogin"
                 android:layout_width="match_parent"
@@ -167,7 +160,6 @@
                 app:rippleColor="#3A1FA0"
                 style="@style/Widget.MaterialComponents.Button" />
 
-            <!-- Already have account button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/paskyraLogin"
                 android:layout_width="match_parent"
@@ -189,7 +181,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Success/loading overlay — must be last child to appear on top -->
     <include layout="@layout/overlay_register_success" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

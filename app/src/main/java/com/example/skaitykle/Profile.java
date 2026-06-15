@@ -37,11 +37,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Profile extends AppCompatActivity {
-
-    // ── Navigation ────────────────────────────────────────────────────────────
     BottomNavigationView bottomNavigationView;
 
-    // ── Camera ────────────────────────────────────────────────────────────────
     private static final String AUTHORITY = "com.example.skaitykle.fileprovider";
     private Uri cameraImageUri;
 
@@ -80,7 +77,6 @@ public class Profile extends AppCompatActivity {
                         }
                     });
 
-    // ── Shake detection ───────────────────────────────────────────────────────
     private SensorManager sensorManager;
     private Sensor accelerometer;
 
@@ -98,7 +94,6 @@ public class Profile extends AppCompatActivity {
             float y = event.values[1];
             float z = event.values[2];
 
-            // Skip first reading to avoid false spike from 0,0,0
             if (firstReading) {
                 lastX = x;
                 lastY = y;
@@ -140,7 +135,7 @@ public class Profile extends AppCompatActivity {
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
     };
 
-    // ── Lifecycle ─────────────────────────────────────────────────────────────
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -182,7 +177,6 @@ public class Profile extends AppCompatActivity {
         TextView surnameText = findViewById(R.id.surnameText);
         TextView emailText   = findViewById(R.id.emailText);
 
-        // ── Device info ───────────────────────────────────────────────────────
         TextView deviceModelText        = findViewById(R.id.deviceModelText);
         TextView deviceIdText           = findViewById(R.id.deviceIdText);
         TextView deviceManufacturerText = findViewById(R.id.deviceManufacturerText);
@@ -191,7 +185,6 @@ public class Profile extends AppCompatActivity {
         deviceIdText.setText(android.os.Build.ID);
         deviceManufacturerText.setText(android.os.Build.MANUFACTURER);
 
-        // ── Profile photo ─────────────────────────────────────────────────────
         ImageView profilePhoto = findViewById(R.id.profilePhoto);
         profilePhoto.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -202,7 +195,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        // ── Show sensors button ───────────────────────────────────────────────
         Button btnShowSensors = findViewById(R.id.btnShowSensors);
         btnShowSensors.setOnClickListener(v -> {
             List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
@@ -220,7 +212,6 @@ public class Profile extends AppCompatActivity {
                     .show();
         });
 
-        // ── Load user from database ───────────────────────────────────────────
         int userId = getIntent().getIntExtra("userId", -1);
 
         if (userId == -1) {
@@ -249,7 +240,6 @@ public class Profile extends AppCompatActivity {
             });
         });
 
-        // ── Navigation listener ───────────────────────────────────────────────
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -277,7 +267,6 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    // ── Camera helper ─────────────────────────────────────────────────────────
     private void openProfileCamera() {
         File photoDir = new File(getFilesDir(), "profiles");
         if (!photoDir.exists()) photoDir.mkdirs();

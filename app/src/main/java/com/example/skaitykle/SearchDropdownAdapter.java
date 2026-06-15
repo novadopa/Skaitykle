@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchDropdownAdapter extends RecyclerView.Adapter<SearchDropdownAdapter.DropdownHolder> {
-
     private List<Book> books = new ArrayList<>();
 
     @NonNull

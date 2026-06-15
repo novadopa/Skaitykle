@@ -45,15 +45,11 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-
-            //new PopulateDbAsyncTask(Adb).execute();
-
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
                     UserDao userDao = Adb.userDao();
-                    // Users
                     userDao.insert(new User("Vardenis", "Pavardenis",
                             "vardenis@gmail.com", "123"));
                     userDao.insert(new User("Antras", "Pavardas",
@@ -62,7 +58,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             "trečias@gmail.com", "123"));
 
                     BookDao bookDao = Adb.bookDao();
-                    // Books
                     bookDao.insert(new Book("Ant stuff",
                             "A story of the fabulously wealthy Jay Gatsby",
                             "F. Scott Fitzgerald","USA", "ant stuff.pdf", "https://m.media-amazon.com/images/I/61QcGn33VEL._AC_UF1000,1000_QL80_.jpg",  245,

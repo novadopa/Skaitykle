@@ -35,8 +35,8 @@ public class Register extends AppCompatActivity {
     private LinearLayout successCheck;
     private AppDatabase db;
 
-    private static final long SPINNER_DURATION_MS  = 800;  // spinner shows for at least this long
-    private static final long CHECKMARK_HOLD_MS    = 900;  // how long checkmark stays before navigating
+    private static final long SPINNER_DURATION_MS  = 800;
+    private static final long CHECKMARK_HOLD_MS    = 900;
     private static final long RED_BUTTON_DURATION  = 3000;
 
     private final Handler resetButtonHandler = new Handler(Looper.getMainLooper());
@@ -104,12 +104,10 @@ public class Register extends AppCompatActivity {
     }
 
     private void attemptRegister(String name, String surname, String email, String password) {
-        // Show overlay with spinner
         loadingOverlay.setVisibility(View.VISIBLE);
         loadingSpinner.setVisibility(View.VISIBLE);
         successCheck.setVisibility(View.GONE);
 
-        // Track whether spinner minimum time and DB query are both done
         final boolean[] spinnerTimerDone = {false};
         final boolean[] dbDone          = {false};
         final boolean[] registrationOk  = {false};
@@ -128,13 +126,11 @@ public class Register extends AppCompatActivity {
             }
         };
 
-        // Minimum spinner time
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             spinnerTimerDone[0] = true;
             tryShowResult.run();
         }, SPINNER_DURATION_MS);
 
-        // DB query
         AppDatabase.databaseWriteExecutor.execute(() -> {
             User existing = db.userDao().getUserByEmail(email);
 
@@ -157,14 +153,12 @@ public class Register extends AppCompatActivity {
     }
 
     private void showCheckmarkThenNavigate(String name) {
-        // Swap spinner for checkmark with a pop animation
         loadingSpinner.setVisibility(View.GONE);
         successCheck.setVisibility(View.VISIBLE);
 
         Animation popIn = AnimationUtils.loadAnimation(this, R.anim.scale_in);
         successCheck.startAnimation(popIn);
 
-        // Hold the checkmark briefly, then go to Login
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             loadingOverlay.setVisibility(View.GONE);
             Toast.makeText(this, "Account created! Welcome, " + name, Toast.LENGTH_SHORT).show();
