@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -30,6 +32,7 @@ public class Register extends AppCompatActivity {
 
     private EditText nameField, surnameField, passwordField, emailField;
     private MaterialButton registerButton;
+    private CheckBox termsCheckbox;
     private FrameLayout loadingOverlay;
     private ProgressBar loadingSpinner;
     private LinearLayout successCheck;
@@ -57,9 +60,13 @@ public class Register extends AppCompatActivity {
         passwordField  = findViewById(R.id.passwordLogin);
         emailField     = findViewById(R.id.emailLogin);
         registerButton = findViewById(R.id.registerLogin);
+        termsCheckbox  = findViewById(R.id.termsCheckbox);
         loadingOverlay = findViewById(R.id.loadingOverlay);
         loadingSpinner = findViewById(R.id.loadingSpinner);
         successCheck   = findViewById(R.id.successCheck);
+
+        MaterialButton viewTermsButton = findViewById(R.id.viewTermsButton);
+        viewTermsButton.setOnClickListener(view -> showTermsDialog());
 
         MaterialButton alreadyHaveAccount = findViewById(R.id.paskyraLogin);
         alreadyHaveAccount.setOnClickListener(view -> {
@@ -90,6 +97,12 @@ public class Register extends AppCompatActivity {
             if (password.length() < 6) {
                 shakeScreen();
                 Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!termsCheckbox.isChecked()) {
+                shakeScreen();
+                Toast.makeText(this, R.string.terms_must_agree, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -180,6 +193,14 @@ public class Register extends AppCompatActivity {
                 ContextCompat.getColorStateList(this, R.color.purple_primary));
 
         resetButtonHandler.postDelayed(resetButtonRunnable, RED_BUTTON_DURATION);
+    }
+
+    private void showTermsDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.terms_title)
+                .setMessage(R.string.terms_of_service_text)
+                .setPositiveButton(R.string.terms_close, null)
+                .show();
     }
 
     private void shakeScreen() {

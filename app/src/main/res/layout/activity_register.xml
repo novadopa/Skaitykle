@@ -144,6 +144,42 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+                <CheckBox
+                    android:id="@+id/termsCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terms_agree"
+                    android:textColor="#2C2C2A"
+                    android:textSize="14sp"
+                    android:buttonTint="#5B3DC8" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/viewTermsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/view_terms"
+                    android:textColor="#5B3DC8"
+                    android:textSize="13sp"
+                    android:textAllCaps="false"
+                    android:minHeight="0dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    app:backgroundTint="@android:color/transparent"
+                    app:cornerRadius="8dp"
+                    app:elevation="0dp"
+                    app:rippleColor="#EDE8FC"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+            </LinearLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/registerLogin"
                 android:layout_width="match_parent"
