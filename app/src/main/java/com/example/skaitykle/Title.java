@@ -75,7 +75,6 @@ public class Title extends AppCompatActivity {
         public void onSensorChanged(SensorEvent event) {
             if (event == null || event.values == null) return;
 
-            // Convert rotation vector → rotation matrix → euler angles
             SensorManager.getRotationMatrixFromVector(rotMatrix, event.values);
             SensorManager.getOrientation(rotMatrix, orientation);
 
