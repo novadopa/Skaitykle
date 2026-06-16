@@ -1,4 +1,4 @@
-package com.example.skaitykle;
+package com.example.skaitykle.DataBase;
 
 import com.google.android.gms.maps.model.LatLng;
 

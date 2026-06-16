@@ -167,7 +167,7 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
             return;
         }
 
-        LatLng countryLocation = com.example.skaitykle.CountryCoordinates.getCoordinates(authorCountry);
+        LatLng countryLocation = com.example.skaitykle.DataBase.CountryCoordinates.getCoordinates(authorCountry);
 
         if (countryLocation == null) {
             //findViewById(R.id.map).setVisibility(View.GONE);

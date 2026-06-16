@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-
     <LinearLayout
         android:id="@+id/userInfoContainer"
         android:layout_width="wrap_content"
@@ -139,6 +138,18 @@
             android:layout_marginTop="16dp"
             android:text="Show Sensors" />
 
+        <!--
+            Book Verification button — hidden by default.
+            Profile.java makes it visible only when user.isAdmin() == true.
+        -->
+        <Button
+            android:id="@+id/btnBookVerification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="📋 Book Verification"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/shakeStatusText"
             android:layout_width="wrap_content"
@@ -157,7 +168,6 @@
             android:visibility="gone" />
 
     </LinearLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerViewTitle"

@@ -86,69 +86,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
-    <EditText
-        android:id="@+id/editPages"
-        android:layout_width="169dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="24dp"
-        android:hint="Number of pages"
-        android:inputType="number"
-        android:padding="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCover" />
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/genreInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="167dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="24dp"
-        android:hint="Genre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPages">
-
-        <AutoCompleteTextView
-            android:id="@+id/editGenre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:padding="12dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/buttonPickPdf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="32dp"
-        android:text="Upload PDF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genreInputLayout" />
-
-    <Button
-        android:id="@+id/buttonSaveBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="56dp"
-        android:text="Save Book"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genreInputLayout" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_nav" />
+    <!-- "or" label between Cover URL and Camera button -->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="37dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="33dp"
+        android:text="or"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/editCover"
+        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
     <ImageButton
         android:id="@+id/buttonCamera"
@@ -168,27 +117,126 @@
         app:shapeAppearanceOverlay="@style/RoundedCorners"
         app:srcCompat="@drawable/twotone_camera_enhance_24" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="37dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="33dp"
-        android:text="or"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/editCover"
-        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
+    <EditText
+        android:id="@+id/editPages"
+        android:layout_width="169dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="24dp"
+        android:hint="Number of pages"
+        android:inputType="number"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCover" />
 
     <ImageView
         android:id="@+id/coverPreview"
-        android:layout_width="110dp"
-        android:layout_height="153dp"
+        android:layout_width="95dp"
+        android:layout_height="125dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/editPages"
         app:layout_constraintTop_toBottomOf="@+id/buttonCamera"
-        app:srcCompat="@drawable/outline_imagesmode_24"
-        app:shapeAppearanceOverlay="@style/RoundedCorners"/>
+        app:shapeAppearanceOverlay="@style/RoundedCorners"
+        app:srcCompat="@drawable/outline_imagesmode_24" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupDestination"
+        android:layout_width="197dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genreInputLayout">
+
+        <RadioButton
+            android:id="@+id/radioLibraryOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:checked="true"
+            android:text="Add to my library only" />
+
+        <RadioButton
+            android:id="@+id/radioGlobalUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit for everyone" />
+
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/genreInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="167dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="16dp"
+        android:hint="Genre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPages">
+
+        <AutoCompleteTextView
+            android:id="@+id/editGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:padding="12dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- ── NEW: PDF picker button + selected file name ───────────────────── -->
+
+    <!-- Shows the chosen PDF file name after picking -->
+
+    <!-- ── NEW: Destination radio group ─────────────────────────────────── -->
+
+    <!-- ── Save button ───────────────────────────────────────────────────── -->
+
+    <Button
+        android:id="@+id/buttonSaveBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="8dp"
+        android:text="Save Book"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_add"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonPickPdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="8dp"
+        android:text="Upload PDF"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_add"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPdfName"
+        android:layout_width="6dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="403dp"
+        android:layout_marginBottom="742dp"
+        android:ellipsize="middle"
+        android:maxLines="1"
+        android:textColor="#555555"
+        android:textSize="13sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

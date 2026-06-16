@@ -128,44 +128,44 @@ public class BookReader extends ScreenBrightnessManager{
 
         gestureDetector = new GestureDetector(this,
                 new GestureDetector.SimpleOnGestureListener(){
-            private static final int swipeThreshold = 60;
-            private static  final int swipeVelocityThreshold = 60;
+                    private static final int swipeThreshold = 60;
+                    private static  final int swipeVelocityThreshold = 60;
 
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
-            }
-
-
-           @Override
-           public boolean onSingleTapUp(MotionEvent e) {
-                if (isImmersiveMode) {
-                    exitImmersiveMode();
-                } else {
-                    enterImmersiveMode();
-                }
-                return true;
-           }
-
-
-            public boolean onFling(MotionEvent ev1, MotionEvent ev2, float velocityX,
-                                   float velocityY){
-                float diffX = ev2.getX() - ev1.getX();
-
-                if(Math.abs(diffX)>swipeThreshold && Math.abs(velocityX)>swipeVelocityThreshold){
-                    if(diffX>0){
-                        previousPage();
-                    }else{
-                        nextPage();
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        return true;
                     }
-                    return true;
-                }
 
-                return false;
 
-            }
+                    @Override
+                    public boolean onSingleTapUp(MotionEvent e) {
+                        if (isImmersiveMode) {
+                            exitImmersiveMode();
+                        } else {
+                            enterImmersiveMode();
+                        }
+                        return true;
+                    }
 
-        });
+
+                    public boolean onFling(MotionEvent ev1, MotionEvent ev2, float velocityX,
+                                           float velocityY){
+                        float diffX = ev2.getX() - ev1.getX();
+
+                        if(Math.abs(diffX)>swipeThreshold && Math.abs(velocityX)>swipeVelocityThreshold){
+                            if(diffX>0){
+                                previousPage();
+                            }else{
+                                nextPage();
+                            }
+                            return true;
+                        }
+
+                        return false;
+
+                    }
+
+                });
 
         View readerArea = findViewById(R.id.reader_page_current);
         readerArea.setOnTouchListener(new View.OnTouchListener() {
@@ -337,19 +337,30 @@ public class BookReader extends ScreenBrightnessManager{
     private void openPdf(){
         if(path == null || path.isEmpty()) return;
 
-        try{
-            InputStream inputStream = getAssets().open("books/"+path);
+        try {
+
+            File internalFile = new File(getFilesDir(), "books/" + path);
+            if (internalFile.exists()) {
+                ParcelFileDescriptor fd = ParcelFileDescriptor.open(
+                        internalFile, ParcelFileDescriptor.MODE_READ_ONLY);
+                pdfRenderer = new PdfRenderer(fd);
+                return;
+            }
+
+
+            InputStream inputStream = getAssets().open("books/" + path);
             File tempFile = File.createTempFile("book", ".pdf", getCacheDir());
             tempFile.deleteOnExit();
             FileOutputStream outputStream = new FileOutputStream(tempFile);
             byte[] buffer = new byte[4096];
             int len;
-            while((len = inputStream.read(buffer)) != -1) outputStream.write(buffer, 0, len);
+            while ((len = inputStream.read(buffer)) != -1) outputStream.write(buffer, 0, len);
             outputStream.close();
             inputStream.close();
-            ParcelFileDescriptor fileDescriptor = ParcelFileDescriptor.open(tempFile,
-                    ParcelFileDescriptor.MODE_READ_ONLY);
+            ParcelFileDescriptor fileDescriptor = ParcelFileDescriptor.open(
+                    tempFile, ParcelFileDescriptor.MODE_READ_ONLY);
             pdfRenderer = new PdfRenderer(fileDescriptor);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

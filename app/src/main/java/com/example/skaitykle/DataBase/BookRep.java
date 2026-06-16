@@ -5,19 +5,15 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class BookRep {
     private BookDao bookDao;
     private LiveData<List<Book>> books;
 
-    //ExecutorService executors = Executors.newSingleThreadExecutor();
-
-    public BookRep(Application application){
+    public BookRep(Application application) {
         AppDatabase Adb = AppDatabase.getInstance(application);
         bookDao = Adb.bookDao();
-        books = bookDao.getAllBooks();
+        books   = bookDao.getAllBooks();
     }
 
     public void insert(Book book) {
@@ -31,12 +27,22 @@ public class BookRep {
     public void delete(Book book) {
         AppDatabase.databaseWriteExecutor.execute(() -> bookDao.delete(book));
     }
+
+    public void updateStatus(int bookId, String status) {
+        AppDatabase.databaseWriteExecutor.execute(() -> bookDao.updateStatus(bookId, status));
+    }
+
+    public LiveData<List<Book>> getBooks()              { return books; }
+
+    public LiveData<List<Book>> getPendingBooks()       { return bookDao.getPendingBooks(); }
+
+    public LiveData<List<Book>> getPersonalBooks(int userId) {
+        return bookDao.getPersonalBooks(userId);
+    }
+
     public LiveData<List<Book>> searchBooks(String query) {
         return bookDao.searchBooks(query);
     }
-
-
-    public LiveData<List<Book>> getBooks() {return books;}
 
     public LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId) {
         return bookDao.getBooksWithReadingProgress(userId);
@@ -46,6 +52,4 @@ public class BookRep {
         AppDatabase.databaseWriteExecutor.execute(() ->
                 bookDao.updateTotalPages(bookId, totalPages));
     }
-
-
 }

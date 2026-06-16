@@ -8,8 +8,10 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
+
 @Dao
 public interface UserDao {
+
     @Query("SELECT * FROM user ORDER BY uid ASC")
     LiveData<List<User>> getAllUsers();
 
@@ -28,15 +30,21 @@ public interface UserDao {
     @Query("SELECT * FROM User WHERE email = :email AND password = :password LIMIT 1")
     User login(String email, String password);
 
+    @Query("SELECT * FROM user WHERE is_admin = 0 ORDER BY uid ASC")
+    LiveData<List<User>> getNonAdminUsers();
+
     @Insert
     void insertAll(User... users);
 
     @Insert
     void insert(User user);
+
     @Update
     void update(User users);
 
     @Delete
     void delete(User user);
 
+    @Query("UPDATE User SET is_banned = :banned WHERE uid = :userId")
+    void setBanned(int userId, boolean banned);
 }

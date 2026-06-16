@@ -12,6 +12,14 @@ public class UserRep {
     private UserDao userDao;
     private LiveData<List<User>> users;
 
+    ExecutorService executors = Executors.newSingleThreadExecutor();
+
+    public UserRep(Application application) {
+        AppDatabase Adb = AppDatabase.getInstance(application);
+        userDao = Adb.userDao();
+        users   = userDao.getAllUsers();
+    }
+
     public void insert(User user) {
         AppDatabase.databaseWriteExecutor.execute(() -> userDao.insert(user));
     }
@@ -24,16 +32,13 @@ public class UserRep {
         AppDatabase.databaseWriteExecutor.execute(() -> userDao.delete(user));
     }
 
-    ExecutorService executors = Executors.newSingleThreadExecutor();
-
-    public UserRep(Application application){
-        AppDatabase Adb = AppDatabase.getInstance(application);
-        userDao = Adb.userDao();
-        users = userDao.getAllUsers();
+    public void setBanned(int userId, boolean banned) {
+        AppDatabase.databaseWriteExecutor.execute(() -> userDao.setBanned(userId, banned));
     }
 
+    public LiveData<List<User>> getUsers()                { return users; }
 
-    public LiveData<List<User>> getUsers() {return users;}
+    public LiveData<List<User>> getNonAdminUsers()        { return userDao.getNonAdminUsers(); }
 
     public User getUserByIdDirect(int userId) {
         return userDao.getUserByIdDirect(userId);

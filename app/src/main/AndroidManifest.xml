@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skaitykle">
         <activity
+            android:name=".BookVerification"
+            android:exported="false" />
+        <activity
             android:name=".Map"
             android:exported="false" />
         <activity

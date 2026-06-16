@@ -12,29 +12,37 @@ public class BooksViewModel extends AndroidViewModel {
 
     private BookRep bookRep;
     private LiveData<List<Book>> books;
+
     public BooksViewModel(@NonNull Application application) {
         super(application);
-
         bookRep = new BookRep(application);
-        books = bookRep.getBooks();
+        books   = bookRep.getBooks();
     }
 
-    public void insert(Book book) { bookRep.insert(book);}
+    public void insert(Book book)  { bookRep.insert(book); }
+    public void update(Book book)  { bookRep.update(book); }
+    public void delete(Book book)  { bookRep.delete(book); }
 
-    public void update(Book book) { bookRep.update(book);}
+    /** Approve or reject a pending book */
+    public void updateStatus(int bookId, String status) {
+        bookRep.updateStatus(bookId, status);
+    }
 
-    public void delete(Book book) { bookRep.delete(book);}
+    public LiveData<List<Book>> getBooks() { return books; }
 
-    public LiveData<List<Book>> getBooks() { return books;}
+    public LiveData<List<Book>> getPendingBooks() { return bookRep.getPendingBooks(); }
+
+    public LiveData<List<Book>> getPersonalBooks(int userId) {
+        return bookRep.getPersonalBooks(userId);
+    }
 
     public LiveData<List<BookWithReadingProgress>> getBooksWithReadingProgress(int userId) {
         return bookRep.getBooksWithReadingProgress(userId);
     }
 
     public void updateTotalPages(int bookId, int totalPages) {
-        AppDatabase.databaseWriteExecutor.execute(() -> {
-            bookRep.updateTotalPages(bookId, totalPages);
-        });
+        AppDatabase.databaseWriteExecutor.execute(() ->
+                bookRep.updateTotalPages(bookId, totalPages));
     }
 
     public LiveData<List<Book>> searchBooks(String query) {
