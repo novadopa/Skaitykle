@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 8,
-    "identityHash": "b893f2888a3434f00fed2c1fe2af81e0",
+    "identityHash": "43a95facc9396aa7387739c6961f274f",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT NOT NULL, `last_name` TEXT NOT NULL, `email` TEXT NOT NULL, `password` TEXT NOT NULL, `profile_photo_uri` TEXT, `is_admin` INTEGER NOT NULL, `is_banned` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT, `email` TEXT, `password` TEXT, `profile_photo_uri` TEXT, `is_admin` INTEGER NOT NULL, `is_banned` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -17,26 +17,22 @@
           {
             "fieldPath": "firstName",
             "columnName": "first_name",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "lastName",
             "columnName": "last_name",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "email",
             "columnName": "email",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "password",
             "columnName": "password",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "profilePhotoUri",
@@ -65,7 +61,7 @@
       },
       {
         "tableName": "Book",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `author` TEXT NOT NULL, `author_country` TEXT, `book_path` TEXT NOT NULL, `cover_uri` TEXT NOT NULL, `total_pages` INTEGER NOT NULL, `genres` TEXT NOT NULL, `added_by_user_id` INTEGER NOT NULL, `status` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `description` TEXT, `author` TEXT, `author_country` TEXT, `book_path` TEXT, `cover_uri` TEXT, `total_pages` INTEGER NOT NULL, `genres` TEXT, `added_by_user_id` INTEGER NOT NULL, `status` TEXT)",
         "fields": [
           {
             "fieldPath": "bid",
@@ -76,20 +72,17 @@
           {
             "fieldPath": "title",
             "columnName": "title",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "description",
             "columnName": "description",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "author",
             "columnName": "author",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "authorCountry",
@@ -99,14 +92,12 @@
           {
             "fieldPath": "bookPath",
             "columnName": "book_path",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "coverUri",
             "columnName": "cover_uri",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "totalPages",
@@ -117,8 +108,7 @@
           {
             "fieldPath": "genres",
             "columnName": "genres",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           },
           {
             "fieldPath": "addedByUserId",
@@ -129,8 +119,7 @@
           {
             "fieldPath": "status",
             "columnName": "status",
-            "affinity": "TEXT",
-            "notNull": true
+            "affinity": "TEXT"
           }
         ],
         "primaryKey": {
@@ -243,7 +232,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b893f2888a3434f00fed2c1fe2af81e0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '43a95facc9396aa7387739c6961f274f')"
     ]
   }
 }

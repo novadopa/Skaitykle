@@ -53,6 +53,7 @@ public class SearchDropdownAdapter extends RecyclerView.Adapter<SearchDropdownAd
             intent.putExtra("BookPath", book.getBookPath());
             intent.putExtra("BookCover", book.getCoverUri());
             intent.putExtra("BookTotalPages", book.getTotalPages());
+            intent.putExtra("BookAddedBy", book.getAddedByUserId());
             v.getContext().startActivity(intent);
         });
     }

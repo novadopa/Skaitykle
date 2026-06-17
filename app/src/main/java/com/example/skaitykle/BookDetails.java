@@ -21,8 +21,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -46,6 +48,7 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
 
     private int bookId;
     private int totalPages;
+    private int addedByUserId;
     String title, author, authorCountry, description, path, coverUri;
     private static final int currentUserId = 1;
 
@@ -73,6 +76,7 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
         totalPages    = getIntent().getIntExtra("BookTotalPages", 0);
         path          = getIntent().getStringExtra("BookPath");
         coverUri      = getIntent().getStringExtra("BookCover");
+        addedByUserId = getIntent().getIntExtra("BookAddedBy", -1);
 
         TextView textViewTitle       = findViewById(R.id.textViewTitle);
         TextView textViewAuthor      = findViewById(R.id.textViewBookAuthor);
@@ -102,6 +106,14 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
 
         Button readButton = findViewById(R.id.button_ReadBook);
         readButton.setOnClickListener(v -> addBookToLibrary());
+
+        Button deleteButton = findViewById(R.id.button_DeleteBook);
+        if (addedByUserId != -1 && addedByUserId == currentUserId) {
+            deleteButton.setVisibility(View.VISIBLE);
+            deleteButton.setOnClickListener(v -> confirmAndDeleteBook());
+        } else {
+            deleteButton.setVisibility(View.GONE);
+        }
 
         ImageButton imageButton = findViewById(R.id.button_Back);
         imageButton.setOnClickListener(view -> finish());
@@ -256,6 +268,30 @@ public class BookDetails extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
+
+    private void confirmAndDeleteBook() {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete book")
+                .setMessage("This permanently removes the book you uploaded from the system, "
+                        + "including its reviews and any users' library entries for it. "
+                        + "This cannot be undone. Continue?")
+                .setPositiveButton("Delete", (dialog, which) -> deleteBookFromSystem())
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void deleteBookFromSystem() {
+        AppDatabase db = AppDatabase.getInstance(this);
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            db.reviewDao().deleteAllForBook(bookId);
+            db.userBookDao().deleteAllForBook(bookId);
+            db.bookDao().deleteById(bookId);
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Book deleted", Toast.LENGTH_SHORT).show();
+                finish();
+            });
+        });
+    }
 
     private void addBookToLibrary() {
         AppDatabase db = AppDatabase.getInstance(this);

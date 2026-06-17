@@ -19,6 +19,9 @@ public interface ReviewDao {
     @Query("SELECT * FROM Review WHERE book_id = :bookId AND user_id = :userId LIMIT 1")
     Review getReviewByUserAndBook(int bookId, int userId);
 
+    @Query("DELETE FROM Review WHERE book_id = :bookId")
+    void deleteAllForBook(int bookId);
+
 
     @Query("SELECT Review.*, User.first_name || ' ' || User.last_name AS userName " +
             "FROM Review " +

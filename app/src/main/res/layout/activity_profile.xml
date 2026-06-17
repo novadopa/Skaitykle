@@ -138,6 +138,13 @@
             android:layout_marginTop="16dp"
             android:text="Show Sensors" />
 
+        <Button
+            android:id="@+id/btnChangePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Change password" />
+
         <!--
             Book Verification button — hidden by default.
             Profile.java makes it visible only when user.isAdmin() == true.

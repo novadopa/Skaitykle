@@ -61,6 +61,7 @@ public class BookViewAdapter extends RecyclerView.Adapter<BookViewAdapter.BookHo
             intent.putExtra("BookPath", currentBook.getBookPath());
             intent.putExtra("BookCover", currentBook.getCoverUri());
             intent.putExtra("BookTotalPages", currentBook.getTotalPages());
+            intent.putExtra("BookAddedBy", currentBook.getAddedByUserId());
 
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
                     (Activity) v.getContext(),

@@ -48,6 +48,9 @@ public interface BookDao {
     @Delete
     void delete(Book book);
 
+    @Query("DELETE FROM Book WHERE bid = :bookId")
+    void deleteById(int bookId);
+
     @Query("UPDATE Book SET total_pages = :totalPages WHERE bid = :bookId")
     void updateTotalPages(int bookId, int totalPages);
 

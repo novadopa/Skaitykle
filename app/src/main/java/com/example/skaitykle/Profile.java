@@ -9,10 +9,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -166,6 +169,9 @@ public class Profile extends AppCompatActivity {
         int userId = getIntent().getIntExtra("userId", -1);
         if (userId == -1) { startActivity(new Intent(this, Login.class)); finish(); return; }
 
+        Button btnChangePassword = findViewById(R.id.btnChangePassword);
+        btnChangePassword.setOnClickListener(v -> showChangePasswordDialog(userId));
+
         UserRep userRep = new UserRep(getApplication());
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
@@ -213,6 +219,91 @@ public class Profile extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void showChangePasswordDialog(int userId) {
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        int pad = (int) (20 * getResources().getDisplayMetrics().density);
+        layout.setPadding(pad, pad, pad, 0);
+
+        EditText currentInput = new EditText(this);
+        currentInput.setHint("Current password");
+        currentInput.setInputType(
+                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        EditText newInput = new EditText(this);
+        newInput.setHint("New password");
+        newInput.setInputType(
+                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        EditText confirmInput = new EditText(this);
+        confirmInput.setHint("Confirm new password");
+        confirmInput.setInputType(
+                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        layout.addView(currentInput);
+        layout.addView(newInput);
+        layout.addView(confirmInput);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Change password")
+                .setView(layout)
+                .setPositiveButton("Save", null)
+                .setNegativeButton("Cancel", null)
+                .create();
+
+        // Override the positive button so validation errors do not dismiss the dialog.
+        dialog.setOnShowListener(d ->
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                    String current = currentInput.getText().toString();
+                    String newPass = newInput.getText().toString();
+                    String confirm = confirmInput.getText().toString();
+
+                    if (current.isEmpty() || newPass.isEmpty() || confirm.isEmpty()) {
+                        Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (newPass.length() < 6) {
+                        Toast.makeText(this, "New password must be at least 6 characters",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (!newPass.equals(confirm)) {
+                        Toast.makeText(this, "New passwords do not match", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    UserRep userRep = new UserRep(getApplication());
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    executor.execute(() -> {
+                        User user = userRep.getUserByIdDirect(userId);
+                        if (user == null) {
+                            runOnUiThread(() -> Toast.makeText(this, "User not found",
+                                    Toast.LENGTH_SHORT).show());
+                            return;
+                        }
+                        if (!user.password.equals(current)) {
+                            runOnUiThread(() -> Toast.makeText(this, "Current password is incorrect",
+                                    Toast.LENGTH_SHORT).show());
+                            return;
+                        }
+                        if (newPass.equals(current)) {
+                            runOnUiThread(() -> Toast.makeText(this,
+                                    "New password must be different from the current one",
+                                    Toast.LENGTH_SHORT).show());
+                            return;
+                        }
+                        user.password = newPass;
+                        userRep.update(user);
+                        runOnUiThread(() -> {
+                            Toast.makeText(this, "Password changed", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        });
+                    });
+                }));
+
+        dialog.show();
     }
 
     private void openProfileCamera() {
