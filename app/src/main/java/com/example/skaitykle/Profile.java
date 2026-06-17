@@ -187,7 +187,6 @@ public class Profile extends AppCompatActivity {
                                 .circleCrop().into(profilePhoto);
                     }
 
-                    // Show admin button only for admin accounts
                     if (user.isAdmin()) {
                         btnVerification.setVisibility(View.VISIBLE);
                         btnVerification.setOnClickListener(v ->
@@ -253,7 +252,6 @@ public class Profile extends AppCompatActivity {
                 .setNegativeButton("Cancel", null)
                 .create();
 
-        // Override the positive button so validation errors do not dismiss the dialog.
         dialog.setOnShowListener(d ->
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
                     String current = currentInput.getText().toString();

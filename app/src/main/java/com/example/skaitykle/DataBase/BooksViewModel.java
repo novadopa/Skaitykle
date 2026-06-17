@@ -23,7 +23,6 @@ public class BooksViewModel extends AndroidViewModel {
     public void update(Book book)  { bookRep.update(book); }
     public void delete(Book book)  { bookRep.delete(book); }
 
-    /** Approve or reject a pending book */
     public void updateStatus(int bookId, String status) {
         bookRep.updateStatus(bookId, status);
     }

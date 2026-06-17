@@ -86,7 +86,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
-    <!-- "or" label between Cover URL and Camera button -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="37dp"
@@ -184,14 +183,6 @@
             android:padding="12dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- ── NEW: PDF picker button + selected file name ───────────────────── -->
-
-    <!-- Shows the chosen PDF file name after picking -->
-
-    <!-- ── NEW: Destination radio group ─────────────────────────────────── -->
-
-    <!-- ── Save button ───────────────────────────────────────────────────── -->
 
     <Button
         android:id="@+id/buttonSaveBook"

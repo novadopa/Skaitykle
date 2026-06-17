@@ -62,7 +62,7 @@ public class AddBook extends AppCompatActivity {
                     uri -> {
                         if (uri == null) return;
                         pdfUri = uri;
-                        // Show the chosen file name in the UI immediately
+
                         TextView tvPdfName = findViewById(R.id.tvPdfName);
                         String displayName = resolveFileName(uri);
                         tvPdfName.setText(displayName);
@@ -221,7 +221,6 @@ public class AddBook extends AppCompatActivity {
             });
         });
 
-        // ── Bottom navigation ─────────────────────────────────────────────────
         bottomNavigationView = findViewById(R.id.bottom_nav_add);
         bottomNavigationView.setSelectedItemId(R.id.menu_add_book);
 
@@ -250,7 +249,6 @@ public class AddBook extends AppCompatActivity {
             File booksDir = new File(getFilesDir(), "books");
             if (!booksDir.exists()) booksDir.mkdirs();
 
-            // Build a unique filename
             String originalName = resolveFileName(uri);
             String baseName     = originalName.replaceAll("[^a-zA-Z0-9._-]", "_");
             String fileName     = System.currentTimeMillis() + "_" + baseName;
